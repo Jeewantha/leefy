@@ -1,5 +1,6 @@
 package com.jeesoft.services.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jeesoft.dao.ProductDao;
@@ -7,6 +8,8 @@ import com.jeesoft.model.Product;
 import com.jeesoft.services.ProductService;
 
 public class ProductServiceImpl implements ProductService {
+
+	Logger logger = Logger.getLogger(ProductServiceImpl.class);
 	@Autowired
 	ProductDao prodcutDao;
 
@@ -21,7 +24,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public Product getProduct(String id) {
-		System.out.println("product id=" + id);
+
+		logger.info("Getting the product with Id: " + id);
+		
 		return prodcutDao.getProduct(id);
 	}
 
@@ -31,10 +36,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public String getUsername(String name) {
-		String userStr ="User's username is: "+name+" ,Name is "+username; 
+		String userStr = "User's username is: " + name + " ,Name is "
+				+ username;
 		System.out.println(userStr);
 		return userStr;
 	}
-	
 
 }

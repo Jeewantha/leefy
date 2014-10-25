@@ -11,7 +11,7 @@ import javax.ws.rs.PathParam;
 
 import com.jeesoft.model.Product;
 
-@WebService(serviceName = "productServices", targetNamespace = "http://www.27programs.com/spring-cxf-rest/services")
+@WebService(serviceName = "productServices", targetNamespace = "http://localhost::8080/leefy/services")
 @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 public interface ProductService {
