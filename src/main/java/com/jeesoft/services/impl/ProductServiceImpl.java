@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
 	public Product getProduct(String id) {
 
-		logger.info("Getting the product with Id: " + id);
+		logger.info("Getting the product with Id: " + id + "for user :"+username);
 		
 		return prodcutDao.getProduct(id);
 	}
