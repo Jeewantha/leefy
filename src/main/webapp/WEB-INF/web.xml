@@ -9,10 +9,20 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath*:beans-spring.xml
-            classpath*:rest-service-beans.xml           
+            classpath*:rest-service-beans.xml
+            classpath*:security-context.xml           
 		</param-value>
     </context-param>
 	
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
     <listener>
         <listener-class> org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -35,5 +45,8 @@
 	    <servlet-name>CXFServlet</servlet-name>
 	    <url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
+  
+  
+  
 	
 </web-app>

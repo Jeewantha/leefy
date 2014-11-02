@@ -12,8 +12,8 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * @author Jeewantha
  *
  */
-public class CustomeBeanFactoryPostProcessor implements
-		BeanFactoryPostProcessor {
+public class CustomeBeanFactoryPostProcessor /*implements
+		BeanFactoryPostProcessor */{
 	
 	private Logger log = Logger.getLogger(CustomeBeanFactoryPostProcessor.class); 
 	
@@ -21,8 +21,8 @@ public class CustomeBeanFactoryPostProcessor implements
 	/* (non-Javadoc)
 	 * @see org.springframework.beans.factory.config.BeanFactoryPostProcessor#postProcessBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
 	 */
-	@Override
-	public void postProcessBeanFactory(
+	//@Override
+/*	public void postProcessBeanFactory(
 			ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		
 		log.info("Calling the bean factory post processer!!!");
@@ -32,6 +32,6 @@ public class CustomeBeanFactoryPostProcessor implements
 		log.info("Bean Count : "+beanFactory.getBeanDefinitionCount());
 		log.info("Beans : "+beanFactory.getBeanPostProcessorCount());
 		
-	}
+	}*/
 
 }
