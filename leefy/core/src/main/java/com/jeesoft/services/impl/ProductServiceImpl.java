@@ -10,6 +10,7 @@ import com.jeesoft.services.ProductService;
 public class ProductServiceImpl implements ProductService {
 
 	Logger logger = Logger.getLogger(ProductServiceImpl.class);
+	
 	@Autowired
 	ProductDao prodcutDao;
 
