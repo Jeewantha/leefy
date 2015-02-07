@@ -1,5 +1,8 @@
 package com.jeesoft.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.jeesoft.model.Product;
@@ -23,6 +26,17 @@ public class ProductDao {
 		return product;
 	}
 	
+	
+	public List<Product> getAllProducts() {
+
+		List<Product> products = new ArrayList<Product>();
+		
+		Product product = new Product();
+		product.setName("MAC Book Air");
+		product.setType("Electronics");
+		products.add(product);
+		return products;
+	}
 	
 
 }

@@ -1,5 +1,7 @@
 package com.jeesoft.services;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,7 +19,7 @@ public interface ProductService {
 	@GET
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Path("/product/{id}")
+	@Path("product/{id}")
 	public Product getProduct(@Context HttpHeaders httpHeaders, @PathParam("id") String id);
 
 	@POST
@@ -31,5 +33,11 @@ public interface ProductService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/user/{name}")
 	public String getUsername(@Context HttpHeaders httpHeaders, @PathParam("name") String username);
+	
+	@GET
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/admin/products")
+	public List<Product> getAllProducts(@Context HttpHeaders httpHeaders);
 	
 }

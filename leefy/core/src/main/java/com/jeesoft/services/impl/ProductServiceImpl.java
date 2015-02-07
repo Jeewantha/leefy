@@ -30,18 +30,6 @@ public class ProductServiceImpl implements ProductService {
 
 	public Product getProduct(HttpHeaders httpHeaders, String id) {
 
-		String authenticationKey = null;
-		
-		if(httpHeaders != null){
-			List<String> authHeader = httpHeaders.getRequestHeader("Authentication");
-			authenticationKey = authHeader != null && !authHeader.isEmpty() ? authHeader.get(0) : null;
-		}
-		
-		if(authenticationKey != null && !"".equals(authenticationKey)){
-			
-			System.out.println(authenticationKey);
-		}
-		
 		logger.info("Getting the product with Id: " + id + "for user :"+username);
 		
 		return prodcutDao.getProduct(id);
@@ -57,6 +45,14 @@ public class ProductServiceImpl implements ProductService {
 				+ username;
 		System.out.println(userStr);
 		return userStr;
+	}
+
+	@Override
+	public List<Product> getAllProducts(HttpHeaders httpHeaders) {
+
+		logger.info("Getting the all products");
+		
+		return prodcutDao.getAllProducts();
 	}
 
 }
