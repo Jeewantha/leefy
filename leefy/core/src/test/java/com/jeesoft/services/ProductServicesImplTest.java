@@ -1,4 +1,4 @@
-package leefy;
+package com.jeesoft.services;
 
 import static com.jayway.restassured.RestAssured.*;
 import static com.jayway.restassured.matcher.RestAssuredMatchers.*;
