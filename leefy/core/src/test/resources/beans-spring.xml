@@ -14,8 +14,6 @@
 
   <context:property-placeholder location="classpath:application.properties"/>
 
-  <bean class="com.jeesoft.business.beans.processors.CustomeBeanFactoryPostProcessor"/>
-
   <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
   
   <bean id="productServiceImpl" class="com.jeesoft.services.impl.ProductServiceImpl">

@@ -22,9 +22,6 @@
     <jaxrs:serviceBeans>
       <ref bean="productServiceImpl" />
     </jaxrs:serviceBeans>
-    <jaxrs:invoker>
-      <bean class="com.jeesoft.security.CustomJAXRSInvoker" />
-    </jaxrs:invoker>
   </jaxrs:server>
 
 </beans>

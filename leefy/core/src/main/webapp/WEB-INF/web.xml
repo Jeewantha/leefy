@@ -3,27 +3,36 @@
 	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>rest-services</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>
+      login.jsp
+    </welcome-file>
+  </welcome-file-list>
+  
+  
 	<context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath*:beans-spring.xml
-            classpath*:rest-service-beans.xml
-            classpath*:security-context.xml           
-		</param-value>
-    </context-param>
+          <param-value>
+              classpath*:beans-spring.xml
+              classpath*:rest-service-beans.xml
+              classpath*:security-context.xml           
+  		    </param-value>
+   </context-param>
 	
   <filter>
     <filter-name>springSecurityFilterChain</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
   </filter>
+  
   <filter-mapping>
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
-    <listener>
-        <listener-class> org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+  <listener>
+      <listener-class> org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
 	
 	<servlet>
 	    <servlet-name>CXFServlet</servlet-name>
