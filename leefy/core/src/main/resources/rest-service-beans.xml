@@ -1,7 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
   xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
   xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -23,6 +22,9 @@
     <jaxrs:serviceBeans>
       <ref bean="productServiceImpl" />
     </jaxrs:serviceBeans>
+    <jaxrs:invoker>
+      <bean class="com.jeesoft.security.CustomJAXRSInvoker" />
+    </jaxrs:invoker>
   </jaxrs:server>
 
 </beans>

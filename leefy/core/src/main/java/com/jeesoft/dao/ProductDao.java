@@ -1,8 +1,10 @@
 package com.jeesoft.dao;
 
+import org.springframework.stereotype.Component;
+
 import com.jeesoft.model.Product;
 
-
+@Component
 public class ProductDao {
 
 	
