@@ -5,12 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Lefy Social Application</title>
+<title>Leefy Social Application - Web Services</title>
 </head>
 <body>
 
-<h1>Sample social network application</h1>
+<h1>This component contains the leefy application specific web services.</h1>
 <br />
-<p>This is the login page of leefy.</p>
+<p>All web services should be called through this service.</p>
 </body>
 </html>
