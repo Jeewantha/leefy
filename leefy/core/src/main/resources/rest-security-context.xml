@@ -12,14 +12,14 @@
     <intercept-url pattern="/services/productServices/admin/**" access="ROLE_ADMIN" />
 
     <form-login authentication-success-handler-ref="successHandler"
-      authentication-failure-handler-ref="myFailureHandler" />
+      authentication-failure-handler-ref="failureHandler" />
 
     <logout />
   </http>
 
   <beans:bean id="successHandler"
     class="com.jeesoft.security.SavedRequestAwareAuthenticationSuccessHandler" />
-  <beans:bean id="myFailureHandler"
+  <beans:bean id="failureHandler"
     class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler" />
 
   <authentication-manager alias="authenticationManager">
