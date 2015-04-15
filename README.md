@@ -12,7 +12,7 @@ alpha 1.0
 
 Contributors
 =====
-Jeewantha Samaaweera
+Jeewantha Samaraweera
 
 How to contribute?
 ==================
