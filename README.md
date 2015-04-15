@@ -12,12 +12,18 @@ alpha 1.0
 
 Contributors
 =====
-Jeewantha Samaaweera
+Jeewantha Samaraweera
+
+How to contribute?
+==================
+If you would like to contribute,
+* Report bugs and issues
+* Submit pull requests to fix issues
+* Create documentation(DOC will be available soon)
+* Document feature request(Preferebly with code that implements the feature)
+
+** Please feel free to contribute to the project in any way you like!
 
 License
 =====
 GNU GPL v 3.0
-
-
-
-
