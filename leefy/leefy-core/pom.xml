@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 
   Leefy is a simple social network to narrow the gap between people speaking different
@@ -181,5 +182,28 @@
       <artifactId>spring-security-core</artifactId>
       <version>${spring.security.version}</version>
     </dependency>
+  
+  <!-- JSR 303 with Hibernate Validator ** Might have to remove later-->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>4.1.0.Final</version>
+    </dependency>
   </dependencies>
+
+  <repositories>
+    <!-- For Hibernate Validator -->
+    <repository>
+      <id>org.jboss.repository.release</id>
+      <name>JBoss Maven Release Repository</name>     
+      <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+      <snapshots><enabled>false</enabled></snapshots>     
+    </repository>
+  </repositories>
+  
 </project>

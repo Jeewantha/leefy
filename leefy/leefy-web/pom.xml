@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+  Leefy is a simple social network to narrow the gap between people speaking different
+  languages and to aid the language learning process.
+    Copyright (C) 2015  Jeewantha Samaraweera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -11,6 +31,7 @@
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+    <org.springframework.security-version>3.0.5.RELEASE</org.springframework.security-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -31,6 +52,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+    
+    <dependency>
+      <groupId>com.jeesoft</groupId>
+      <artifactId>leefy-core</artifactId>
+      <version>1.0.0</version>
+    </dependency>
 				
 		<!-- AspectJ -->
 		<dependency>
@@ -107,6 +134,41 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+    
+    <!-- Spring Security -->
+      <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${org.springframework.security-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+      </dependency>
+    <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${org.springframework.security-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+      </dependency>
+    <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${org.springframework.security-version}</version>
+      </dependency>
+    <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${org.springframework.security-version}</version>
+      </dependency>
+    
 	
 		<!-- Test -->
 		<dependency>
@@ -120,7 +182,29 @@
 		  <artifactId>jackson-mapper-asl</artifactId>
 		  <version>1.9.11</version>
 		</dependency>
-	</dependencies>
+	<!-- JSR 303 with Hibernate Validator ** Might have to remove later-->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>4.1.0.Final</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <!-- For Hibernate Validator -->
+    <repository>
+      <id>org.jboss.repository.release</id>
+      <name>JBoss Maven Release Repository</name>     
+      <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+      <snapshots><enabled>false</enabled></snapshots>     
+    </repository>
+  </repositories>
+
     <build>
     <finalName>leefy-web</finalName>
         <plugins>

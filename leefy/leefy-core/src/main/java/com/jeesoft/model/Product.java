@@ -25,37 +25,80 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
-@XmlRootElement(name="product")
-@JsonPropertyOrder({"id","name","type"})
+/**
+ * The Class Product.
+ */
+@XmlRootElement(name = "product")
+@JsonPropertyOrder({ "id", "name", "type" })
 public class Product {
-	
+
+	/** The id. */
 	private String id;
-	
+
+	/** The name. */
 	private String name;
-	
+
+	/** The type. */
 	private String type;
-	
+
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	@JsonProperty("productId")
-	public String getId() {
+	public final String getId() {
 		return id;
 	}
-	public void setId(String id) {
+
+	/**
+	 * Sets the id.
+	 *
+	 * @param id
+	 *            the new id
+	 */
+	public final void setId(final String id) {
 		this.id = id;
 	}
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	@JsonProperty("productName")
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
-	public void setName(String name) {
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name
+	 *            the new name
+	 */
+	public final void setName(final String name) {
 		this.name = name;
 	}
+
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	@JsonProperty("productType")
-	public String getType() {
+	public final String getType() {
 		return type;
 	}
-	public void setType(String type) {
+
+	/**
+	 * Sets the type.
+	 *
+	 * @param type
+	 *            the new type
+	 */
+	public final void setType(final String type) {
 		this.type = type;
 	}
-	
 
 }

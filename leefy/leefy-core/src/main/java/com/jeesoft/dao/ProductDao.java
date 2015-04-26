@@ -27,11 +27,20 @@ import org.springframework.stereotype.Component;
 
 import com.jeesoft.model.Product;
 
+/**
+ * The Class ProductDao.
+ */
 @Component
 public class ProductDao {
 
-	
-	public Product getProduct(String id) {
+	/**
+	 * Gets the product.
+	 *
+	 * @param id
+	 *            the id
+	 * @return the product
+	 */
+	public final Product getProduct(final String id) {
 		// Create some fake product and return
 		Product product = new Product();
 		product.setId(id);
@@ -40,23 +49,33 @@ public class ProductDao {
 		return product;
 	}
 
-	public Product saveProduct(Product product) {
+	/**
+	 * Save product.
+	 *
+	 * @param product
+	 *            the product
+	 * @return the product
+	 */
+	public final Product saveProduct(final Product product) {
 		// saved product
 		product.setId("456");
 		return product;
 	}
-	
-	
-	public List<Product> getAllProducts() {
+
+	/**
+	 * Gets the all products.
+	 *
+	 * @return the all products
+	 */
+	public final List<Product> getAllProducts() {
 
 		List<Product> products = new ArrayList<Product>();
-		
+
 		Product product = new Product();
 		product.setName("MAC Book Air");
 		product.setType("Electronics");
 		products.add(product);
 		return products;
 	}
-	
 
 }
