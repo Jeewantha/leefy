@@ -27,8 +27,8 @@ import javax.ws.rs.core.HttpHeaders;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jeesoft.dao.ProductDao;
-import com.jeesoft.model.Product;
+import com.jeesoft.api.dao.ProductDao;
+import com.jeesoft.api.dto.Product;
 import com.jeesoft.services.ProductService;
 
 public class ProductServiceImpl implements ProductService {

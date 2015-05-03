@@ -22,43 +22,60 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+  
 	<groupId>com.jeesoft</groupId>
 	<artifactId>leefy-web</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+    <spring.version>4.1.6.RELEASE</spring.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
     <org.springframework.security-version>3.0.5.RELEASE</org.springframework.security-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+  
+    <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-framework-bom</artifactId>
+        <version>${spring.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
 	<dependencies>
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-version}</version>
-			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				 </exclusion>
-			</exclusions>
-		</dependency>
+    
+    <!-- SPRINGFRAMEWORK -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+    </dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
 		</dependency>
     
-    <dependency>
-      <groupId>com.jeesoft</groupId>
-      <artifactId>leefy-core</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -106,7 +123,7 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- @Inject -->
@@ -188,12 +205,37 @@
       <artifactId>validation-api</artifactId>
       <version>1.0.0.GA</version>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>4.1.0.Final</version>
+      <version>5.0.3.Final</version>
+    </dependency> -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>4.3.8.Final</version>
     </dependency>
-  </dependencies>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.34</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-c3p0</artifactId>
+      <version>4.3.8.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jeesoft</groupId>
+      <artifactId>leefy-core</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jeesoft</groupId>
+      <artifactId>leefy-api</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+	</dependencies>
 
   <repositories>
     <!-- For Hibernate Validator -->
@@ -242,7 +284,25 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+          </plugin>
         </plugins>
+        <resources>
+      <resource>
+        <directory>
+          src/main/config
+        </directory>
+        <includes>
+         <include>**/*.properties</include>
+         <include>**/datasource/*.xml</include>
+         <include>**/hibernate/*.xml</include>
+         <include>**/springbeans/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
     </build>
     <name>Leefy web - A web application</name>
 </project>

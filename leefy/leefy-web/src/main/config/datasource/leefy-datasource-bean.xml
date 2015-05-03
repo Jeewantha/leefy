@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+  Leefy is a simple social network to narrow the gap between people speaking different
+  languages and to aid the language learning process.
+    Copyright (C) 2015  Jeewantha Samaraweera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+ -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+	<!-- Bean definition for Transaction manager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<!-- Data sources -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- bean id="dataSourceSMS" class="org.apache.commons.dbcp.BasicDataSource" -->
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/akura
+			</value>
+
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>root</value>
+		</property>
+	</bean>
+
+	<!-- session factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>hibernate/module.hbm.xml</value>
+				<value>hibernate/page.hbm.xml</value>
+				<value>hibernate/privilege.hbm.xml</value>
+				<value>hibernate/privilegeDependency.hbm.xml</value>
+				<value>hibernate/rolePrivilege.hbm.xml</value>
+				<value>hibernate/roleTab.hbm.xml</value>
+				<value>hibernate/securityQuestions.hbm.xml
+				</value>
+				<value>hibernate/tab.hbm.xml</value>
+				<value>hibernate/userLogin.hbm.xml
+				</value>
+				<value>hibernate/userRole.hbm.xml</value>
+				<value>hibernate/userSecurityQuestions.hbm.xml
+				</value>
+			</list>
+
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
+				</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.autocommit">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
+
+				<prop key="hibernate.jdbc.batch_size">1000</prop>
+				<!-- <prop key="hibernate.cache.use_second_level_cache">false</prop>
+					<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop> -->
+			</props>
+		</property>
+	</bean>
+</beans>

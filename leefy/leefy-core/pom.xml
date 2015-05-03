@@ -31,38 +31,53 @@
   <properties>
     <maven.test.skip>true</maven.test.skip>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>4.1.1.RELEASE</spring.version>
+    <spring.version>4.1.6.RELEASE</spring.version>
     <spring.security.version>3.2.5.RELEASE</spring.security.version>
     <spring.amqp.version>1.2.0.RELEASE</spring.amqp.version>
-    <hibernate.version>3.6.9.Final</hibernate.version>
     <rabbitmq.version>3.1.4</rabbitmq.version>
     <jackson.version>1.9.4</jackson.version>
     <commons.beanutils.version>1.8.3</commons.beanutils.version>
     <quartz.version>2.1.3</quartz.version>
   </properties>
+  
+   <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-framework-bom</artifactId>
+        <version>${spring.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
 
   <dependencies>
+  <!-- SPRINGFRAMEWORK -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
-      <version>${spring.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+
+  <!-- SPRINGSECURITY -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
@@ -74,11 +89,17 @@
       <version>${spring.security.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+  <!-- REST -->
+    <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
       <version>2.5.3</version>
     </dependency>
-
     <dependency>
       <groupId>com.jayway.restassured</groupId>
       <artifactId>rest-assured</artifactId>
@@ -86,41 +107,16 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.1.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.9.2</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>javax.ws.rs</groupId>
       <artifactId>jsr311-api</artifactId>
@@ -131,7 +127,23 @@
       <artifactId>jackson-core-asl</artifactId>
       <version>1.9.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.2</version>
+    </dependency>
 
+ <!-- OTHERS -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.1</version>
+    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -142,9 +154,6 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.7.2</version>
     </dependency>
-
-
-
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
@@ -158,7 +167,6 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
@@ -175,13 +183,6 @@
       <artifactId>commons-codec</artifactId>
       <version>1.4</version>
     </dependency>
-
-
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>${spring.security.version}</version>
-    </dependency>
   
   <!-- JSR 303 with Hibernate Validator ** Might have to remove later-->
     <dependency>
@@ -189,11 +190,12 @@
       <artifactId>validation-api</artifactId>
       <version>1.0.0.GA</version>
     </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>4.1.0.Final</version>
-    </dependency>
+
+   <dependency>
+     <groupId>org.hibernate</groupId>
+     <artifactId>hibernate-validator</artifactId>
+     <version>5.0.3.Final</version>
+   </dependency>
   </dependencies>
 
   <repositories>

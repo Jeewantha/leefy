@@ -20,15 +20,24 @@
  *******************************************************************************/
 package com.jeesoft.web;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.jeesoft.web.dao.UserLoginDao;
 
 /**
  * The Class LoginController.
  */
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private UserLoginDao userLoginDao;
 
 	/**
 	 * Login.
@@ -36,7 +45,9 @@ public class LoginController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/app/login.do", method = RequestMethod.GET)
-	public final String login() {
+	public final String login(ModelMap model, HttpSession session) {
+		
+		session.invalidate();
 		return "login";
 	}
 }

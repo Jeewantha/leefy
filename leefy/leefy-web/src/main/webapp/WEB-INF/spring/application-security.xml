@@ -28,7 +28,7 @@
   xmlns:context="http://www.springframework.org/schema/context">
 
    <http use-expressions="true">
-      <intercept-url pattern="/resources/**" filters="none"/>
+      <intercept-url pattern="/resources/**" access="permitAll()" filters="none"/>
       <intercept-url pattern="/app/login.do" access="permitAll()" filters="none" />
       <intercept-url pattern="/**" access="isAuthenticated()" />
         <form-login login-page="/app/login.do" 

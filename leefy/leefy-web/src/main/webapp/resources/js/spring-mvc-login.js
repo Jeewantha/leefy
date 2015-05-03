@@ -67,7 +67,7 @@ function fnLoginForm(theForm)
 					window.location = homeUrl;
 		},
 		failure: function(form, action) {
-			Ext.Msg.alert('Warning', action.result.errorMessage); 
+			//Ext.Msg.alert('Warning', action.result.errorMessage); 
 		}
 	});
 } //end fnLoginForm

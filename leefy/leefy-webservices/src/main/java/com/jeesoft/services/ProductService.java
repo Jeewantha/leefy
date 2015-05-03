@@ -32,7 +32,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
-import com.jeesoft.model.Product;
+import com.jeesoft.api.dto.Product;
 
 public interface ProductService {
 

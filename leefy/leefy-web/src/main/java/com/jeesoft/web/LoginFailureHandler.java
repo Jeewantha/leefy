@@ -31,7 +31,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.jeesoft.model.LoginStatus;
+import com.jeesoft.api.dto.LoginStatus;
 
 /**
  * The Class LoginFailureHandler.
