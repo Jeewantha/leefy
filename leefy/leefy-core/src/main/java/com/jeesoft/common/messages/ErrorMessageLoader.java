@@ -19,7 +19,7 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.messages;
+package com.jeesoft.common.messages;
 
 import java.util.ResourceBundle;
 

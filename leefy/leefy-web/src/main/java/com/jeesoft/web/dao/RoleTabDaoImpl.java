@@ -26,12 +26,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 
-import com.jeesoft.api.constants.LeefyConstant;
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.RoleTab;
 import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserRole;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.exception.LeefyAppException;
 
 /**
  * This class provides persistence layer functionality for the RoleTab object.

@@ -27,7 +27,7 @@ import com.jeesoft.api.dao.BaseDao;
 import com.jeesoft.api.dto.Privilege;
 import com.jeesoft.api.dto.PrivilegeDependency;
 import com.jeesoft.api.dto.Tab;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.exception.LeefyAppException;
 
 /**
  * This interface provides persistence layer functionality for the PrivilegeDependency domain object.

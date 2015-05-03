@@ -19,7 +19,8 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.exception;
+package com.jeesoft.common.exception;
+
 
 /**
  * This represents a customized exception class for application specific exceptions.
@@ -27,51 +28,53 @@ package com.jeesoft.api.exception;
  * @author Jeewantha Samaraweera
  * @since alpha
  */
-public class UniqueUserNameEmailException extends LeefyException {
-    
+public class NonCurrentStudentUserLoginCreationException extends LeefyException{
+
     /**
      * Class serial id.
      */
     private static final long serialVersionUID = 1L;
     
     /**
-     * The default constructor for UniqueUserNameEmailException.
+     * The default constructor for NonCurrentStudentUserLoginCreationException.
      */
-    public UniqueUserNameEmailException() {
+    public NonCurrentStudentUserLoginCreationException() {
 
         super();
     }
     
     /**
-     * Constructor for UniqueUserNameEmailException with string error message, error code and cause.
+     * Constructor for NonCurrentStudentUserLoginCreationException with string error message, error code and cause.
      * 
      * @param cause - The cause of the exception.
      * @param strErrorMsg - the specific error message.
      * @param errCode - The specific error code
      */
-    public UniqueUserNameEmailException(String strErrorMsg, String errCode, Throwable cause) {
+    public NonCurrentStudentUserLoginCreationException(String strErrorMsg, String errCode, Throwable cause) {
 
         super(strErrorMsg, errCode, cause);
     }
     
     /**
-     * Constructor for UniqueUserNameEmailException with string error code and cause.
+     * Constructor for NonCurrentStudentUserLoginCreationException with string error code and cause.
      * 
      * @param cause - The cause of the exception.
      * @param errCode - The specific error code
      */
-    public UniqueUserNameEmailException(String errCode, Throwable cause) {
+    public NonCurrentStudentUserLoginCreationException(String errCode, Throwable cause) {
 
         super(errCode, cause);
     }
     
     /**
-     * Constructor for UniqueUserNameEmailException with string error code.
+     * Constructor for NonCurrentStudentUserLoginCreationException with string error code.
      * 
      * @param errCode - The specific error code
      */
-    public UniqueUserNameEmailException(String errCode) {
+    public NonCurrentStudentUserLoginCreationException(String errCode) {
 
         super(errCode);
     }
+    
+    
 }

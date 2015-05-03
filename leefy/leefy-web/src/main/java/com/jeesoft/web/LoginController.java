@@ -47,6 +47,8 @@ public class LoginController {
 	@RequestMapping(value = "/app/login.do", method = RequestMethod.GET)
 	public final String login(ModelMap model, HttpSession session) {
 		
+		System.out.println(session);
+		
 		session.invalidate();
 		return "login";
 	}

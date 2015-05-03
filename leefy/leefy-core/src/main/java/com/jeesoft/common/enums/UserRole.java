@@ -19,7 +19,7 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.enums;
+package com.jeesoft.common.enums;
 
 /**
  * This represents the enum file which defines user roles.

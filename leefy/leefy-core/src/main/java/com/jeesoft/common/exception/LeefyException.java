@@ -19,9 +19,10 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.exception;
+package com.jeesoft.common.exception;
 
-import com.jeesoft.api.messages.ErrorMessageLoader;
+import com.jeesoft.common.messages.ErrorMessageLoader;
+
 
 /**
  * This represents a customized exception class for application specific exceptions. All

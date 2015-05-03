@@ -19,7 +19,8 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.exception;
+package com.jeesoft.common.exception;
+
 
 /**
  * This represents a customized exception class for application specific exceptions.

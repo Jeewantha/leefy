@@ -38,8 +38,8 @@ import com.jeesoft.api.dto.Privilege;
 import com.jeesoft.api.dto.StudentDetails;
 import com.jeesoft.api.dto.UserDefinedRoleDetails;
 import com.jeesoft.api.dto.UserLogin;
-import com.jeesoft.api.enums.UserRole;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.enums.UserRole;
+import com.jeesoft.common.exception.LeefyAppException;
 import com.jeesoft.web.dao.UserDao;
 
 

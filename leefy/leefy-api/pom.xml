@@ -133,6 +133,11 @@
      <artifactId>hibernate-validator</artifactId>
      <version>5.0.3.Final</version>
    </dependency>
+   <dependency>
+     <groupId>com.jeesoft</groupId>
+     <artifactId>leefy-core</artifactId>
+     <version>1.0.0</version>
+   </dependency>
   </dependencies>
   <build>
     <plugins>

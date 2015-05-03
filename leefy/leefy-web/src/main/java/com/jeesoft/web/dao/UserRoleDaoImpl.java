@@ -24,10 +24,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.jeesoft.api.constants.LeefyConstant;
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.UserRole;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.exception.LeefyAppException;
 
 /**
  * Implementation for UserRoleDao.

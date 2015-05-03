@@ -27,9 +27,9 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
-import com.jeesoft.api.constants.LeefyConstant;
 import com.jeesoft.api.dto.BaseDomain;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.exception.LeefyAppException;
 
 
 /**

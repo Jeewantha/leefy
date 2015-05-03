@@ -19,7 +19,7 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.constants;
+package com.jeesoft.common.constants;
 
 /**
  * All application related constants should be defined in this class.

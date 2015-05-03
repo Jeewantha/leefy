@@ -24,7 +24,7 @@ import java.util.List;
 
 import com.jeesoft.api.dao.BaseDao;
 import com.jeesoft.api.dto.UserSecurityQuestions;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.exception.LeefyAppException;
 
 /**
  * @author Jeewantha Samaraweera.

@@ -32,11 +32,11 @@ import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
-import com.jeesoft.api.exception.InvalidIdentificationNoException;
-import com.jeesoft.api.exception.LeefyAppException;
-import com.jeesoft.api.exception.NonCurrentStudentUserLoginCreationException;
-import com.jeesoft.api.exception.PastStaffException;
-import com.jeesoft.api.exception.UniqueUserNameEmailException;
+import com.jeesoft.common.exception.InvalidIdentificationNoException;
+import com.jeesoft.common.exception.LeefyAppException;
+import com.jeesoft.common.exception.NonCurrentStudentUserLoginCreationException;
+import com.jeesoft.common.exception.PastStaffException;
+import com.jeesoft.common.exception.UniqueUserNameEmailException;
 
 
 /**

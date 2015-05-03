@@ -19,7 +19,8 @@
  *     
  *******************************************************************************/
 
-package com.jeesoft.api.exception;
+package com.jeesoft.common.exception;
+
 
 /**
  * This represents a customized exception class for application specific exceptions.
@@ -27,7 +28,7 @@ package com.jeesoft.api.exception;
  * @author Jeewantha Samaraweera
  * @since alpha
  */
-public class PastStaffException extends LeefyException {
+public class InvalidIdentificationNoException extends LeefyException {
     
     /**
      * Class serial id.
@@ -35,44 +36,43 @@ public class PastStaffException extends LeefyException {
     private static final long serialVersionUID = 1L;
     
     /**
-     * The default constructor for PastStaffException.
+     * The default constructor for InvalidUserNameEmailException.
      */
-    public PastStaffException() {
+    public InvalidIdentificationNoException() {
 
         super();
     }
     
     /**
-     * Constructor for PastStaffException with string error message, error code and cause.
+     * Constructor for InvalidUserNameEmailException with string error message, error code and cause.
      * 
      * @param cause - The cause of the exception.
      * @param strErrorMsg - the specific error message.
      * @param errCode - The specific error code
      */
-    public PastStaffException(String strErrorMsg, String errCode, Throwable cause) {
+    public InvalidIdentificationNoException(String strErrorMsg, String errCode, Throwable cause) {
 
         super(strErrorMsg, errCode, cause);
     }
     
     /**
-     * Constructor for PastStaffException with string error code and cause.
+     * Constructor for InvalidUserNameEmailException with string error code and cause.
      * 
      * @param cause - The cause of the exception.
      * @param errCode - The specific error code
      */
-    public PastStaffException(String errCode, Throwable cause) {
+    public InvalidIdentificationNoException(String errCode, Throwable cause) {
 
         super(errCode, cause);
     }
     
     /**
-     * Constructor for PastStaffException with string error code.
+     * Constructor for InvalidUserNameEmailException with string error code.
      * 
      * @param errCode - The specific error code
      */
-    public PastStaffException(String errCode) {
+    public InvalidIdentificationNoException(String errCode) {
 
         super(errCode);
     }
-    
 }

@@ -39,11 +39,11 @@ import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
-import com.jeesoft.api.exception.InvalidIdentificationNoException;
-import com.jeesoft.api.exception.LeefyAppException;
-import com.jeesoft.api.exception.NonCurrentStudentUserLoginCreationException;
-import com.jeesoft.api.exception.PastStaffException;
-import com.jeesoft.api.exception.UniqueUserNameEmailException;
+import com.jeesoft.common.exception.InvalidIdentificationNoException;
+import com.jeesoft.common.exception.LeefyAppException;
+import com.jeesoft.common.exception.NonCurrentStudentUserLoginCreationException;
+import com.jeesoft.common.exception.PastStaffException;
+import com.jeesoft.common.exception.UniqueUserNameEmailException;
 import com.jeesoft.web.dao.ModuleDao;
 import com.jeesoft.web.dao.PrivilegeDependencyDao;
 import com.jeesoft.web.dao.RolePrivilegeDao;
@@ -359,8 +359,8 @@ public class UserServiceImpl implements UserService {
             
             /** validate user is past user or not */
             if (isPastUser(roleId, userLogin.getUserIdentificationNo())) {
-                if (roleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                        || roleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
+                if (roleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                        || roleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
                     throw new PastStaffException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
                             ERROR_MESSAGE_PAST_USER));
                 }
@@ -369,7 +369,7 @@ public class UserServiceImpl implements UserService {
             /** validate student is non-current or not */
             if (isNonCurrentStudent(roleId, userLogin.getUserIdentificationNo())) {
                 
-                if (roleId == com.jeesoft.api.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
+                if (roleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
                     throw new NonCurrentStudentUserLoginCreationException(PropertyReader.getPropertyValue(
                             AKURA_ERROR_MSG_PROPERTY, ERROR_USER_CREATE_USER_STUDENT_NON_CURRENT));
                 }
@@ -400,10 +400,10 @@ public class UserServiceImpl implements UserService {
     private boolean isIdentificationNoRequiresdUserRole(int userRoleId) {
 
         boolean isIdentificationNoRequiresdUserRole = false;
-        if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()
-                || userRoleId == com.jeesoft.api.enums.UserRole.ROLE_STUDENT.getUserRoleId()
-                || userRoleId == com.jeesoft.api.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
+        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()
+                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()
+                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
             isIdentificationNoRequiresdUserRole = true;
         }
         return isIdentificationNoRequiresdUserRole;
@@ -445,8 +445,8 @@ public class UserServiceImpl implements UserService {
             
             /** validate user is past user or not */
             if (isPastUser(roleId, userLogin.getUserIdentificationNo())) {
-                if (roleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                        || roleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
+                if (roleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                        || roleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
                     throw new PastStaffException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
                             ERROR_MESSAGE_PAST_USER));
                 }
@@ -570,11 +570,11 @@ public class UserServiceImpl implements UserService {
 
         int identificationId = 0;
         List<Integer> identificationList = null;
-        if (roleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || roleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
+        if (roleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                || roleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
             identificationList = userLoginDao.getStaffByUserRoleIdAndIdentificationNo(roleId, identificationNo);
             
-        } else if (roleId == com.jeesoft.api.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
+        } else if (roleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
             identificationList = userLoginDao.getStudentByUserRoleIdAndIdentificationNo(roleId, identificationNo);
         }
         if (identificationList != null && !identificationList.isEmpty()) {
@@ -917,12 +917,12 @@ public class UserServiceImpl implements UserService {
 
         String query = null;
         
-        if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
+        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
             query = IS_VALIDATION_IDENTIFICATION_NO_FOR_STAFF;
-        } else if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
+        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
             query = IS_VALIDATION_IDENTIFICATION_NO_FOR_STUDENT;
-        } else if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
+        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
             query = IS_VALIDATION_IDENTIFICATION_NO_FOR_PARENT;
         }
         
@@ -937,12 +937,12 @@ public class UserServiceImpl implements UserService {
 
         String query = null;
         
-        if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
+        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
             query = IS_EXISTING_IDENTIFICATION_NO_FOR_STAFF;
-        } else if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
+        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
             query = IS_EXISTING_IDENTIFICATION_NO_FOR_STUDENT;
-        } else if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
+        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
             query = IS_EXISTING_IDENTIFICATION_NO_FOR_PARENT;
         }
         
@@ -956,8 +956,8 @@ public class UserServiceImpl implements UserService {
 
         String query = null;
         
-        if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.api.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
+        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
+                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
             query = IS_PAST_STAFF;
         }
         
@@ -979,7 +979,7 @@ public class UserServiceImpl implements UserService {
 
         String query = null;
         
-        if (userRoleId == com.jeesoft.api.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
+        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
             query = IS_NON_CURRENT_STUDENT;
         }
         

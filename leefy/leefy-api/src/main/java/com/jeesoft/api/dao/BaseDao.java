@@ -24,7 +24,7 @@ package com.jeesoft.api.dao;
 import java.util.List;
 
 import com.jeesoft.api.dto.BaseDomain;
-import com.jeesoft.api.exception.LeefyAppException;
+import com.jeesoft.common.exception.LeefyAppException;
 
 
 /**
