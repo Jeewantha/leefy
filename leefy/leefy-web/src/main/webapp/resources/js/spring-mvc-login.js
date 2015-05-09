@@ -20,7 +20,7 @@
  *******************************************************************************/
 Ext.onReady(function(){
 	Ext.QuickTips.init();
-	
+
 	var loginForm = new Ext.FormPanel({
 			url: defLoginUrl,
 			title: 'Login',

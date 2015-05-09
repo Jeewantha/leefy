@@ -4,6 +4,12 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/config"/>
+        <dependent-module archiveName="leefy-core-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leefy-core/leefy-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="leefy-api-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/leefy-api/leefy-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="leefy-web"/>
         <property name="java-output-path" value="/leefy-web/target/classes"/>
     </wb-module>
