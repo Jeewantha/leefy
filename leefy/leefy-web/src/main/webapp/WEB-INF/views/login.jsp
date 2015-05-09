@@ -24,13 +24,8 @@
 <html>
 <head>
 	<title>Login</title>
-	<link href="<c:url value="/resources/lib/ext-3.3.1/resources/css/ext-all.css" />" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="<c:url value="/resources/lib/ext-3.3.1/adapter/ext/ext-base.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/lib/ext-3.3.1/ext-all.js" />"></script>
+	<jsp:include page="includes.jsp" />
 	<script type="text/javascript">
-		if (Ext.BLANK_IMAGE_URL.substr(0, 5) != 'data:') {
-			Ext.BLANK_IMAGE_URL = '<c:url value="/resources/lib/ext-3.3.1/resources/images/default/s.gif" />';
-		}
 		var loginUrl = '${ctx}/app/login.do';
 		var defLoginUrl = '${ctx}/j_spring_security_check';
 		var homeUrl = '${ctx}';
