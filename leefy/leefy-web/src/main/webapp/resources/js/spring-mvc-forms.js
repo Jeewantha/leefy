@@ -8,6 +8,7 @@
  *     it under the terms of the GNU General Public License as published by
  *     the Free Software Foundation, either version 3 of the License, or
  *     (at your option) any later version.
+
  *
  *     This program is distributed in the hope that it will be useful,
  *     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,12 +22,13 @@
 Ext.onReady(function(){
 	Ext.QuickTips.init();
 	
-	var mf = new Ext.FormPanel({
+		var mf = new Ext.FormPanel({
 			url: addUrl,
-			renderTo: Ext.getBody(),
+			title: 'User',
 			frame: true,
+			bodyPadding: 5,
 			cls: 'my-form-class',
-			width: 500,
+			width: 400,
 			items: [{
 					xtype: 'textfield',
 					fieldLabel: 'Name',
@@ -37,7 +39,7 @@ Ext.onReady(function(){
 					name: 'phone'
 			},{
 					xtype: 'textfield',
-					fieldLabel: 'EMail',
+					fieldLabel: 'Email',
 					name: 'email'
 			}],
 			buttons: [{
@@ -68,6 +70,38 @@ Ext.onReady(function(){
 					}
 		}]
 	});
+
+	
+	var topToolBar = new Ext.grid.Panel({
+		renderTo: Ext.getBody(),
+		defaults:{autoWidth:true, autoHeight:true},
+		dockedItems: [{
+		    xtype: 'toolbar',
+		    dock: 'top',
+		    items: [{
+		        xtype: 'button',
+		        text: 'Log Out',
+		        href:logoutUrl
+		    }, {
+		        xtype: 'button',
+		        text: 'Home'
+		    }]
+		}]
+	});
+	
+	var topPanel = new Ext.TabPanel({
+		renderTo: Ext.getBody(),
+		layoutOnTabChange:true,
+		width: 500,
+		activeTab: 0,
+		frame: true,
+		defaults:{autoHeight: true},
+		resizeTabs: true,
+		enableTabScroll: true,
+		title:'Home',
+		items: [mf]
+	});
+	
 	
 });
 
@@ -91,6 +125,7 @@ function fnLoadForm(theForm)
 		}
 	});
 } //end fnLoadForm
+
 function fnUpdateForm(theForm)
 {
 	theForm.getForm().submit({

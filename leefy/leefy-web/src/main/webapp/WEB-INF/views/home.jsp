@@ -32,20 +32,11 @@
 		var loadUrl = '${ctx}/load';
 		var addUrl = '${ctx}/add';
 		var jsonpreq = '${ctx}/extractJson';
+		var logoutUrl='${ctx}/j_spring_security_logout';
 	</script>	
 	<script type="text/javascript" src="<c:url value="/resources/js/spring-mvc-forms.js" />"></script>
-
-	<style type="text/css">
-		body {
-		  	font: normal 12px helvetica,arial,verdana,tahoma,sans-serif;
-		}
-		.my-form-class {
-			margin:  20px 30px;
-		}
-	</style>
-  	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
 </head>
 <body>
-	<div class="my-form-class"><a href="${ctx}/j_spring_security_logout">Log Out</a></div>
 </body>
 </html>

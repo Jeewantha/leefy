@@ -32,12 +32,19 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.jeesoft.api.dto.LoginStatus;
+import com.jeesoft.web.util.PropertyReader;
 
 /**
  * The Class LoginFailureHandler.
  */
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 
+    /** The Constant USER_LOGIN_FAILURE_ERROR. */
+    private static final String USER_LOGIN_FAILURE_ERROR = "USER.LOGIN.FAILURE.ERROR";
+    
+    /** Holds the Leefy error messages property file name. */
+    private static final String LEEFY_ERROR_MSG_PROPERTY = "errormessages";
+    
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -52,7 +59,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 			final AuthenticationException auth) throws IOException, ServletException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		LoginStatus status = new LoginStatus(false, false, null, "Login failed. Try again.");
+        LoginStatus status = new LoginStatus(false, false, null,
+                PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY, USER_LOGIN_FAILURE_ERROR));
 		OutputStream out = response.getOutputStream();
 		mapper.writeValue(out, status);
 

@@ -23,6 +23,7 @@ Ext.onReady(function(){
 
 	var loginForm = new Ext.FormPanel({
 			url: defLoginUrl,
+			bodyPadding:5,
 			title: 'Login',
 			renderTo: Ext.getBody(),
 			frame: true,
@@ -60,6 +61,7 @@ Ext.onReady(function(){
 
 });
 
+
 function fnLoginForm(theForm) 
 {
 	theForm.getForm().submit({
@@ -67,7 +69,7 @@ function fnLoginForm(theForm)
 					window.location = homeUrl;
 		},
 		failure: function(form, action) {
-			//Ext.Msg.alert('Warning', action.result.errorMessage); 
+			Ext.Msg.alert('Warning', action.result.errorMessage); 
 		}
 	});
 } //end fnLoginForm

@@ -31,15 +31,7 @@
 		var homeUrl = '${ctx}';
 	</script>	
 	<script type="text/javascript" src="<c:url value="/resources/js/spring-mvc-login.js" />"></script>
-
-	<style type="text/css">
-		body {
-		  	font: normal 12px helvetica,arial,verdana,tahoma,sans-serif;
-		}
-		.my-form-class {
-			margin:  20px 30px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
 </head>
 <body>
 </body>
