@@ -420,28 +420,6 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
     /**
      * {@inheritDoc}
      */
-    @SuppressWarnings("unchecked")
-    public List<Integer> getClassTeacherIdList(int userLoginId, Date year, int classGradeId)
-            throws LeefyAppException {
-
-        List<Integer> classTeacherIdList = null;
-        
-        try {
-            classTeacherIdList =
-                    (List<Integer>) getHibernateTemplate().findByNamedQuery(GET_CLASS_TEACHER_LIST,
-                            UserRole.ROLE_TEACHER.getUserRoleId(), userLoginId, year, classGradeId);
-            
-        } catch (DataAccessException e) {
-            /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
-        }
-        
-        return classTeacherIdList;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
     public boolean isNonCurrentStudent(String query, String identificationNo) throws LeefyAppException {
         
         boolean nonCurrentStudent;

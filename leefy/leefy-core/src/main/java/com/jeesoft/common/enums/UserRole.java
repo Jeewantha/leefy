@@ -30,15 +30,7 @@ package com.jeesoft.common.enums;
 public enum UserRole {
     
     /** User role is ROLE_ADMIN and user role id is 1. */
-    ROLE_ADMIN(1),
-    /** User role is ROLE_TEACHER and user role id is 2. */
-    ROLE_TEACHER(2),
-    /** User role is ROLE_STUDENT and user role id is 3. */
-    ROLE_STUDENT(3),
-    /** User role is ROLE_CLERICALSTAFF and user role id is 4. */
-    ROLE_CLERICALSTAFF(4),
-    /** User role is ROLE_PARENT and user role id is 5. */
-    ROLE_PARENT(5);
+    ROLE_ADMIN(1);
     
     /** Holds user role id. */
     private int userRoleId;

@@ -99,51 +99,13 @@ public class UserServiceImpl implements UserService {
     public static final int PASSWORDLENGTH = 10;
     
     /** Holds the error message key. */
-    private static final String ERROR_MESSAGE_PAST_USER = "USER.CREATE.USER.PAST.ERROR";
-    
-    /** Holds the error message key. */
     private static final String ERROR_MESSAGE_UNIQUE_UNAME = "USER.CREATE.USER.UNIQUE.UNAME.ERROR";
     
     /** Holds the error message key. */
     private static final String ERROR_MESSAGE_UNIQUE_EMAIL = "USER.CREATE.USER.UNIQUE.EMAIL.ERROR";
     
-    /** Holds the error message key. */
-    private static final String ERROR_MESSAGE_IDENTIFICATION_NO_INVALID =
-            "USER.CREATE.USER.IDENTIFICATION.NO.INVALID.ERROR";
-    
-    /** Holds the error message key. */
-    private static final String ERROR_MESSAGE_IDENTIFICATION_NO_EXIST =
-            "USER.CREATE.USER.IDENTIFICATION.NO.EXIST.ERROR";
-    
-    /** Holds the error message key. */
-    private static final String ERROR_USER_CREATE_USER_STUDENT_NON_CURRENT = "USER.CREATE.USER.STUDENT.NON.CURRENT";
-    
-    /** Holds the AkuraErrorMsg property file name. */
-    private static final String AKURA_ERROR_MSG_PROPERTY = "AkuraErrorMsg";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_VALIDATION_IDENTIFICATION_NO_FOR_STUDENT = "isValidationIdentificationNoForStudent";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_VALIDATION_IDENTIFICATION_NO_FOR_STAFF = "isValidationIdentificationNoForStaff";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_VALIDATION_IDENTIFICATION_NO_FOR_PARENT = "isValidationIdentificationNoForParent";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_EXISTING_IDENTIFICATION_NO_FOR_STUDENT = "isExistingIdentificationNoForStudent";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_EXISTING_IDENTIFICATION_NO_FOR_STAFF = "isExistingIdentificationNoForStaff";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_EXISTING_IDENTIFICATION_NO_FOR_PARENT = "isExistingIdentificationNoForParent";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_PAST_STAFF = "isPastStaff";
-    
-    /** String constant for holding respective query name. */
-    private static final String IS_NON_CURRENT_STUDENT = "isNonCurrentStudent";
+    /** Holds the Leefy error messages property file name. */
+    private static final String LEEFY_ERROR_MSG_PROPERTY = "errormessages";
     
     /**
      * return userDao of the Student.
@@ -331,50 +293,16 @@ public class UserServiceImpl implements UserService {
         
         /** validate user name */
         if (getAnyUser(userName) != null) {
-            throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
+            throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
                     ERROR_MESSAGE_UNIQUE_UNAME));
         }
         
         /** validate email */
         if (getAnyUserByEmail(userLogin.getEmail()) != null) {
-            throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
+            throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
                     ERROR_MESSAGE_UNIQUE_EMAIL));
         }
         
-        if (isIdentificationNoRequiresdUserRole(roleId)) {
-            /** get the identification key */
-            identificationKey = isValidationIdentificationNo(roleId, userLogin.getUserIdentificationNo());
-            
-            /** validate identification No is valid */
-            if (identificationKey == 0) {
-                throw new InvalidIdentificationNoException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
-                        ERROR_MESSAGE_IDENTIFICATION_NO_INVALID));
-            }
-            
-            /** validate identification No is exists */
-            if (isExistingIdentificationNo(roleId, userLogin.getUserIdentificationNo())) {
-                throw new InvalidIdentificationNoException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
-                        ERROR_MESSAGE_IDENTIFICATION_NO_EXIST));
-            }
-            
-            /** validate user is past user or not */
-            if (isPastUser(roleId, userLogin.getUserIdentificationNo())) {
-                if (roleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                        || roleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
-                    throw new PastStaffException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
-                            ERROR_MESSAGE_PAST_USER));
-                }
-            }
-            
-            /** validate student is non-current or not */
-            if (isNonCurrentStudent(roleId, userLogin.getUserIdentificationNo())) {
-                
-                if (roleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
-                    throw new NonCurrentStudentUserLoginCreationException(PropertyReader.getPropertyValue(
-                            AKURA_ERROR_MSG_PROPERTY, ERROR_USER_CREATE_USER_STUDENT_NON_CURRENT));
-                }
-            }
-        }
         /** Initialize the user object */
         userLogin.setUserIdentificationNo(identificationKey + "");
         userLogin.setPassword(passwordEncoder.encodePassword(userLogin.getPassword(), userLogin.getUsername()));
@@ -389,24 +317,6 @@ public class UserServiceImpl implements UserService {
         }
         
         return isUserCreationSuccess;
-    }
-    
-    /**
-     * check whether the user is a identification No required user or not.
-     * 
-     * @param userRoleId - userRoleId
-     * @return is this user is a system user or not.
-     */
-    private boolean isIdentificationNoRequiresdUserRole(int userRoleId) {
-
-        boolean isIdentificationNoRequiresdUserRole = false;
-        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()
-                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()
-                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
-            isIdentificationNoRequiresdUserRole = true;
-        }
-        return isIdentificationNoRequiresdUserRole;
     }
     
     /**
@@ -428,28 +338,8 @@ public class UserServiceImpl implements UserService {
         /** validate email */
         if (!findUserLogin(userLogin.getUserLoginId()).getEmail().equals(userLogin.getEmail())) {
             if (getAnyUserByEmail(userLogin.getEmail()) != null) {
-                throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
+                throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
                         ERROR_MESSAGE_UNIQUE_EMAIL));
-            }
-        }
-        
-        if (isIdentificationNoRequiresdUserRole(roleId)) {
-            /** get the identification key */
-            identificationKey = isValidationIdentificationNo(roleId, userLogin.getUserIdentificationNo());
-            
-            /** validate identification No is valid */
-            if (identificationKey == 0) {
-                throw new InvalidIdentificationNoException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
-                        ERROR_MESSAGE_IDENTIFICATION_NO_INVALID));
-            }
-            
-            /** validate user is past user or not */
-            if (isPastUser(roleId, userLogin.getUserIdentificationNo())) {
-                if (roleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                        || roleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
-                    throw new PastStaffException(PropertyReader.getPropertyValue(AKURA_ERROR_MSG_PROPERTY,
-                            ERROR_MESSAGE_PAST_USER));
-                }
             }
         }
         
@@ -556,31 +446,6 @@ public class UserServiceImpl implements UserService {
     public UserLogin getAnyUserByEmail(String email) throws LeefyAppException {
 
         return userLoginDao.getAnyUserByEmail(email);
-    }
-    
-    /**
-     * Get the any users UserLogin object by passing the user's role_id and IdentificationNo.
-     * 
-     * @param roleId - int
-     * @param identificationNo - String
-     * @throws LeefyAppException LeefyAppException
-     * @return returns the UserLogin object.
-     */
-    public int getAnyUserByUserRoleIdAndIdentificationNo(int roleId, String identificationNo) throws LeefyAppException {
-
-        int identificationId = 0;
-        List<Integer> identificationList = null;
-        if (roleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || roleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
-            identificationList = userLoginDao.getStaffByUserRoleIdAndIdentificationNo(roleId, identificationNo);
-            
-        } else if (roleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
-            identificationList = userLoginDao.getStudentByUserRoleIdAndIdentificationNo(roleId, identificationNo);
-        }
-        if (identificationList != null && !identificationList.isEmpty()) {
-            identificationId = identificationList.get(0);
-        }
-        return identificationId;
     }
     
     /**
@@ -909,80 +774,5 @@ public class UserServiceImpl implements UserService {
         return privilegeDependencyDao.getDependenciesTabIdList(privilegeIdList);
         
     }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public int isValidationIdentificationNo(int userRoleId, String identificationNo) throws LeefyAppException {
 
-        String query = null;
-        
-        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
-            query = IS_VALIDATION_IDENTIFICATION_NO_FOR_STAFF;
-        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
-            query = IS_VALIDATION_IDENTIFICATION_NO_FOR_STUDENT;
-        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
-            query = IS_VALIDATION_IDENTIFICATION_NO_FOR_PARENT;
-        }
-        
-        return userLoginDao.isValidationIdentificationNo(query, identificationNo);
-        
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isExistingIdentificationNo(int userRoleId, String identificationNo) throws LeefyAppException {
-
-        String query = null;
-        
-        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
-            query = IS_EXISTING_IDENTIFICATION_NO_FOR_STAFF;
-        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
-            query = IS_EXISTING_IDENTIFICATION_NO_FOR_STUDENT;
-        } else if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_PARENT.getUserRoleId()) {
-            query = IS_EXISTING_IDENTIFICATION_NO_FOR_PARENT;
-        }
-        
-        return userLoginDao.isExistingIdentificationNo(query, identificationNo, userRoleId);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isPastUser(int userRoleId, String identificationNo) throws LeefyAppException {
-
-        String query = null;
-        
-        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_CLERICALSTAFF.getUserRoleId()
-                || userRoleId == com.jeesoft.common.enums.UserRole.ROLE_TEACHER.getUserRoleId()) {
-            query = IS_PAST_STAFF;
-        }
-        
-        return query != null ? userLoginDao.isPastUser(query, identificationNo) : false;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isClassTeacher(int userLoginId, Date year, int classGradeId) throws LeefyAppException {
-
-        return userLoginDao.getClassTeacherIdList(userLoginId, year, classGradeId).isEmpty() ? false : true;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isNonCurrentStudent(int userRoleId, String identificationNo) throws LeefyAppException {
-
-        String query = null;
-        
-        if (userRoleId == com.jeesoft.common.enums.UserRole.ROLE_STUDENT.getUserRoleId()) {
-            query = IS_NON_CURRENT_STUDENT;
-        }
-        
-        return query != null ? userLoginDao.isNonCurrentStudent(query, identificationNo) : false;
-    }
 }

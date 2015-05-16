@@ -33,9 +33,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jeesoft.api.dto.AdminDetails;
-import com.jeesoft.api.dto.ParentDetails;
 import com.jeesoft.api.dto.Privilege;
-import com.jeesoft.api.dto.StudentDetails;
 import com.jeesoft.api.dto.UserDefinedRoleDetails;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.common.enums.UserRole;
@@ -133,27 +131,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     new AdminDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
                             enabled, accountNonLocked, authorities);
             
-        } else if (userLogin.getUserRoleId() == UserRole.ROLE_TEACHER.getUserRoleId()) {
-            userRole = UserRole.ROLE_TEACHER.toString();
-            systemUser =
-                    new AdminDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
-                            enabled, accountNonLocked, authorities);
-            
-        } else if (userLogin.getUserRoleId() == UserRole.ROLE_STUDENT.getUserRoleId()) {
-            userRole = UserRole.ROLE_STUDENT.toString();
-            systemUser =
-                    new StudentDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
-                            enabled, accountNonLocked, authorities);
-        } else if (userLogin.getUserRoleId() == UserRole.ROLE_CLERICALSTAFF.getUserRoleId()) {
-            userRole = UserRole.ROLE_CLERICALSTAFF.toString();
-            systemUser =
-                    new AdminDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
-                            enabled, accountNonLocked, authorities);
-        } else if (userLogin.getUserRoleId() == UserRole.ROLE_PARENT.getUserRoleId()) {
-            userRole = UserRole.ROLE_PARENT.toString();
-            systemUser =
-                    new ParentDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
-                            enabled, accountNonLocked, authorities);
         } else {
             
             userRole = userRoleObj.getRole();

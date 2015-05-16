@@ -175,18 +175,6 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
     boolean isPastUser(String query, String identificationNo) throws LeefyAppException;
 
     /**
-     * get ClassTeacher List.
-     * 
-     * @param userLoginId - userLogin id.
-     * @param year - assigned year.
-     * @param classGradeId - classGradeId.
-     * @return ClassTeacherId - list of ClassTeacher ids belongs to specific staff member.
-     * @throws LeefyAppException - throws detailed exception when fails to retrieve the ClassTeacher of the
-     *         staff member.
-     */
-    List<Integer> getClassTeacherIdList(int userLoginId, Date year, int classGradeId) throws LeefyAppException;
-    
-    /**
      * Returns true if this student is not a current student with status id of 1.
      * 
      * @param query - the query to get the student status.

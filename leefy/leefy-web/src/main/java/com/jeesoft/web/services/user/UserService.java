@@ -21,7 +21,6 @@
 
 package com.jeesoft.web.services.user;
 
-import java.util.Date;
 import java.util.List;
 
 import com.jeesoft.api.dto.Module;
@@ -166,16 +165,6 @@ public interface UserService {
      * @return returns the UserLogin object.
      */
     UserLogin getAnyUserByEmail(String email) throws LeefyAppException;
-    
-    /**
-     * Get the any users UserLogin object by passing the user's role_id and IdentificationNo.
-     * 
-     * @param roleId - int
-     * @param identificationNo - String
-     * @throws LeefyAppException LeefyAppException
-     * @return returns the UserLogin object.
-     */
-    int getAnyUserByUserRoleIdAndIdentificationNo(int roleId, String identificationNo) throws LeefyAppException;
     
     /**
      * Get the users UserLogin object by passing the user's username.
@@ -408,59 +397,4 @@ public interface UserService {
      */
     List<Tab> getDependenciesTabIdList(List<Integer> privilegeIdList) throws LeefyAppException;
     
-    /**
-     * check whether identification is valid or not.
-     * 
-     * @param userRoleId - userRoleId.
-     * @param identificationNo - the identificationNo.
-     * @return vaid registration no.
-     * @throws LeefyAppException - throws detailed exception when fails to retrieve the user login of the
-     *         staff member.
-     */
-    int isValidationIdentificationNo(int userRoleId, String identificationNo) throws LeefyAppException;
-    
-    /**
-     * check whether identification is existing or not.
-     * 
-     * @param userRoleId - userRoleId.
-     * @param identificationNo - the identificationNo.
-     * @return UserLogin of the staff member.
-     * @throws LeefyAppException - throws detailed exception when fails to retrieve the user login of the
-     *         staff member.
-     */
-    boolean isExistingIdentificationNo(int userRoleId, String identificationNo) throws LeefyAppException;
-    
-    /**
-     * check whether user is a past user or not.
-     * 
-     * @param userRoleId - userRoleId.
-     * @param identificationNo - the identificationNo.
-     * @return true for if user is a past user.
-     * @throws LeefyAppException - throws detailed exception when fails to retrieve the user login of the
-     *         staff member.
-     */
-    boolean isPastUser(int userRoleId, String identificationNo) throws LeefyAppException;
-    
-    /**
-     * get ClassTeacher List.
-     * 
-     * @param userLoginId - userLogin id.
-     * @param year - assigned year.
-     * @param classGradeId - classGradeId.
-     * @return true for if the user is the class teacher for specific class in the specified year
-     * @throws LeefyAppException - throws detailed exception when fails to retrieve the ClassTeacher of the
-     *         staff member.
-     */
-    boolean isClassTeacher(int userLoginId, Date year, int classGradeId) throws LeefyAppException;
-    
-    /**
-     * This method returns true if the student is not a current student.
-     * 
-     * @param userRoleId - the user role type id for student. 
-     * @param identificationNo -  the admission number of the student.
-     * @return true if this student is temporary leaved, suspended or past.
-     * @throws LeefyAppException - throws detailed exception when fails to check if the student is active or
-     *         not.
-     */
-    boolean isNonCurrentStudent(int userRoleId, String identificationNo) throws LeefyAppException;
 }
