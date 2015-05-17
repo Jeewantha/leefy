@@ -61,7 +61,6 @@ Ext.onReady(function(){
 
 });
 
-
 function fnLoginForm(theForm) 
 {
 	theForm.getForm().submit({
