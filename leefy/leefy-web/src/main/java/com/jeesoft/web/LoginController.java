@@ -22,6 +22,8 @@ package com.jeesoft.web;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,6 +38,9 @@ import com.jeesoft.web.dao.UserLoginDao;
 @Controller
 public class LoginController {
 	
+    /** The Constant logger. */
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    
 	@Autowired
 	private UserLoginDao userLoginDao;
 
@@ -47,8 +52,8 @@ public class LoginController {
 	@RequestMapping(value = "/app/login.do", method = RequestMethod.GET)
 	public final String login(ModelMap model, HttpSession session) {
 		
-		System.out.println(session);
-		
+	    logger.debug("Session is going to be invaliadted :"+session.toString());
+	    
 		session.invalidate();
 		return "login";
 	}

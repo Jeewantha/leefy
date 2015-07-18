@@ -26,7 +26,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.UserRole;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
@@ -58,7 +58,7 @@ public class UserRoleDaoImpl extends BaseDaoImpl<UserRole> implements UserRoleDa
                 userRole = userRoleList.get(0);
             }
         } catch (DataAccessException e) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, e);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
         
         return userRole;

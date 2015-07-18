@@ -27,7 +27,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.UserLogin;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.enums.UserRole;
 import com.jeesoft.common.exception.LeefyAppException;
 
@@ -116,7 +116,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
                 userLogin = userLoginList.get(0);
             }
         } catch (DataAccessException e) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, e);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
         
         return userLogin;
@@ -141,7 +141,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
                 userLogin = userLoginList.get(0);
             }
         } catch (DataAccessException e) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, e);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
         
         return userLogin;
@@ -170,7 +170,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             return (List<Integer>) getHibernateTemplate().findByNamedQuery(namedQuery, roleId, identificationNo);
             
         } catch (DataAccessException e) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, e);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
         
     }
@@ -197,7 +197,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             }
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         return userLogin;
     }
@@ -222,7 +222,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             }
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return userLogin;
@@ -244,7 +244,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             userLoginList = (List<UserLogin>) getHibernateTemplate().findByNamedQuery(SEARCH_SYSTEM_USER, username, username);
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return userLoginList;
@@ -270,7 +270,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
                             roleId, roleId);
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return userLoginList;
@@ -288,7 +288,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
                     new Object[] { userRoleIdList });
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
     }
@@ -315,7 +315,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
                             userRoleId, identificationNo);
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return userLoginList.size() != 0 ? userLoginList.get(0) : null;
@@ -335,7 +335,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
         } catch (DataAccessException e) {
             
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
     
@@ -353,7 +353,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
         } catch (DataAccessException e) {
             
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
     
@@ -370,7 +370,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return userList.isEmpty() ? 0 : userList.get(0);
@@ -390,7 +390,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return userList.isEmpty() ? false : true;
@@ -411,7 +411,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
             
         } catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_SEARCHING_USER_LOGIN + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return departureDate != null ? true : false;
@@ -429,7 +429,7 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
                              ? false : true;
         }catch (DataAccessException e) {
             /*LOG.error(ERROR_WHILE_CHECKING_STUDENT_STATUS + e.toString());*/
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
         return nonCurrentStudent;

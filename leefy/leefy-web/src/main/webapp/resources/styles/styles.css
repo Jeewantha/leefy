@@ -20,10 +20,11 @@
  *******************************************************************************/
 body {
 	font: normal 12px helvetica, arial, verdana, tahoma, sans-serif;
+	background: url("../images/world-bckg.jpg") no-repeat center !important;
 }
 
 .my-form-class {
-	margin: 20px 30px;
+	margin: 200px auto;
 }
 
 .toolbarStyles {

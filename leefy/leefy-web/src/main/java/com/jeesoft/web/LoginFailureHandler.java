@@ -32,6 +32,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.jeesoft.api.dto.LoginStatus;
+import com.jeesoft.common.constants.LeefyErrorConstants;
+import com.jeesoft.web.util.PropertyReader;
 
 /**
  * The Class LoginFailureHandler.
@@ -52,7 +54,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 			final AuthenticationException auth) throws IOException, ServletException {
 
 		ObjectMapper mapper = new ObjectMapper();
-		LoginStatus status = new LoginStatus(false, false, null, "Login failed. Try again.");
+		LoginStatus status = new LoginStatus(false, false, null, PropertyReader.getPropertyValue(LeefyErrorConstants.ERROR_MESSAGE_PROPERTY_FILE, LeefyErrorConstants.ERROR_MESSAGE_USER_LOGIN_FAILURE_ERROR));
 		OutputStream out = response.getOutputStream();
 		mapper.writeValue(out, status);
 	}

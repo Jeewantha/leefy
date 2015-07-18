@@ -27,7 +27,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.UserSecurityQuestions;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
@@ -65,7 +65,7 @@ public class UserSecurityQuestionsDaoImpl extends BaseDaoImpl<UserSecurityQuesti
             return (List<UserSecurityQuestions>) getHibernateTemplate().findByNamedQuery(GET_USER_SECURITY_QUESTION, new Object[] { userLoginId });
         } catch (DataAccessException e) {
             LOG.error(ERROR_WHILE_RETRIEVE_USER_SECURITY_QUESTIONS + e.getMessage());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR + e);
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR + e);
         }
         
     }

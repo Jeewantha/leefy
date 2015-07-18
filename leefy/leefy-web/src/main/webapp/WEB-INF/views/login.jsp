@@ -30,7 +30,7 @@
 		var defLoginUrl = '${ctx}/j_spring_security_check';
 		var homeUrl = '${ctx}';
 	</script>	
-	<script type="text/javascript" src="<c:url value="/resources/js/spring-mvc-login.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/leefy-login.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
 </head>
 <body>

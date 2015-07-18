@@ -30,7 +30,7 @@ import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.Privilege;
 import com.jeesoft.api.dto.PrivilegeDependency;
 import com.jeesoft.api.dto.Tab;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
@@ -70,8 +70,8 @@ public class PrivilegeDependencyDaoImpl extends BaseDaoImpl<PrivilegeDependency>
                     new String[] { PRIVILEGE_ID_LIST }, new Object[] { privilegeIdList });
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
     
@@ -91,8 +91,8 @@ public class PrivilegeDependencyDaoImpl extends BaseDaoImpl<PrivilegeDependency>
                     new String[] { PRIVILEGE_ID_LIST }, new Object[] { privilegeIdList });
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
     
