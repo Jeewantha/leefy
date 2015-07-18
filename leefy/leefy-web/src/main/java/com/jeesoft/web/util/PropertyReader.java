@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
 public final class PropertyReader {
     
     /** string constant for Log error massage for. */
-    private static final String NOT_FIND_THE_BUNDLE = " not find the bundle";
+    private static final String NOT_FIND_THE_BUNDLE = " not found the resource bundle";
     
     /**
      * Logger to log the exceptions.
@@ -66,7 +66,7 @@ public final class PropertyReader {
         String value = null;
         ResourceBundle resBundle = PropertyReader.RESOURCE_MAP.get(fileName);
         if (resBundle == null) {
-            LOG.debug(NOT_FIND_THE_BUNDLE);
+            LOG.debug(fileName+NOT_FIND_THE_BUNDLE);
             try {
                 resBundle = ResourceBundle.getBundle(fileName);
                 PropertyReader.RESOURCE_MAP.put(fileName, resBundle);

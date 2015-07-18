@@ -30,7 +30,7 @@ import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.Privilege;
 import com.jeesoft.api.dto.RolePrivilege;
 import com.jeesoft.api.dto.UserRole;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
@@ -65,8 +65,8 @@ public class RolePrivilegeDaoImpl extends BaseDaoImpl<RolePrivilege> implements 
             getHibernateTemplate().deleteAll(getRolePrivilegesByUserRole(userRole));
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
     }
@@ -88,8 +88,8 @@ public class RolePrivilegeDaoImpl extends BaseDaoImpl<RolePrivilege> implements 
                     userRole);
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
     
@@ -109,8 +109,8 @@ public class RolePrivilegeDaoImpl extends BaseDaoImpl<RolePrivilege> implements 
             return (List<Privilege>) getHibernateTemplate().findByNamedQuery(GET_PRIVILEGES_BY_USER_ROLE, userRole);
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
     }

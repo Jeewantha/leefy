@@ -30,7 +30,7 @@ import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.RoleTab;
 import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserRole;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
@@ -65,8 +65,8 @@ public class RoleTabDaoImpl extends BaseDaoImpl<RoleTab> implements RoleTabDao {
             getHibernateTemplate().deleteAll(getRoleTabsByUserRole(userRole));
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
         
     }
@@ -87,8 +87,8 @@ public class RoleTabDaoImpl extends BaseDaoImpl<RoleTab> implements RoleTabDao {
             return (List<RoleTab>) getHibernateTemplate().findByNamedQuery(GET_ROLE_TABS_BY_USER_ROLE, userRole);
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
     
@@ -108,8 +108,8 @@ public class RoleTabDaoImpl extends BaseDaoImpl<RoleTab> implements RoleTabDao {
             return (List<Tab>) getHibernateTemplate().findByNamedQuery(GET_TABS_BY_USER_ROLE, userRole);
             
         } catch (DataAccessException e) {
-            LOG.error(LeefyConstant.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
-            throw new LeefyAppException(LeefyConstant.DB_CONNECTION_ERROR, e);
+            LOG.error(LeefyConstants.ERROR_OCCURED_WHILE_SEARCHING_THE_OBJECT + e.toString());
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
         }
     }
 }

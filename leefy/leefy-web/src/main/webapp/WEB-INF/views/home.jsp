@@ -34,7 +34,7 @@
 		var jsonpreq = '${ctx}/extractJson';
 		var logoutUrl='${ctx}/j_spring_security_logout';
 	</script>	
-	<script type="text/javascript" src="<c:url value="/resources/js/spring-mvc-forms.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/leefy-home.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
 </head>
 <body>

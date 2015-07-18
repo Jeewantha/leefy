@@ -28,7 +28,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.jeesoft.api.dto.BaseDomain;
-import com.jeesoft.common.constants.LeefyConstant;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 
@@ -73,7 +73,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
             
         } catch (DataAccessException ex) {
             LOG.error("BaseDaoImpl - error occured while saving object " + domainObj + "-->" + ex.toString());
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, ex);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, ex);
         }
     }
     
@@ -88,7 +88,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
         try {
             getHibernateTemplate().update(domainObj);
         } catch (DataAccessException ex) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, ex);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, ex);
         }
     }
     
@@ -103,7 +103,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
         try {
             getHibernateTemplate().delete(domainObj);
         } catch (DataAccessException ex) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, ex);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, ex);
         }
     }
     
@@ -123,7 +123,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
             }
             
         } catch (DataAccessException ex) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, ex);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, ex);
         }
     }
     
@@ -141,7 +141,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
             return getHibernateTemplate().get(domainObj, id);
             
         } catch (DataAccessException e) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, e);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
     }
     
@@ -157,7 +157,7 @@ public class BaseDaoImpl<T extends BaseDomain> extends HibernateDaoSupport imple
         try {
             return getHibernateTemplate().loadAll(domainClass);
         } catch (DataAccessException e) {
-            throw new LeefyAppException(LeefyConstant.HIBERNATE_INVALID_ADD_OPERATION, e);
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
     }
     
