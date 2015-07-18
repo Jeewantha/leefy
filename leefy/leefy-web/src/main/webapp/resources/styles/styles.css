@@ -20,7 +20,7 @@
  *******************************************************************************/
 body {
 	font: normal 12px helvetica, arial, verdana, tahoma, sans-serif;
-	background: url("../images/world-bckg.jpg") no-repeat #000 !important;
+	background: url("../images/world-bckg.jpg") no-repeat center !important;
 }
 
 .my-form-class {
