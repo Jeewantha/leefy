@@ -49,7 +49,7 @@ public class LoginController {
 	 *
 	 * @return the string
 	 */
-	@RequestMapping(value = "/app/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public final String login(ModelMap model, HttpSession session) {
 		
 	    logger.debug("Session is going to be invaliadted :"+session.toString());

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -96,14 +97,13 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public  final Map<String, ? extends Object> add(final PersonalContact input, final HttpSession session) {
+	public  final Map<String, ? extends Object> add(final PersonalContact input, final HttpSession session, final HttpServletResponse response) {
 		logger.info("Inside add");
 
 		Map<String, Object> data = new HashMap<String, Object>();
 
 		Set<ConstraintViolation<PersonalContact>> failures = validator.validate(input);
 		if (!failures.isEmpty()) {
-			// response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			data.put("success", Boolean.FALSE);
 			data.put("errors", validationMessages(failures));
 			data.put("errorMessage", "Add Failed!");

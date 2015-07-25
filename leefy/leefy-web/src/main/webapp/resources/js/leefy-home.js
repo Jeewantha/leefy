@@ -87,11 +87,11 @@ var mainLayout = new Ext.Viewport({
 									xtype : 'button',
 									text : 'Menu Button',
 									menu : [{
-												text : 'Better'
+												text : 'My Profile'
 											}, {
-												text : 'Good'
+												text : 'My Friends'
 											}, {
-												text : 'Best'
+												text : 'My Messages'
 											}]
 								}, {
 									xtype : 'splitbutton',
