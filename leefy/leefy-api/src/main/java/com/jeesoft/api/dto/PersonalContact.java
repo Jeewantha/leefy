@@ -21,6 +21,7 @@
 package com.jeesoft.api.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -48,7 +49,7 @@ public class PersonalContact implements Serializable {
 	/** The name. */
 	@NotNull
 	@Size(min = 1, max = INTEGER_FOURTY)
-	private String name;
+	private String username;
 
 	/** The phone. */
 	private String phone;
@@ -57,33 +58,30 @@ public class PersonalContact implements Serializable {
 	@Email
 	private String email;
 
+	private String password;
+	
+	private Date birthday;
+	
+	private String country;
+	
 	/**
 	 * Instantiates a new personal contact.
 	 */
 	public PersonalContact() {
 	}
 
-	/**
-	 * Instantiates a new personal contact.
-	 *
-	 * @param id
-	 *            the id
-	 * @param name
-	 *            the name
-	 * @param phone
-	 *            the phone
-	 * @param email
-	 *            the email
-	 */
-	public PersonalContact(final Long id, final String name, final String phone, final String email) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-		this.email = email;
-	}
+	public PersonalContact(String username, String phone, String email,
+            String password, Date birthday, String country) {
+        super();
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.birthday = birthday;
+        this.country = country;
+    }
 
-	/**
+    /**
 	 * Gets the id.
 	 *
 	 * @return the id
@@ -100,25 +98,6 @@ public class PersonalContact implements Serializable {
 	 */
 	public final void setId(final Long id) {
 		this.id = id;
-	}
-
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public final String getName() {
-		return name;
-	}
-
-	/**
-	 * Sets the name.
-	 *
-	 * @param name
-	 *            the new name
-	 */
-	public final void setName(final String name) {
-		this.name = name;
 	}
 
 	/**
@@ -158,4 +137,36 @@ public class PersonalContact implements Serializable {
 	public final void setEmail(final String email) {
 		this.email = email;
 	}
-}
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+ }

@@ -20,14 +20,13 @@
  *******************************************************************************/
 Ext.onReady(function(){
 	Ext.QuickTips.init();
-
-	var loginForm = new Ext.FormPanel({
+	
+	var signinForm = Ext.create('Ext.form.Panel',{
 			url: defLoginUrl,
 			bodyPadding:5,
-			title: 'Login',
-			renderTo: Ext.getBody(),
+			title: 'Sign-in',
 			frame: true,
-			cls: 'my-form-class',
+			cls: 'signin-form-class',
 			width: 350,
 			items: [{
 					xtype: 'textfield',
@@ -45,22 +44,84 @@ Ext.onReady(function(){
 				checked: false
 			}],
 			buttons: [{
-					id: 'lf.btn.login',
+					id: 'sif.btn.login',
 					text: 'Login',
 					handler: function() {
-						fnLoginForm(loginForm);
+						fnLoginForm(signinForm);
 					}
 				},{
-					id: 'lf.btn.reset',
+					id: 'sif.btn.reset',
 					text: 'Reset',
 					handler: function() {
-						fnResetForm(loginForm);
+						fnResetForm(signinForm);
 					}
 			}]
 	});
+	
+	var signupForm = Ext.create('Ext.form.Panel',{
+			url : addUrl,
+			title : 'Sign-up',
+			frame : true,
+			bodyPadding : 5,
+			cls : 'signup-form-class',
+			width:350,
+			items : [{
+						xtype : 'textfield',
+						fieldLabel : 'Username',
+						name : 'username'
+					}, {
+						xtype : 'textfield',
+						fieldLabel : 'Email',
+						name : 'email'
+					}, {
+						xtype : 'textfield',
+						inputType: 'password',
+						fieldLabel : 'Password',
+						name : 'password'
+					}, {
+						xtype : 'datefield',
+						fieldLabel : 'Birthday',
+						editable : false,
+						name : 'birthday',
+						maxValue: new Date()
+					}],
+			buttons : [{
+						id : 'suf.btn.add',
+						text : 'Signup',
+						handler : function() {
+							fnSignupForm(signupForm);
+						}
+					},{
+						id : 'suf.btn.load',
+						text : 'Reset',
+						handler : function() {
+							fnResetForm(signupForm);
+						}
+					}]
+		});
 
+		var win = Ext.create('widget.window', {
+                title: 'Welcome To Leefy',
+                header: {
+                    titlePosition: 2,
+                    titleAlign: 'center'
+                },
+                closable: true,
+                closeAction: 'hide',
+                maximizable: true,
+                width: 400,
+                minWidth: 350,
+                tools: [{type: 'pin'}],
+                items: [{
+                    region: 'center',
+                    xtype: 'tabpanel',
+                    items: [signinForm,signupForm]
+                }]
+            });
+
+            win.show();
 });
-
+	
 function fnLoginForm(theForm) 
 {
 	theForm.getForm().submit({
@@ -78,3 +139,65 @@ function fnResetForm(theForm)
 	theForm.getForm().reset();
 } //end fnResetForm
 
+function fnLoadForm(theForm) {
+	theForm.getForm().load({
+				url : loadUrl,
+				headers : {
+					Accept : 'application/json, text/javascript, */*; q=0.01'
+				},
+				waitMsg : 'loading...',
+				params : {
+					id : 1
+				},
+				success : function(form, action) {
+					/*Ext.getCmp('mf.btn.add').setDisabled(false);
+					Ext.getCmp('mf.btn.reset').setDisabled(false);
+					Ext.getCmp('mf.btn.load').setDisabled(true);*/
+				},
+				failure : function(form, action) {
+					Ext.Msg.alert('Warning', 'Error Unable to Load Form Data.'); // action.result.errorMessage
+				}
+			});
+} // end fnLoadForm
+
+function fnSignupForm(theForm) {
+	theForm.getForm().submit({
+				success : function(form, action) {
+					Ext.Msg.alert('Success', 'Data is stored in session.');
+					form.reset();
+				},
+				failure : function(form, action) {
+					Ext.Msg.alert('Warning', 'Signup failed.');
+				}
+			});
+} // end fnSignupForm
+
+function fnResetForm(theForm) {
+	theForm.getForm().reset();
+} // end fnResetForm
+
+function fnGetJsonResp() {
+	var myObj = {
+		input : 'your hobby',
+		obj1 : {
+			a : 'something in obj1'
+		}
+
+	}
+	Ext.Ajax.request({
+				url : jsonpreq,
+				method : 'GET',
+				params : {
+					ajax_req : Ext.util.JSON.encode(myObj),
+					input : 'Your hobby'
+				},
+				success : function(transport) {
+					var result = Ext.decode(transport.responseText);
+					alert("success" + result.name);
+					// do something
+				},
+				failure : function(transport) {
+					alert("Error: " - transport.responseText);
+				}
+			});
+} // end fnGetJsonResp

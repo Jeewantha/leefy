@@ -64,10 +64,12 @@
     <session-management session-fixation-protection="migrateSession" />
     
      <intercept-url pattern="/resources/**" access="permitAll()" filters="none"/>
-     <intercept-url pattern="/app/login.do" access="permitAll()" filters="none" />
+     <intercept-url pattern="/login" access="permitAll()" filters="none" />
+     <intercept-url pattern="/add" access="permitAll()" filters="none" />
+     <intercept-url pattern="/load" access="permitAll()" filters="none" />
      <intercept-url pattern="/**" access="isAuthenticated()" />
     
-    <form-login login-page="/app/login.do" 
+    <form-login login-page="/login" 
               authentication-success-handler-ref="loginSuccessHandler" 
               authentication-failure-handler-ref="loginFailureHandler" />
         <logout invalidate-session="true" logout-success-url="/" logout-url="/j_spring_security_logout"/>

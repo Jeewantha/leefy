@@ -23,10 +23,18 @@ body {
 	background: url("../images/world-bckg.jpg") no-repeat #000 !important;
 }
 
-.my-form-class {
-	margin: 200px auto;
+.signin-form-class {
+	/* margin: 200px auto; */
+}
+
+.signup-form-class {
+	/* margin: 200px auto; */
 }
 
 .toolbarStyles {
 	background: #2E8CD0;
+}
+
+.mainlayout{
+	background: #000 !important;
 }
