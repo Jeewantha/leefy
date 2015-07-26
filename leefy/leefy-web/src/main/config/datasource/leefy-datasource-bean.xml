@@ -34,7 +34,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-
+	<!-- Set transactions annotation driven with Spring transaction support  -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 

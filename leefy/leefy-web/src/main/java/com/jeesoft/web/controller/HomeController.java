@@ -18,7 +18,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web;
+package com.jeesoft.web.controller;
 
 import java.util.HashMap;
 import java.util.Map;
