@@ -44,13 +44,13 @@ Ext.onReady(function(){
 				checked: false
 			}],
 			buttons: [{
-					id: 'sif.btn.login',
+					id: 'lf.btn.login',
 					text: 'Login',
 					handler: function() {
 						fnLoginForm(signinForm);
 					}
 				},{
-					id: 'sif.btn.reset',
+					id: 'lf.btn.reset',
 					text: 'Reset',
 					handler: function() {
 						fnResetForm(signinForm);
@@ -67,35 +67,29 @@ Ext.onReady(function(){
 			width:350,
 			items : [{
 						xtype : 'textfield',
-						fieldLabel : 'Username',
-						name : 'username'
+						fieldLabel : 'Name',
+						name : 'name'
+					}, {
+						xtype : 'textfield',
+						fieldLabel : 'Phone No.',
+						name : 'phone'
 					}, {
 						xtype : 'textfield',
 						fieldLabel : 'Email',
 						name : 'email'
-					}, {
-						xtype : 'textfield',
-						inputType: 'password',
-						fieldLabel : 'Password',
-						name : 'password'
-					}, {
-						xtype : 'datefield',
-						fieldLabel : 'Birthday',
-						editable : false,
-						name : 'birthday',
-						maxValue: new Date()
 					}],
 			buttons : [{
-						id : 'suf.btn.add',
+						id : 'mf.btn.add',
 						text : 'Signup',
+						/*disabled : true,*/
 						handler : function() {
 							fnSignupForm(signupForm);
 						}
 					},{
-						id : 'suf.btn.load',
-						text : 'Reset',
+						id : 'mf.btn.load',
+						text : 'Load',
 						handler : function() {
-							fnResetForm(signupForm);
+							fnLoadForm(signupForm);
 						}
 					}]
 		});
@@ -174,6 +168,8 @@ function fnSignupForm(theForm) {
 
 function fnResetForm(theForm) {
 	theForm.getForm().reset();
+	Ext.getCmp('mf.btn.add').setDisabled(true);
+	Ext.getCmp('mf.btn.reset').setDisabled(true);
 } // end fnResetForm
 
 function fnGetJsonResp() {
