@@ -265,11 +265,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
-=======
-	<classpathentry combineaccessrules="false" kind="src" path="/leefy-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/leefy-core"/>
->>>>>>> c2fb803a9a6560e36c452a0093c5b642909c49b7
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl"/>
