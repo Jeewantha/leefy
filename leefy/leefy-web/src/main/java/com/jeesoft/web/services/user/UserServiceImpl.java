@@ -413,6 +413,28 @@ public class UserServiceImpl implements UserService {
     }
     
     /**
+     * Get the any users UserLogin object by passing the user's role_id and IdentificationNo.
+     * 
+     * @param roleId - int
+     * @param identificationNo - String
+     * @throws AkuraAppException AkuraAppException
+     * @return returns the UserLogin object.
+     */
+    public int getAnyUserByUserRoleIdAndIdentificationNo(int roleId, String identificationNo) throws LeefyAppException {
+
+        int identificationId = 0;
+        List<Integer> identificationList = null;
+        
+        if (roleId == com.jeesoft.api.enums.UserRole.ROLE_GUEST.getUserRoleId()) {
+            identificationList = userLoginDao.getStaffByUserRoleIdAndIdentificationNo(roleId, identificationNo);
+        }
+        if (identificationList != null && !identificationList.isEmpty()) {
+            identificationId = identificationList.get(0);
+        }
+        return identificationId;
+    }
+    
+    /**
      * Retrieve the available UserRole object.
      * 
      * @param role - role.

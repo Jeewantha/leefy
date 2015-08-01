@@ -149,6 +149,16 @@ public interface UserService {
     UserLogin getAnyUser(String userName) throws LeefyAppException;
     
     /**
+     * Get the any users UserLogin object by passing the user's role_id and IdentificationNo.
+     * 
+     * @param roleId - int
+     * @param identificationNo - String
+     * @throws AkuraAppException AkuraAppException
+     * @return returns the UserLogin object.
+     */
+    int getAnyUserByUserRoleIdAndIdentificationNo(int roleId, String identificationNo) throws LeefyAppException;
+    
+    /**
      * Get the UserRole object by passing the userrole rolename.
      * 
      * @param role - String
