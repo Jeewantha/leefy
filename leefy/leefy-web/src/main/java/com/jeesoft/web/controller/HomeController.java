@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jeesoft.api.dto.PersonalContact;
+import com.jeesoft.api.dto.UserRegistrationForm;
 
 /**
  * Handles requests for the application home page.
@@ -76,9 +76,9 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/load", method = RequestMethod.POST)
 	@ResponseBody
-	public final Map<String, ? extends Object> load(final PersonalContact input) {
+	public final Map<String, ? extends Object> load(final UserRegistrationForm input) {
 		logger.info("Inside load");
-		/*PersonalContact pc = new PersonalContact(1L, "Wowi", "89281932", "wo.wi@abcxyz.com");*/
+		/*UserRegistrationForm pc = new UserRegistrationForm(1L, "Wowi", "89281932", "wo.wi@abcxyz.com");*/
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("success", Boolean.TRUE);
 		/*data.put("data", pc);*/
@@ -97,12 +97,10 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public  final Map<String, ? extends Object> add(final PersonalContact input, final HttpSession session, final HttpServletResponse response) {
-		logger.info("Inside add");
-
+	public  final Map<String, ? extends Object> add(final UserRegistrationForm input, final HttpSession session, final HttpServletResponse response) {
 		Map<String, Object> data = new HashMap<String, Object>();
 
-		Set<ConstraintViolation<PersonalContact>> failures = validator.validate(input);
+		Set<ConstraintViolation<UserRegistrationForm>> failures = validator.validate(input);
 		if (!failures.isEmpty()) {
 			data.put("success", Boolean.FALSE);
 			data.put("errors", validationMessages(failures));
@@ -140,9 +138,9 @@ public class HomeController {
 	 *            the failures
 	 * @return the map
 	 */
-	private Map<String, String> validationMessages(final Set<ConstraintViolation<PersonalContact>> failures) {
+	private Map<String, String> validationMessages(final Set<ConstraintViolation<UserRegistrationForm>> failures) {
 		Map<String, String> failureMessages = new HashMap<String, String>();
-		for (ConstraintViolation<PersonalContact> failure : failures) {
+		for (ConstraintViolation<UserRegistrationForm> failure : failures) {
 			failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
 		}
 		return failureMessages;

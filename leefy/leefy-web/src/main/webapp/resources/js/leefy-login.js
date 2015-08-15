@@ -75,9 +75,18 @@ Ext.onReady(function(){
 						name : 'email'
 					}, {
 						xtype : 'textfield',
+						fieldLabel : 'Confirm Email',
+						name : 'confirmEmail'
+					}, {
+						xtype : 'textfield',
 						inputType: 'password',
 						fieldLabel : 'Password',
 						name : 'password'
+					}, {
+						xtype : 'textfield',
+						inputType: 'password',
+						fieldLabel : 'Confirm Password',
+						name : 'confirmPassword'
 					}, {
 						xtype : 'datefield',
 						fieldLabel : 'Birthday',
