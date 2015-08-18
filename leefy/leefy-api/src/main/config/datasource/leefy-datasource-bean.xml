@@ -46,15 +46,15 @@
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://localhost:3306/akura
+			<value>jdbc:mysql://localhost:3306/leefy
 			</value>
 
 		</property>
 		<property name="username">
-			<value>root</value>
+			<value>leefy</value>
 		</property>
 		<property name="password">
-			<value>root</value>
+			<value>leefy</value>
 		</property>
 	</bean>
 
