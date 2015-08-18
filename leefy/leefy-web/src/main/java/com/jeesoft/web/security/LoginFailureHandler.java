@@ -21,17 +21,21 @@
 package com.jeesoft.web.security;
 
 import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.jeesoft.api.dto.LoginStatus;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.web.util.PropertyReader;
 
 /**
@@ -39,12 +43,6 @@ import com.jeesoft.web.util.PropertyReader;
  */
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 
-    /** The Constant USER_LOGIN_FAILURE_ERROR. */
-    private static final String USER_LOGIN_FAILURE_ERROR = "USER.LOGIN.FAILURE.ERROR";
-    
-    /** Holds the Leefy error messages property file name. */
-    private static final String LEEFY_ERROR_MSG_PROPERTY = "errormessages";
-    
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -57,13 +55,18 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public final void onAuthenticationFailure(final HttpServletRequest request, final HttpServletResponse response,
 			final AuthenticationException auth) throws IOException, ServletException {
-
-		ObjectMapper mapper = new ObjectMapper();
-        LoginStatus status = new LoginStatus(false, false, null,
-                PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY, USER_LOGIN_FAILURE_ERROR));
-		OutputStream out = response.getOutputStream();
-		mapper.writeValue(out, status);
-
+	    
+	    String errorMessage = LeefyConstants.EMPTY_STRING;
+	    
+	    if(auth.getClass().isAssignableFrom(UsernameNotFoundException.class)){
+	        errorMessage = PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY, LeefyConstants.USER_LOGIN_FAILURE_ERROR, LocaleContextHolder.getLocale());
+	    } else if(auth.getClass().isAssignableFrom(DisabledException.class)){
+	        errorMessage = PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY, LeefyConstants.USER_LOGIN_FAILURE_ERROR, LocaleContextHolder.getLocale());
+	    } else if(auth.getClass().isAssignableFrom(BadCredentialsException.class)){
+	        errorMessage = PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY, LeefyConstants.USER_LOGIN_FAILURE_ERROR, LocaleContextHolder.getLocale());
+	    }
+	    
+		new ObjectMapper().writeValue(response.getOutputStream(), new LoginStatus(false, false, null, errorMessage));
 	}
 
 }

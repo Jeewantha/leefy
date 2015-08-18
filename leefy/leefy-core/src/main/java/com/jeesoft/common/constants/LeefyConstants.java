@@ -36,6 +36,12 @@ public final class LeefyConstants {
 
 	}
 	
+	/** The Constant USER_LOGIN_FAILURE_ERROR. */
+    public static final String USER_LOGIN_FAILURE_ERROR = "USER.LOGIN.FAILURE.ERROR";
+    
+    /** Holds the Leefy error messages property file name. */
+    public static final String LEEFY_ERROR_MSG_PROPERTY = "errormessages";
+	
 	/**
 	 * Key representing a DB Connection error.
 	 */

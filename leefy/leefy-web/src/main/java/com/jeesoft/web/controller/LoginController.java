@@ -20,6 +20,8 @@
  *******************************************************************************/
 package com.jeesoft.web.controller;
 
+import java.util.Locale;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -50,10 +52,9 @@ public class LoginController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public final String login(ModelMap model, HttpSession session) {
+	public final String login(ModelMap model, HttpSession session, Locale locale) {
 		
 	    logger.debug("Session is going to be invaliadted :"+session.toString());
-	    
 		session.invalidate();
 		return "login";
 	}

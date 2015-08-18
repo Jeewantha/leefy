@@ -24,34 +24,34 @@ Ext.onReady(function(){
 	var signinForm = Ext.create('Ext.form.Panel',{
 			url: defLoginUrl,
 			bodyPadding:5,
-			title: 'Sign-in',
+			title: loginSigninFormTitle,
 			frame: true,
 			cls: 'signin-form-class',
 			width: 350,
 			items: [{
 					xtype: 'textfield',
-					fieldLabel: 'Login',
+					fieldLabel: loginSigninFormLableLogin,
 					name: 'j_username'
 			},{
 					xtype: 'textfield',
 					inputType: 'password',
-					fieldLabel: 'Password',
+					fieldLabel: loginSigninFormLablePassword,
 					name: 'j_password'
 			}, {
 				xtype: 'checkbox',
-				fieldLabel: 'Remember Me?',
+				fieldLabel: loginSigninFormLablePassword,
 				name: '_spring_security_remember_me',
 				checked: false
 			}],
 			buttons: [{
 					id: 'sif.btn.login',
-					text: 'Login',
+					text: loginSigninFormButtoLogin,
 					handler: function() {
 						fnLoginForm(signinForm);
 					}
 				},{
 					id: 'sif.btn.reset',
-					text: 'Reset',
+					text: loginSigninFormButtoReset,
 					handler: function() {
 						fnResetForm(signinForm);
 					}
@@ -110,11 +110,17 @@ Ext.onReady(function(){
 		});
 
 		var win = Ext.create('widget.window', {
-                title: 'Welcome To Leefy',
+                title: loginWelcomeTitle,
                 header: {
                     titlePosition: 2,
                     titleAlign: 'center'
                 },
+                tools : [{
+								id : 'Language',
+								handler : function(e, toolEl, panel, tc) {
+									menu.show(toolEl, 'tr-br?');
+								}
+							}],
                 closable: true,
                 closeAction: 'hide',
                 maximizable: true,
@@ -138,7 +144,7 @@ function fnLoginForm(theForm)
 					window.location = homeUrl;
 		},
 		failure: function(form, action) {
-			Ext.Msg.alert('Warning', action.result.errorMessage); 
+			Ext.Msg.alert('Warning', loginError); 
 		}
 	});
 } //end fnLoginForm

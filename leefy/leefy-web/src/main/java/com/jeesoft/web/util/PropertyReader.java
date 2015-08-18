@@ -22,6 +22,7 @@
 package com.jeesoft.web.util;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -59,16 +60,17 @@ public final class PropertyReader {
      * 
      * @param fileName the name of the property file.
      * @param key key the name of the property.
+     * @param locale the locale to get the correct error message.
      * @return the property value.
      */
-    public static String getPropertyValue(String fileName, String key) {
+    public static String getPropertyValue(String fileName, String key, Locale locale) {
 
         String value = null;
         ResourceBundle resBundle = PropertyReader.RESOURCE_MAP.get(fileName);
         if (resBundle == null) {
             LOG.debug(fileName+NOT_FIND_THE_BUNDLE);
             try {
-                resBundle = ResourceBundle.getBundle(fileName);
+                resBundle = ResourceBundle.getBundle(fileName,locale);
                 PropertyReader.RESOURCE_MAP.put(fileName, resBundle);
             } catch (MissingResourceException ex) {
                 resBundle = null;

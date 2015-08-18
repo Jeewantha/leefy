@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -294,13 +295,13 @@ public class UserServiceImpl implements UserService {
         /** validate user name */
         if (getAnyUser(userName) != null) {
             throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
-                    ERROR_MESSAGE_UNIQUE_UNAME));
+                    ERROR_MESSAGE_UNIQUE_UNAME,LocaleContextHolder.getLocale()));
         }
         
         /** validate email */
         if (getAnyUserByEmail(userLogin.getEmail()) != null) {
             throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
-                    ERROR_MESSAGE_UNIQUE_EMAIL));
+                    ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
         }
         
         /** Initialize the user object */
@@ -339,7 +340,7 @@ public class UserServiceImpl implements UserService {
         if (!findUserLogin(userLogin.getUserLoginId()).getEmail().equals(userLogin.getEmail())) {
             if (getAnyUserByEmail(userLogin.getEmail()) != null) {
                 throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
-                        ERROR_MESSAGE_UNIQUE_EMAIL));
+                        ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
             }
         }
         

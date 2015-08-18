@@ -86,6 +86,7 @@
 				<prop key="hibernate.max_fetch_depth">3</prop>
 				<prop key="hibernate.autocommit">false</prop>
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.jdbc.batch_size">1000</prop>
 				<prop key="hibernate.c3p0.min_size">5</prop>
 				<prop key="hibernate.c3p0.max_size">20</prop>

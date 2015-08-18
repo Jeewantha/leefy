@@ -166,7 +166,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/com/jeesoft/leefy-core/1.0.0/leefy-core-1.0.0.jar" sourcepath="/M2_REPO/com/jeesoft/leefy-core/1.0.0/leefy-core-1.0.0-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/4.1.6.RELEASE/spring-test-4.1.6.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-test/4.1.6.RELEASE/spring-test-4.1.6.RELEASE-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/org/springframework/spring-test/4.1.6.RELEASE/spring-test-4.1.6.RELEASE-javadoc.jar!/"/>
@@ -269,5 +268,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-jaxrs"/>
+	<classpathentry kind="var" path="M2_REPO/com/jeesoft/leefy-core/1.0.0/leefy-core-1.0.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
