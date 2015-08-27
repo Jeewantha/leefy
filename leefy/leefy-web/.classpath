@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
-		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry excluding="**/*.java" including="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
@@ -22,9 +16,9 @@
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar" sourcepath="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/jstl/1.2/jstl-1.2.jar" sourcepath="M2_REPO/javax/servlet/jstl/1.2/jstl-1.2-sources.jar"/>
-	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar">
+	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-javadoc.jar!/"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar" sourcepath="M2_REPO/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1-sources.jar">
@@ -120,9 +114,32 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/org/springframework/spring-context-support/4.1.6.RELEASE/spring-context-support-4.1.6.RELEASE-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.4.1/jackson-core-2.4.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.4.1/jackson-core-2.4.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.4.1/jackson-core-2.4.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.4.1.1/jackson-databind-2.4.1.1.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.4.1.1/jackson-databind-2.4.1.1-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.4.1.1/jackson-databind-2.4.1.1-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.4.0/jackson-annotations-2.4.0.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.4.0/jackson-annotations-2.4.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.4.0/jackson-annotations-2.4.0-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/4.7/junit-4.7.jar" sourcepath="M2_REPO/junit/junit/4.7/junit-4.7-sources.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.11/jackson-mapper-asl-1.9.11.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.11/jackson-mapper-asl-1.9.11-sources.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.11/jackson-core-asl-1.9.11.jar" sourcepath="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.11/jackson-core-asl-1.9.11-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/4.3.8.Final/hibernate-core-4.3.8.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-core/4.3.8.Final/hibernate-core-4.3.8.Final-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/jboss/logging/jboss-logging/3.1.3.GA/jboss-logging-3.1.3.GA.jar" sourcepath="M2_REPO/org/jboss/logging/jboss-logging/3.1.3.GA/jboss-logging-3.1.3.GA-sources.jar">
 		<attributes>
@@ -166,6 +183,7 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="/leefy-core"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/4.1.6.RELEASE/spring-test-4.1.6.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-test/4.1.6.RELEASE/spring-test-4.1.6.RELEASE-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/org/springframework/spring-test/4.1.6.RELEASE/spring-test-4.1.6.RELEASE-javadoc.jar!/"/>
@@ -256,18 +274,23 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Jeewantha/.m2/repository/com/fasterxml/classmate/1.0.0/classmate-1.0.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/com/jeesoft/leefy-api/1.0.0/leefy-api-1.0.0.jar" sourcepath="/M2_REPO/com/jeesoft/leefy-api/1.0.0/leefy-api-1.0.0-sources.jar"/>
+	<classpathentry kind="src" path="/leefy-api"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson"/>
-	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl"/>
-	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl"/>
-	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-jaxrs"/>
-	<classpathentry kind="var" path="M2_REPO/com/jeesoft/leefy-core/1.0.0/leefy-core-1.0.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

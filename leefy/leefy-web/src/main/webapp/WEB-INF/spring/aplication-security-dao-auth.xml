@@ -58,13 +58,15 @@
     </beans:property>
   </beans:bean>
 
+  <!-- <beans:bean id="customUsernamePasswordAuthFilter" class="com.jeesoft.web.security.CustomUsernamePasswordAuthenticationFilter"/> -->
 
   <http auto-config="true" use-expressions="true">
-
+	
     <session-management session-fixation-protection="migrateSession" />
     
      <intercept-url pattern="/resources/**" access="permitAll()" filters="none"/>
      <intercept-url pattern="/login" access="permitAll()" filters="none" />
+     <intercept-url pattern="/language" access="permitAll()" filters="none" />
      <intercept-url pattern="/add" access="permitAll()" filters="none" />
      <intercept-url pattern="/load" access="permitAll()" filters="none" />
      <intercept-url pattern="/**" access="isAuthenticated()" />

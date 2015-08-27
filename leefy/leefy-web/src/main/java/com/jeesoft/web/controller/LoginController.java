@@ -20,8 +20,7 @@
  *******************************************************************************/
 package com.jeesoft.web.controller;
 
-import java.util.Locale;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -48,14 +47,30 @@ public class LoginController {
 
 	/**
 	 * Login.
-	 *
+	 
 	 * @return the string
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public final String login(ModelMap model, HttpSession session, Locale locale) {
+	public final String login(ModelMap model, HttpSession session) {
 		
 	    logger.debug("Session is going to be invaliadted :"+session.toString());
 		session.invalidate();
+		
 		return "login";
 	}
+	/**
+	 * Get the user selected language.
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/language", method=RequestMethod.GET)
+	public final String changeLanguage(ModelMap model, HttpSession session, HttpServletRequest request){
+	    
+	    return "login";
+	}
+	
+	
+	
 }

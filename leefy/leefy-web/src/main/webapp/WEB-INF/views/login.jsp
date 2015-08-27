@@ -18,11 +18,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  -->
- <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html>
 <head>
 	<title><spring:message code="PAGE.LOGIN.TITLE"/></title>
@@ -42,17 +43,28 @@
 		
 		var loginError ='<spring:message code="USER.LOGIN.FAILURE.ERROR"/>';
 
-		var loginWelcomeTitle ='<spring:message code="PAGE.LOGIN.WELCOME.WINDOW.TITLE"/>';
-		var loginSigninFormTitle =escape('<spring:message code="PAGE.LOGIN.SIGNIN.FORM.TITLE"/>');
-		var loginSigninFormLableLogin = '<spring:message code="PAGE.LOGIN.SIGNIN.FORM.LABEL.LOGIN"/>';		
-		var loginSigninFormLablePassword = '<spring:message code="PAGE.LOGIN.SIGNIN.FORM.LABEL.PASSWORD"/>';		
-		var loginSigninFormLablePassword = '<spring:message code="PAGE.LOGIN.SIGNIN.FORM.LABEL.REMEMBERME"/>';		
-		var loginSigninFormButtoLogin = '<spring:message code="PAGE.LOGIN.SIGNIN.FORM.BUTTON.LOGIN"/>';		
-		var loginSigninFormButtoReset = '<spring:message code="PAGE.LOGIN.SIGNIN.FORM.BUTTON.RESET"/>';		
+		var loginWelcomeTitle ="<spring:message code='PAGE.LOGIN.WELCOME.WINDOW.TITLE'/>";
+		var loginSigninFormTitle ="<spring:message code='PAGE.LOGIN.SIGNIN.FORM.TITLE'/>";
+		var loginSigninFormLableLogin = "<spring:message code='PAGE.LOGIN.SIGNIN.FORM.LABEL.LOGIN'/>";		
+		var loginSigninFormLablePassword = "<spring:message code='PAGE.LOGIN.SIGNIN.FORM.LABEL.PASSWORD'/>";		
+		var loginSigninFormLableRememberMe = "<spring:message code='PAGE.LOGIN.SIGNIN.FORM.LABEL.REMEMBERME'/>";		
+		var loginSigninFormButtonLogin = "<spring:message code='PAGE.LOGIN.SIGNIN.FORM.BUTTON.LOGIN'/>";		
+		var loginSigninFormButtonReset = "<spring:message code='PAGE.LOGIN.SIGNIN.FORM.BUTTON.RESET'/>";		
+		var loginSignupFormLabelTitle = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.TITLE'/>";
+		var loginSignupFormLableUsername = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.USERNAME'/>";
+		var loginSignupFormLableEmail = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.EMAIL'/>";
+		var loginSignupFormLableConfirmEmail = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.CONFIRMEMAIL'/>";
+		var loginSignupFormLablePassword = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.PASSWORD'/>";
+		var loginSignupFormLableCounrty = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.COUNTRY'/>";
+		var loginSignupFormLableConfirmPassword = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.CONFIRMPASSWORD'/>";
+		var loginSignupFormLableBirthday = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.LABEL.FORM.BIRTHDAY'/>";
+		var loginSignupFormButtonSignup = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.BUTTON.SIGNUP'/>";
+		var loginSignupFormButtonReset = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.BUTTON.RESET'/>";
 		
 	</script>	
 	<script type="text/javascript" src="<c:url value="/resources/js/leefy-login.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/flag-icon-css-master/css/flag-icon.css" />">
 </head>
 <body>
 </body>

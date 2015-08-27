@@ -3,6 +3,7 @@
 	<name>leefy-api</name>
 	<comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
+		<project>leefy-core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -26,12 +27,12 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
