@@ -5301,6 +5301,7 @@ Ext.onReady(function(){
 					}, {
 						xtype:'combo',
 						fieldLabel : loginSignupFormLableCounrty,
+						name : 'country',
 					    displayField: 'name',
 					    valueField:'iso2Code',
 					    listConfig: {

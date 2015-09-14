@@ -67,5 +67,11 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/flag-icon-css-master/css/flag-icon.css" />">
 </head>
 <body>
+
+	<div style="height:390;background:#F3FAB6;" align="center"">
+	</div>
+	<div style="height:200;background:#CBE32D;" align="center"">
+	</div>
+
 </body>
 </html>

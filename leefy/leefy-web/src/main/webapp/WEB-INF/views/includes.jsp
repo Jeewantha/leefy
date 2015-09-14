@@ -25,8 +25,8 @@
 <head>
 <title>Includes</title>
 	<script type="text/javascript" src="<c:url value="/resources/lib/ext-5.1.0/ext-all.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/lib/ext-5.1.0/packages/ext-theme-neptune/build/ext-theme-neptune.js"/>"></script>
-	<link href="<c:url value="/resources/lib/ext-5.1.0/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" />" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<c:url value="/resources/lib/ext-5.1.0/packages/ext-theme-crisp/build/ext-theme-crisp.js"/>"></script>
+	<link href="<c:url value="/resources/lib/ext-5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" />" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
