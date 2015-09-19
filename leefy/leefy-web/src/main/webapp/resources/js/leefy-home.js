@@ -19,62 +19,6 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * 
  ******************************************************************************/
-Ext.onReady(function() {
-			Ext.QuickTips.init();
-
-			var mf = new Ext.FormPanel({
-						url : addUrl,
-						title : 'User',
-						frame : true,
-						bodyPadding : 5,
-						cls : 'my-form-class',
-						defaults : {
-							autoWidth : true,
-							autoHeight : true
-						},
-						items : [{
-									xtype : 'textfield',
-									fieldLabel : 'Name',
-									name : 'name'
-								}, {
-									xtype : 'textfield',
-									fieldLabel : 'Phone No.',
-									name : 'phone'
-								}, {
-									xtype : 'textfield',
-									fieldLabel : 'Email',
-									name : 'email'
-								}],
-						buttons : [{
-									id : 'mf.btn.load',
-									text : 'Load',
-									handler : function() {
-										fnLoadForm(mf);
-									}
-								}, {
-									id : 'mf.btn.add',
-									text : 'Add',
-									disabled : true,
-									handler : function() {
-										fnUpdateForm(mf);
-									}
-								}, {
-									id : 'mf.btn.reset',
-									text : 'Reset',
-									disabled : true,
-									handler : function() {
-										fnResetForm(mf);
-									}
-								}, {
-									id : 'mf.btn.jsonpreq',
-									text : 'Json',
-									handler : function() {
-										fnGetJsonResp();
-									}
-								}]
-					});
-
-		});
 
 var mainLayout = new Ext.Viewport({
 			layout : 'border',
@@ -85,7 +29,7 @@ var mainLayout = new Ext.Viewport({
 						cls : 'toolbarStyles',
 						items : [{
 									xtype : 'button',
-									text : 'Menu Button',
+									text : 'My Account',
 									menu : [{
 												text : 'My Profile'
 											}, {
@@ -94,21 +38,11 @@ var mainLayout = new Ext.Viewport({
 												text : 'My Messages'
 											}]
 								}, {
-									xtype : 'splitbutton',
-									text : 'Split Button',
-									menu : [{
-												text : 'Item One'
-											}, {
-												text : 'Item Two'
-											}, {
-												text : 'Item Three'
-											}]
-								}, {
 									xtype : 'tbfill'
 								}, {
 									xtype : 'textfield',
 									name : 'field1',
-									emptyText : 'enter search term'
+									emptyText : 'ente name to search'
 								}, {
 									xtype : 'button',
 									text : 'Logout',
@@ -154,68 +88,3 @@ var mainLayout = new Ext.Viewport({
 						html : 'South'
 					}]
 		});
-
-function fnLoadForm(theForm) {
-	// for the purpose of this tutorial, load 1 record.
-	theForm.getForm().load({
-				url : loadUrl,
-				headers : {
-					Accept : 'application/json, text/javascript, */*; q=0.01'
-				},
-				waitMsg : 'loading...',
-				params : {
-					id : 1
-				},
-				success : function(form, action) {
-					Ext.getCmp('mf.btn.add').setDisabled(false);
-					Ext.getCmp('mf.btn.reset').setDisabled(false);
-					Ext.getCmp('mf.btn.load').setDisabled(true);
-				},
-				failure : function(form, action) {
-					Ext.Msg.alert('Warning', 'Error Unable to Load Form Data.'); // action.result.errorMessage
-				}
-			});
-} // end fnLoadForm
-
-function fnUpdateForm(theForm) {
-	theForm.getForm().submit({
-				success : function(form, action) {
-					Ext.Msg.alert('Success', 'Data is stored in session.');
-					form.reset();
-				},
-				failure : function(form, action) {
-					Ext.Msg.alert('Warning', action.result.errorMessage);
-				}
-			});
-} // end fnUpdateForm
-function fnResetForm(theForm) {
-	theForm.getForm().reset();
-	Ext.getCmp('mf.btn.add').setDisabled(true);
-	Ext.getCmp('mf.btn.reset').setDisabled(true);
-} // end fnResetForm
-
-function fnGetJsonResp() {
-	var myObj = {
-		input : 'your hobby',
-		obj1 : {
-			a : 'something in obj1'
-		}
-
-	}
-	Ext.Ajax.request({
-				url : jsonpreq,
-				method : 'GET',
-				params : {
-					ajax_req : Ext.util.JSON.encode(myObj),
-					input : 'Your hobby'
-				},
-				success : function(transport) {
-					var result = Ext.decode(transport.responseText);
-					alert("success" + result.name);
-					// do something
-				},
-				failure : function(transport) {
-					alert("Error: " - transport.responseText);
-				}
-			});
-} // end fnGetJsonResp

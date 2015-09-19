@@ -63,7 +63,6 @@
 		
 	</script>	
 	<script type="text/javascript" src="<c:url value="/resources/js/leefy-login.js" />"></script>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/flag-icon-css-master/css/flag-icon.css" />">
 </head>
 <body>

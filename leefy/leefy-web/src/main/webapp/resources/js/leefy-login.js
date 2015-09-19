@@ -21,43 +21,6 @@
 Ext.onReady(function(){
 	Ext.QuickTips.init();
 	
-	var signinForm = Ext.create('Ext.form.Panel',{
-			url: defLoginUrl,
-			bodyPadding:5,
-			title: loginSigninFormTitle,
-			frame: true,
-			cls: 'signin-form-class',
-			width: 350,
-			items: [{
-					xtype: 'textfield',
-					fieldLabel: loginSigninFormLableLogin,
-					name: 'j_username'
-			},{
-					xtype: 'textfield',
-					inputType: 'password',
-					fieldLabel: loginSigninFormLablePassword,
-					name: 'j_password'
-			}, {
-				xtype: 'checkbox',
-				fieldLabel: loginSigninFormLableRememberMe,
-				name: '_spring_security_remember_me',
-				checked: false
-			}],
-			buttons: [{
-					id: 'sif.btn.login',
-					text: loginSigninFormButtonLogin,
-					handler: function() {
-						fnLoginForm(signinForm);
-					}
-				},{
-					id: 'sif.btn.reset',
-					text: loginSigninFormButtonReset,
-					handler: function() {
-						fnResetForm(signinForm);
-					}
-			}]
-	});
-	
    var Country = Ext.define('Country', {
         extend: 'Ext.data.Model',
         fields: [{name:'name',type:'string'},{name:'iso2Code', type:'string'}]
@@ -5288,18 +5251,26 @@ Ext.onReady(function(){
 			width:350,
 			items : [{
 						xtype : 'textfield',
+						labelSeparator: '',
+						anchor: '90%',
 						fieldLabel : loginSignupFormLableUsername,
 						name : 'username'
 					}, {
 						xtype : 'textfield',
+						labelSeparator: '',
+						anchor: '90%',
 						fieldLabel : loginSignupFormLableEmail,
 						name : 'email'
 					}, {
 						xtype : 'textfield',
+						labelSeparator: '',
+						anchor: '90%',
 						fieldLabel : loginSignupFormLableConfirmEmail,
 						name : 'confirmEmail'
 					}, {
 						xtype:'combo',
+						labelSeparator: '',
+						anchor: '90%',
 						fieldLabel : loginSignupFormLableCounrty,
 						name : 'country',
 					    displayField: 'name',
@@ -5314,16 +5285,24 @@ Ext.onReady(function(){
 					    typeAhead: true
 					},{
 						xtype : 'textfield',
+						labelSeparator: '',
+						anchor: '90%',
+						labelWidth: 150,
 						inputType: 'password',
 						fieldLabel : loginSignupFormLablePassword,
 						name : 'password'
 					}, {
 						xtype : 'textfield',
+						labelSeparator: '',
+						anchor: '90%',
+						labelWidth: 150,
 						inputType: 'password',
 						fieldLabel : loginSignupFormLableConfirmPassword,
 						name : 'confirmPassword'
 					}, {
 						xtype : 'datefield',
+						labelSeparator: '',
+						anchor: '90%',
 						fieldLabel : loginSignupFormLableBirthday,
 						editable : false,
 						name : 'birthday',
@@ -5344,6 +5323,52 @@ Ext.onReady(function(){
 					}]
 		});
 
+	var signinForm = Ext.create('Ext.form.Panel',{
+			url: defLoginUrl,
+			bodyPadding:5,
+			title: loginSigninFormTitle,
+			frame: true,
+			cls: 'signin-form-class',
+			width: 350,
+			items: [{
+					xtype: 'textfield',
+					allowBlank: false,
+					labelSeparator: '',
+					anchor: '90%',
+					fieldLabel: loginSigninFormLableLogin,
+					name: 'j_username'
+			},{
+					xtype: 'textfield',
+					allowBlank: false,
+					labelSeparator: '',
+					anchor: '90%',
+					inputType: 'password',
+					fieldLabel: loginSigninFormLablePassword,
+					name: 'j_password'
+			}, {
+				xtype: 'checkbox',
+				labelWidth: 110,
+				labelSeparator: '',
+				fieldLabel: loginSigninFormLableRememberMe,
+				name: '_spring_security_remember_me',
+				checked: false
+			}],
+			buttons: [{
+					id: 'sif.btn.login',
+					text: loginSigninFormButtonLogin,
+					handler: function() {
+						fnLoginForm(signinForm);
+					}
+				},{
+					id: 'sif.btn.reset',
+					text: loginSigninFormButtonReset,
+					handler: function() {
+						fnResetForm(signinForm);
+					}
+			}]
+	});
+
+		
 		var win = Ext.create('widget.window', {
                 title: loginWelcomeTitle,
                 header: {
@@ -5368,7 +5393,7 @@ Ext.onReady(function(){
                     items: [signinForm,signupForm]
                 }]
             });
-
+            
             win.show();
 });
 	

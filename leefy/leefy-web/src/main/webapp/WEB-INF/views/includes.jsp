@@ -27,6 +27,9 @@
 	<script type="text/javascript" src="<c:url value="/resources/lib/ext-5.1.0/ext-all.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/lib/ext-5.1.0/packages/ext-theme-crisp/build/ext-theme-crisp.js"/>"></script>
 	<link href="<c:url value="/resources/lib/ext-5.1.0/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" />" rel="stylesheet" type="text/css" />
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/styles.css" />">
 </head>
 <body>
 
