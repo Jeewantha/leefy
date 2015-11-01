@@ -62,6 +62,7 @@
 		var loginSignupFormButtonReset = "<spring:message code='PAGE.LOGIN.SIGNUP.FORM.BUTTON.RESET'/>";
 		
 	</script>	
+	<script type="text/javascript" src="<c:url value="/resources/js/datastore-countries.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/leefy-login.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/styles/flag-icon-css-master/css/flag-icon.css" />">
 </head>

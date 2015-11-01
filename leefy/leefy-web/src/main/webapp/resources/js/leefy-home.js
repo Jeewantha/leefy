@@ -20,6 +20,9 @@
  * 
  ******************************************************************************/
 
+Ext.onReady(function(){
+	Ext.QuickTips.init();
+
 var mainLayout = new Ext.Viewport({
 			layout : 'border',
 			renderTo : Ext.getBody(),
@@ -30,6 +33,7 @@ var mainLayout = new Ext.Viewport({
 						items : [{
 									xtype : 'button',
 									text : 'My Account',
+									glyph: 61,
 									menu : [{
 												text : 'My Profile'
 											}, {
@@ -88,3 +92,6 @@ var mainLayout = new Ext.Viewport({
 						html : 'South'
 					}]
 		});
+
+mainLayout.show();
+});
