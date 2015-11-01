@@ -34,6 +34,11 @@ body {
 	/* margin: 200px auto; */
 }
 
+.footer-class {
+	background: #CBE32D;
+	text-align: center;
+}
+
 .toolbarStyles {
 	background: #CBE32D;
 }

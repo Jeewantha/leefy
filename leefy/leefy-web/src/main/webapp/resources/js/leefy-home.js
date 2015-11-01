@@ -45,8 +45,8 @@ var mainLayout = new Ext.Viewport({
 									xtype : 'tbfill'
 								}, {
 									xtype : 'textfield',
-									name : 'field1',
-									emptyText : 'ente name to search'
+									name : 'searchFriend',
+									emptyText : 'enter name to search'
 								}, {
 									xtype : 'button',
 									text : 'Logout',
@@ -60,19 +60,22 @@ var mainLayout = new Ext.Viewport({
 						split : true,
 						collapsible : true,
 						collapseMode : 'mini',
-						title : 'Some Info',
+						title : 'Anything new?',
 						width : 200,
 						miniSize : 200,
-						html : 'West'
+						html : ''
 					}, {
 						region : 'center',
 						xtype : 'tabpanel',
 						items : [{
-									title : 'Movie Grid',
-									html : 'Center'
+									title : 'Live Feed',
+									html : ''
 								}, {
-									title : 'Movie Description',
-									html : 'Description'
+									title : 'Quick View',
+									html : ''
+								}, {
+									title : '+ Add',
+									html : ''
 								}],
 						activeTab : 0
 					}, {
@@ -81,15 +84,17 @@ var mainLayout = new Ext.Viewport({
 						split : true,
 						collapsible : true,
 						collapseMode : 'mini',
-						title : 'Live Feeds',
+						title : 'Who\'s Online',
 						width : 200,
 						miniSize : 200,
-						html : 'East'
+						html : ''
 					}, {
 						region : 'south',
-						xtype : 'panel',
-						title : 'footer',
-						html : 'South'
+						xtype : 'label',
+						fieldLabel : 'footerLabel',
+						labelStyle : 'color:red',
+						cls : 'footer-class',
+						html : '&copy; 2015 Jeewantha Samaraweera.  All rights reserved.'
 					}]
 		});
 

@@ -160,9 +160,9 @@ Ext.onReady(function(){
 									menu.show(toolEl, 'tr-br?');
 								}
 							}],
-                closable: true,
+                closable: false,
                 closeAction: 'hide',
-                maximizable: true,
+                maximizable: false,
                 width: 400,
                 minWidth: 350,
                 tools: [{type: 'pin'}],
