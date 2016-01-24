@@ -263,5 +263,14 @@
            	AND 		student.student_status_id != 1
   		]]>
 	</sql-query>
+
+	<query name="isUsernameOrEmailExist">
+		<![CDATA[
+		   from com.jeesoft.api.dto.UserLogin as userLogin
+		   where userLogin.username=? 
+		   and userLogin.email =?
+  		]]>
+	</query>
+	
 	
 </hibernate-mapping>

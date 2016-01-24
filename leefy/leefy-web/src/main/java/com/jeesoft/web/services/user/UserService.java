@@ -29,6 +29,7 @@ import com.jeesoft.api.dto.RolePrivilege;
 import com.jeesoft.api.dto.SecurityQuestions;
 import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserLogin;
+import com.jeesoft.api.dto.UserRegistrationForm;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
 import com.jeesoft.common.exception.InvalidIdentificationNoException;
@@ -390,7 +391,7 @@ public interface UserService {
     List<RolePrivilege> getRolePrivilegesByUserRole(UserRole userRole) throws LeefyAppException;
     
     /**
-     * get Dependencies privilege ID list.
+     * Get Dependencies privilege ID list.
      * 
      * @param privilegeIdList - privilege IDs list.
      * @return list of dependencies IDs.
@@ -399,7 +400,7 @@ public interface UserService {
     List<Privilege> getDependenciesList(List<Integer> privilegeIdList) throws LeefyAppException;
     
     /**
-     * get Dependencies tab ID list.
+     * Get Dependencies tab ID list.
      * 
      * @param privilegeIdList - privilege IDs list.
      * @return list of dependencies IDs.
@@ -407,4 +408,12 @@ public interface UserService {
      */
     List<Tab> getDependenciesTabIdList(List<Integer> privilegeIdList) throws LeefyAppException;
     
+    /**
+     * Check if the user is already available in the system.
+     * 
+     * @param userRegistrationForm - the form data user provided to signup.
+     * @return
+     * @throws LeefyAppException when fails.
+     */
+    Boolean isUserAlreadyExist(UserRegistrationForm userRegistrationForm) throws LeefyAppException;
 }

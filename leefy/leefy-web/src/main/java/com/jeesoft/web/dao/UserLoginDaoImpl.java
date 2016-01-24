@@ -28,7 +28,6 @@ import org.springframework.dao.DataAccessException;
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.common.constants.LeefyConstants;
-import com.jeesoft.common.enums.UserRole;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
@@ -58,6 +57,8 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
     
     /** String Constant for holding respective query name. */
     private static final String GET_USER_BY_IDENTIFICATION_NO = "getUserByIdentificationNo";
+    
+    private static final String IS_USERNAME_OR_EMAIL_EXIST = "isUsernameOrEmailExist";
     
     /** String Constant for holding respective query name. */
     private static final String GET_USER_BY_NAME = "getUserByName";
@@ -434,5 +435,13 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
         
         return nonCurrentStudent;
     }
-    
+
+    @Override
+    public Boolean isUsernameOrEmailExist(String username, String email) throws LeefyAppException {
+        try {
+            return (getHibernateTemplate().findByNamedQuery(IS_USERNAME_OR_EMAIL_EXIST, username, email).isEmpty()) ? Boolean.FALSE : Boolean.TRUE;
+        } catch (DataAccessException e) {
+            throw new LeefyAppException(LeefyConstants.DB_CONNECTION_ERROR, e);
+        }
+    }
 }

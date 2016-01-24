@@ -52,10 +52,8 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public final String login(ModelMap model, HttpSession session) {
-		
 	    logger.debug("Session is going to be invaliadted :"+session.toString());
 		session.invalidate();
-		
 		return "login";
 	}
 	/**
@@ -67,10 +65,6 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/language", method=RequestMethod.GET)
 	public final String changeLanguage(ModelMap model, HttpSession session, HttpServletRequest request){
-	    
 	    return "login";
 	}
-	
-	
-	
 }

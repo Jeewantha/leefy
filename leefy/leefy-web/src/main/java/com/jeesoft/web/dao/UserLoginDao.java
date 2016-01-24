@@ -20,7 +20,6 @@
  *******************************************************************************/
 package com.jeesoft.web.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.jeesoft.api.dao.BaseDao;
@@ -183,5 +182,14 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
      * @throws LeefyAppException - throws detailed exception if fails.
      */
     boolean isNonCurrentStudent(String query, String identificationNo) throws LeefyAppException;
-    
+
+    /**
+     * Check if the username or email exist.
+     * 
+     * @param username - the username to be checked.
+     * @param email - the email to be checked.
+     * @return
+     * @throws LeefyAppException - throws detailed exception if fails.
+     */
+    Boolean isUsernameOrEmailExist(String username, String email) throws LeefyAppException;
 }

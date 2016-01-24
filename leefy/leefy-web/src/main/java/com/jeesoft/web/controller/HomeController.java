@@ -99,9 +99,10 @@ public class HomeController {
 	@ResponseBody
 	public  final Map<String, ? extends Object> add(final UserRegistrationForm input, final HttpSession session, final HttpServletResponse response) {
 		Map<String, Object> data = new HashMap<String, Object>();
-
 		Set<ConstraintViolation<UserRegistrationForm>> failures = validator.validate(input);
-		if (!failures.isEmpty()) {
+		Boolean isFormValidationSuccessful = !failures.isEmpty();
+
+        if (isFormValidationSuccessful) {
 			data.put("success", Boolean.FALSE);
 			data.put("errors", validationMessages(failures));
 			data.put("errorMessage", "Add Failed!");

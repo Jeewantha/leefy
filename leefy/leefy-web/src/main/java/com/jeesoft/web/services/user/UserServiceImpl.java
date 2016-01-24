@@ -38,6 +38,7 @@ import com.jeesoft.api.dto.RoleTab;
 import com.jeesoft.api.dto.SecurityQuestions;
 import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserLogin;
+import com.jeesoft.api.dto.UserRegistrationForm;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
 import com.jeesoft.common.exception.InvalidIdentificationNoException;
@@ -797,5 +798,12 @@ public class UserServiceImpl implements UserService {
         return privilegeDependencyDao.getDependenciesTabIdList(privilegeIdList);
         
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    public Boolean isUserAlreadyExist(UserRegistrationForm userRegistrationForm) throws LeefyAppException {
+        
+        return null;
+    }
 }
