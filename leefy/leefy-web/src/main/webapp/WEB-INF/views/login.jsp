@@ -68,9 +68,9 @@
 </head>
 <body>
 
-	<div style="height:390;background:#F3FAB6;" align="center"">
+	<div style="height:390;background:#F3FAB6;" align="center">
 	</div>
-	<div style="height:200;background:#CBE32D;" align="center"">
+	<div style="height:200;background:#CBE32D;" align="center">
 	</div>
 
 </body>
