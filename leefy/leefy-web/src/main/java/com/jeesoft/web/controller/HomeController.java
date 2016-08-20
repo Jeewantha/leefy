@@ -149,7 +149,6 @@ public class HomeController {
         return returnedData;
     }
 
-	// public @ResponseBody Map<String, String> getJsonData() {
 	/**
 	 * Gets the json data.
 	 *

@@ -42,6 +42,7 @@ import com.jeesoft.api.dto.SecurityQuestions;
 import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserDefinedRoleDetails;
 import com.jeesoft.api.dto.UserLogin;
+import com.jeesoft.api.dto.UserRegistrationForm;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
 import com.jeesoft.common.constants.LeefyConstants;
@@ -780,6 +781,7 @@ public class UserServiceImpl implements UserService {
         return privilegeDependencyDao.getDependenciesTabIdList(privilegeIdList);
         
     }
+
 
     /**
      * {@inheritDoc}

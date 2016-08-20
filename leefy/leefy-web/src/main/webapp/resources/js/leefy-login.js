@@ -222,7 +222,6 @@ function fnLoadForm(theForm) {
 function fnSignupForm(theForm) {
 	theForm.getForm().submit({
 				success : function(form, action) {
-					Ext.Msg.alert('Success', 'Data is stored in session.');
 					form.reset();
 				},
 				failure : function(form, action) {
