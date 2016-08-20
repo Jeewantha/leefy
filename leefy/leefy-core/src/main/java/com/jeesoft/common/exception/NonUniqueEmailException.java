@@ -28,7 +28,7 @@ package com.jeesoft.common.exception;
  * @author Jeewantha Samaraweera
  * @since alpha
  */
-public class UniqueUserNameEmailException extends LeefyException {
+public class NonUniqueEmailException extends LeefyException {
     
     /**
      * Class serial id.
@@ -36,42 +36,42 @@ public class UniqueUserNameEmailException extends LeefyException {
     private static final long serialVersionUID = 1L;
     
     /**
-     * The default constructor for UniqueUserNameEmailException.
+     * The default constructor for NonUniqueEmailException.
      */
-    public UniqueUserNameEmailException() {
+    public NonUniqueEmailException() {
 
         super();
     }
     
     /**
-     * Constructor for UniqueUserNameEmailException with string error message, error code and cause.
+     * Constructor for NonUniqueEmailException with string error message, error code and cause.
      * 
      * @param cause - The cause of the exception.
      * @param strErrorMsg - the specific error message.
      * @param errCode - The specific error code
      */
-    public UniqueUserNameEmailException(String strErrorMsg, String errCode, Throwable cause) {
+    public NonUniqueEmailException(String strErrorMsg, String errCode, Throwable cause) {
 
         super(strErrorMsg, errCode, cause);
     }
     
     /**
-     * Constructor for UniqueUserNameEmailException with string error code and cause.
+     * Constructor for NonUniqueEmailException with string error code and cause.
      * 
      * @param cause - The cause of the exception.
      * @param errCode - The specific error code
      */
-    public UniqueUserNameEmailException(String errCode, Throwable cause) {
+    public NonUniqueEmailException(String errCode, Throwable cause) {
 
         super(errCode, cause);
     }
     
     /**
-     * Constructor for UniqueUserNameEmailException with string error code.
+     * Constructor for NonUniqueEmailException with string error code.
      * 
      * @param errCode - The specific error code
      */
-    public UniqueUserNameEmailException(String errCode) {
+    public NonUniqueEmailException(String errCode) {
 
         super(errCode);
     }

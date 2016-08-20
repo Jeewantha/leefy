@@ -18,6 +18,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
+
 package com.jeesoft.web.dao;
 
 import java.util.List;
@@ -25,36 +26,30 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.jeesoft.api.dao.BaseDaoImpl;
-import com.jeesoft.api.dto.UserRole;
+import com.jeesoft.api.dto.Country;
 import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
 
 /**
- * Implementation for UserRoleDao.
+ * This class provides persistence layer functionality for the Country object.
  * 
  * @author Jeewantha Samaraweera
  */
-public class UserRoleDaoImpl extends BaseDaoImpl<UserRole> implements UserRoleDao {
+public class CountryDaoImpl extends BaseDaoImpl<Country> implements CountryDao {
     
-    /** String constant for holding respective query name. */
-    private static final String GET_USER_ROLE_BY_ROLE_NAME = "getUserRoleByRoleName";
-
-    /**
-     * {@inheritDoc}
-     */
     @SuppressWarnings("unchecked")
-    public UserRole getUserRoleByRoleName(String role) throws LeefyAppException {
-        UserRole userRole = null;
-        
+    public List<Country> loadAllCountries() throws LeefyAppException {
+        List<Country> allCountries = null;
         try {
-            List<UserRole> userRoleList = (List<UserRole>) getHibernateTemplate().findByNamedQuery(GET_USER_ROLE_BY_ROLE_NAME, role);
-
-            if (userRoleList != null && !userRoleList.isEmpty()) {
-                userRole = userRoleList.get(0);
-            }
+            allCountries = (List<Country>) getHibernateTemplate().findByNamedQuery("getAllCountries");
+            
         } catch (DataAccessException e) {
             throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
-        return userRole;
+        return allCountries;
     }
+    
+    
+    
+
 }

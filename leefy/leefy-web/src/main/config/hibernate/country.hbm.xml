@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+  Leefy is a simple social network to narrow the gap between people speaking different
+  languages and to aid the language learning process.
+    Copyright (C) 2015  Jeewantha Samaraweera
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+ -->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jeesoft.api.dto.Country" table="COUNTRY">
+        <id name="countryId" type="int" column="COUNTRY_ID">
+            <generator class="increment" />
+        </id>
+        <property name="name" type="string" column="NAME" not-null="true"/>
+        <property name="isoCode" type="string" column="ISO_CODE" not-null="true"/>
+        <property name="capitalCity" type="string" column="CAPITAL_CITY" not-null="true"/>
+        <property name="countryFlag" type="java.sql.Blob" column="Flag" />
+        <property name="modifiedTime" type="timestamp" column="MODIFIED_TIME" not-null="true"
+		generated="always"/>
+    </class>
+    
+    <query name="getAllCountries">
+		<![CDATA[
+		   from com.jeesoft.api.dto.Country
+  		]]>
+	</query>
+</hibernate-mapping>

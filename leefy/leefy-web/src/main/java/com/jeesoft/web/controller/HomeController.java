@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
@@ -32,13 +33,23 @@ import javax.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.api.dto.UserRegistrationForm;
+import com.jeesoft.common.exception.LeefyAppException;
+import com.jeesoft.common.exception.NonUniqueEmailException;
+import com.jeesoft.common.exception.NonUniqueUserNameException;
+import com.jeesoft.web.service.GuestUserServices;
 
 /**
  * Handles requests for the application home page.
@@ -52,7 +63,15 @@ public class HomeController {
 	/** The validator. */
 	@Autowired
 	private Validator validator;
+	
+	/** The gust user services. */
+	@Autowired
+	private GuestUserServices guestUserService;
 
+	/** The authentication manager. */
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
 	/** The person. */
 	private Map<String, String> person = new HashMap<String, String>();
 
@@ -97,21 +116,38 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public  final Map<String, ? extends Object> add(final UserRegistrationForm input, final HttpSession session, final HttpServletResponse response) {
-		Map<String, Object> data = new HashMap<String, Object>();
+    public final Map<String, ? extends Object> addGuestUser(final UserRegistrationForm input,final HttpSession session, final HttpServletResponse response, final HttpServletRequest request) {
+        Map<String, Object> returnedData = new HashMap<String, Object>();
+        try {
+            Set<ConstraintViolation<UserRegistrationForm>> failures = validator.validate(input);
+            Boolean isNoFailures = failures.isEmpty();
+            Boolean isEmailExist  = guestUserService.isEmailExist(input.getEmail());
+            Boolean isUsernameExist = guestUserService.isUsernameExist(input.getUsername());
+            returnedData.put("success", Boolean.FALSE);
 
-		Set<ConstraintViolation<UserRegistrationForm>> failures = validator.validate(input);
-		if (!failures.isEmpty()) {
-			data.put("success", Boolean.FALSE);
-			data.put("errors", validationMessages(failures));
-			data.put("errorMessage", "Add Failed!");
-		} else {
-			session.setAttribute(input.getUsername(), input);
-			data.put("success", Boolean.TRUE);
-		}
-
-		return data;
-	}
+            if (!isNoFailures || (isUsernameExist || isEmailExist)) {
+                returnedData.put("errorMessage", isUsernameExist ? "Username is exist." : isEmailExist ? "Email is exist." : "");
+                returnedData.put("errors", validationMessages(failures));
+            } else {
+                UserLogin guestUser = new UserLogin();
+                guestUser.setUsername(input.getUsername());
+                guestUser.setEmail(input.getEmail());
+                guestUser.setPassword(input.getPassword());
+                try {
+                    guestUserService.createSystemUser(guestUser);
+                    returnedData.put("success", Boolean.TRUE);
+                    authenticateUserAndSetSession(input, request);
+                } catch (NonUniqueEmailException | NonUniqueUserNameException exception) {
+                    logger.error(exception.getMessage());
+                    returnedData.put("errorMessage", exception.getMessage());
+                }
+            }
+        } catch (LeefyAppException leefyAppException) {
+            logger.error(leefyAppException.getErrorCode(), leefyAppException);
+            returnedData.put("errorMessage", "Adding user failed");
+        }
+        return returnedData;
+    }
 
 	// public @ResponseBody Map<String, String> getJsonData() {
 	/**
@@ -145,4 +181,14 @@ public class HomeController {
 		}
 		return failureMessages;
 	}
+	
+	private void authenticateUserAndSetSession(UserRegistrationForm userRegistrationForm, HttpServletRequest request) {
+        String username = userRegistrationForm.getUsername();
+        String password = userRegistrationForm.getPassword();
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        request.getSession();
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+    }
 }

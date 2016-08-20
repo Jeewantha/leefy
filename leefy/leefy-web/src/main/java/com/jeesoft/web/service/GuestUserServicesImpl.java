@@ -20,17 +20,25 @@
  *******************************************************************************/
 package com.jeesoft.web.service;
 
-import com.jeesoft.api.dto.Guest;
-import com.jeesoft.common.exception.LeefyAppException;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.jeesoft.api.dto.Guest;
+import com.jeesoft.api.dto.UserLogin;
+import com.jeesoft.api.dto.UserRole;
+import com.jeesoft.common.constants.LeefyConstants;
+import com.jeesoft.common.exception.LeefyAppException;
+import com.jeesoft.common.exception.NonUniqueEmailException;
+import com.jeesoft.common.exception.NonUniqueUserNameException;
+import com.jeesoft.web.services.user.UserServiceImpl;
 
 /**
  * The Interface GuestUserServices.
  * 
  * @author Jeewantha Samaraweera
  */
-public class GuestUserServicesImpl implements GuestUserServices {
-
+public class GuestUserServicesImpl extends UserServiceImpl implements GuestUserServices {
+    
     /**
      * {@inheritDoc}
      */
@@ -60,14 +68,33 @@ public class GuestUserServicesImpl implements GuestUserServices {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean hasDepartureDate(String registrationNo)
             throws LeefyAppException {
         // TODO Auto-generated method stub
         return false;
     }
-	
+
+    @Override
+    public boolean isUsernameExist(String username) throws LeefyAppException {
+        return (getUserLoginDao().getAnyUserByName(username) == null ? false : true);
+    }
+
+    @Override
+    public boolean isEmailExist(String email) throws LeefyAppException {
+        return (getUserLoginDao().getAnyUserByEmail(email) == null ? false : true);
+    }
+    
+    @Override
+    @Transactional(propagation=Propagation.REQUIRES_NEW, rollbackFor=Exception.class)
+    public UserLogin createSystemUser(UserLogin userLogin) throws LeefyAppException, NonUniqueEmailException, NonUniqueUserNameException {
+        validateUserLoginBeforeCreate(userLogin);
+        UserRole guestUserRole = getUserRoleDao().getUserRoleByRoleName("Guest");
+        userLogin.setUserRoleId(guestUserRole != null ? guestUserRole.getUserRoleId() : 0);
+        userLogin.setPassword(getPasswordEncoder().encodePassword(userLogin.getPassword(), userLogin.getUsername()));
+        userLogin.setStatus(true);
+        userLogin.setFirstName(LeefyConstants.EMPTY_STRING);
+        userLogin.setLastName(LeefyConstants.EMPTY_STRING);
+        return getUserLoginDao().save(userLogin);
+    }
 }

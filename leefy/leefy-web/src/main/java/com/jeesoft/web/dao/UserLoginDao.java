@@ -20,7 +20,6 @@
  *******************************************************************************/
 package com.jeesoft.web.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.jeesoft.api.dao.BaseDao;
@@ -40,7 +39,7 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
      * 
      * @param userName - String
      * @return UserLogin object.
-     * @throws LeefyAppException SMS Exceptions.
+     * @throws LeefyAppException throws when fails to process.
      */
     UserLogin getAnyUserByName(String userName) throws LeefyAppException;
     
@@ -49,9 +48,19 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
      * 
      * @param email - String
      * @return UserLogin object.
-     * @throws LeefyAppException SMS Exceptions.
+     * @throws LeefyAppException throws when fails to process.
      */
     UserLogin getAnyUserByEmail(String email) throws LeefyAppException;
+    
+    /**
+     * Get the user with provided username or email address.
+     * 
+     * @param username the username provided
+     * @param email the email provided
+     * @return If no users found, will return an empty list.
+     * @throws LeefyAppException throws when fails to process.
+     */
+    List<UserLogin> getAnyUsersByUsernameOrEmail(String username, String email) throws LeefyAppException;
     
     /**
      * Retrieve the user login by passing the user's role_id. This returns any user with the role_id passed.
@@ -59,7 +68,7 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
      * @param roleId - int
      * @param identificationNo - String
      * @return UserLogin object.
-     * @throws LeefyAppException SMS Exceptions.
+     * @throws LeefyAppException throws when fails to process.
      */
     List<Integer> getStudentByUserRoleIdAndIdentificationNo(int roleId, String identificationNo)
             throws LeefyAppException;
@@ -69,7 +78,7 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
      * 
      * @param userName - String
      * @return UserLogin object.
-     * @throws LeefyAppException SMS Exceptions.
+     * @throws LeefyAppException throws when fails to process.
      */
     UserLogin getUserLoginByName(String userName) throws LeefyAppException;
     
@@ -78,7 +87,7 @@ public interface UserLoginDao extends BaseDao<UserLogin> {
      * 
      * @param identificationNo - String
      * @return UserLogin object
-     * @throws LeefyAppException - throw this
+     * @throws LeefyAppException throws when fails to process.
      */
     UserLogin getUserLoginByIdentificationNo(String identificationNo) throws LeefyAppException;
     

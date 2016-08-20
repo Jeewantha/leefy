@@ -28,23 +28,28 @@ import java.util.Random;
 
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jeesoft.api.dto.AdminDetails;
 import com.jeesoft.api.dto.Module;
 import com.jeesoft.api.dto.Privilege;
 import com.jeesoft.api.dto.RolePrivilege;
 import com.jeesoft.api.dto.RoleTab;
 import com.jeesoft.api.dto.SecurityQuestions;
 import com.jeesoft.api.dto.Tab;
+import com.jeesoft.api.dto.UserDefinedRoleDetails;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.InvalidIdentificationNoException;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.common.exception.NonCurrentStudentUserLoginCreationException;
+import com.jeesoft.common.exception.NonUniqueEmailException;
+import com.jeesoft.common.exception.NonUniqueUserNameException;
 import com.jeesoft.common.exception.PastStaffException;
-import com.jeesoft.common.exception.UniqueUserNameEmailException;
 import com.jeesoft.web.dao.ModuleDao;
 import com.jeesoft.web.dao.PrivilegeDependencyDao;
 import com.jeesoft.web.dao.RolePrivilegeDao;
@@ -60,7 +65,6 @@ import com.jeesoft.web.util.PropertyReader;
 /**
  * UserDetailService for user authentication.
  */
-@Service("userService")
 public class UserServiceImpl implements UserService {
     
     /** holds userdao. */
@@ -93,21 +97,18 @@ public class UserServiceImpl implements UserService {
     /** holds the PrivilegeDependencyDao. */
     private PrivilegeDependencyDao privilegeDependencyDao;
     
-    /** A string use to generate a random password. */
-    public static final String RANDOMSTRING = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    
-    /** The length of the generated password. */
-    public static final int PASSWORDLENGTH = 10;
-    
-    /** Holds the error message key. */
-    private static final String ERROR_MESSAGE_UNIQUE_UNAME = "USER.CREATE.USER.UNIQUE.UNAME.ERROR";
-    
-    /** Holds the error message key. */
-    private static final String ERROR_MESSAGE_UNIQUE_EMAIL = "USER.CREATE.USER.UNIQUE.EMAIL.ERROR";
-    
-    /** Holds the Leefy error messages property file name. */
-    private static final String LEEFY_ERROR_MSG_PROPERTY = "errormessages";
-    
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
+    public UserRoleDao getUserRoleDao() {
+        return userRoleDao;
+    }
+
+    public UserLoginDao getUserLoginDao() {
+        return userLoginDao;
+    }
+
     /**
      * return userDao of the Student.
      * 
@@ -271,53 +272,35 @@ public class UserServiceImpl implements UserService {
         
         return validityStatus;
     }
-    
-    /**
-     * create a system user.
-     * 
-     * @param userLogin - userLogin
-     * @throws LeefyAppException LeefyAppException
-     * @throws UniqueUserNameEmailException UniqueUserNameEmailException
-     * @throws PastStaffException -PastStaffException
-     * @throws InvalidIdentificationNoException - InvalidIdentificationNoException
-     * @throws NonCurrentStudentUserLoginCreationException - throws when user try to create a user account for
-     *         non-current student.
-     * @return flag indicates whether userLogin creation is succeeded.
-     */
-    public boolean createSystemUser(UserLogin userLogin) throws LeefyAppException, UniqueUserNameEmailException,
-            InvalidIdentificationNoException, PastStaffException, NonCurrentStudentUserLoginCreationException {
 
-        String userName = userLogin.getUsername();
-        int roleId = userLogin.getUserRoleId();
-        int identificationKey = 0;
-        boolean isUserCreationSuccess = false;
+    /**
+     * {@inheritDoc}
+     */
+    public UserLogin createSystemUser(UserLogin userLogin) throws LeefyAppException, NonUniqueEmailException, NonUniqueUserNameException {
+
+        boolean isUserRoleNotAvailable = userLogin.getUserRoleId() == 0;
         
-        /** validate user name */
-        if (getAnyUser(userName) != null) {
-            throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
-                    ERROR_MESSAGE_UNIQUE_UNAME,LocaleContextHolder.getLocale()));
+        if(isUserRoleNotAvailable){
+            throw new LeefyAppException(PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY,
+                    LeefyConstants.USER_CREATE_USER_ROLE_NOT_AVAILABLE_ERROR,LocaleContextHolder.getLocale()));
+        }
+
+        boolean isUsernameExist = getAnyUser(userLogin.getUsername()) != null;
+        
+        if (isUsernameExist) {
+            throw new NonUniqueUserNameException(PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY,
+                    LeefyConstants.ERROR_MESSAGE_UNIQUE_UNAME,LocaleContextHolder.getLocale()));
         }
         
-        /** validate email */
-        if (getAnyUserByEmail(userLogin.getEmail()) != null) {
-            throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
-                    ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
-        }
+        boolean isEmailExist = getAnyUserByEmail(userLogin.getEmail()) != null;
         
-        /** Initialize the user object */
-        userLogin.setUserIdentificationNo(identificationKey + "");
+        if (isEmailExist) {
+            throw new NonUniqueUserNameException(PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY,
+                    LeefyConstants.ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
+        }
         userLogin.setPassword(passwordEncoder.encodePassword(userLogin.getPassword(), userLogin.getUsername()));
-        userLogin.setGeneratedPassword(true);
         userLogin.setStatus(true);
-        
-        /** Save User Object */
-        UserLogin userLoginVal = userDao.save(userLogin);
-        
-        if (userLoginVal != null) {
-            isUserCreationSuccess = true;
-        }
-        
-        return isUserCreationSuccess;
+        return userDao.save(userLogin);
     }
     
     /**
@@ -325,11 +308,11 @@ public class UserServiceImpl implements UserService {
      * 
      * @param userLogin - userLogin
      * @throws LeefyAppException LeefyAppException
-     * @throws UniqueUserNameEmailException - UniqueUserNameEmailException
+     * @throws NonUniqueUserNameException - UniqueUserNameEmailException
      * @throws PastStaffException - PastStaffException
      * @throws InvalidIdentificationNoException - InvalidIdentificationNoException
      */
-    public void editSystemUser(UserLogin userLogin) throws LeefyAppException, UniqueUserNameEmailException,
+    public void editSystemUser(UserLogin userLogin) throws LeefyAppException, NonUniqueUserNameException,
             PastStaffException, InvalidIdentificationNoException {
 
         int identificationKey = 0;
@@ -339,8 +322,8 @@ public class UserServiceImpl implements UserService {
         /** validate email */
         if (!findUserLogin(userLogin.getUserLoginId()).getEmail().equals(userLogin.getEmail())) {
             if (getAnyUserByEmail(userLogin.getEmail()) != null) {
-                throw new UniqueUserNameEmailException(PropertyReader.getPropertyValue(LEEFY_ERROR_MSG_PROPERTY,
-                        ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
+                throw new NonUniqueUserNameException(PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY,
+                        LeefyConstants.ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
             }
         }
         
@@ -502,9 +485,9 @@ public class UserServiceImpl implements UserService {
     public String generateRandomPassword() throws LeefyAppException {
 
         Random random = new Random();
-        StringBuilder password = new StringBuilder(PASSWORDLENGTH);
-        for (int i = 0; i < PASSWORDLENGTH; i++) {
-            password.append(RANDOMSTRING.charAt(random.nextInt(RANDOMSTRING.length())));
+        StringBuilder password = new StringBuilder(LeefyConstants.PASSWORDLENGTH);
+        for (int i = 0; i < LeefyConstants.PASSWORDLENGTH; i++) {
+            password.append(LeefyConstants.RANDOMSTRING.charAt(random.nextInt(LeefyConstants.RANDOMSTRING.length())));
             
         }
         
@@ -798,4 +781,73 @@ public class UserServiceImpl implements UserService {
         
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public void validateUserLoginBeforeCreate(UserLogin userLogin) throws LeefyAppException, NonUniqueUserNameException, NonUniqueEmailException {
+        boolean isUsernameExist = getAnyUser(userLogin.getUsername()) != null;
+        
+        if (isUsernameExist) {
+            throw new NonUniqueUserNameException(PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY,
+                    LeefyConstants.ERROR_MESSAGE_UNIQUE_UNAME,LocaleContextHolder.getLocale()));
+        }
+        boolean isEmailExist = getAnyUserByEmail(userLogin.getEmail()) != null;
+        
+        if (isEmailExist) {
+            throw new NonUniqueEmailException(PropertyReader.getPropertyValue(LeefyConstants.LEEFY_ERROR_MSG_PROPERTY,
+                    LeefyConstants.ERROR_MESSAGE_UNIQUE_EMAIL,LocaleContextHolder.getLocale()));
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Transactional(readOnly = true)
+   public User buildUserFromUserEntity(UserLogin userLogin) throws LeefyAppException {
+
+        User systemUser = null;
+        
+        String username = userLogin.getUsername();
+        int userRoleId = userLogin.getUserRoleId();
+        String password = userLogin.getPassword();
+        boolean enabled = userLogin.isStatus();
+        boolean accountNonLocked = true;
+        String userRole = "";
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        
+        /* set user login attempts */
+        if (userLogin.getLoginAttempts() >= LeefyConstants.MAX_LOGIN_COUNT) {
+            accountNonLocked = false;
+        }
+        
+        /* load role privileges */
+        com.jeesoft.api.dto.UserRole userRoleObj = null;
+        
+        try {
+            userRoleObj = findUserRole(userLogin.getUserRoleId());
+            List<Privilege> privileges = getPrivilegesByUserRole(userRoleObj);
+            
+            for (Privilege privilege : privileges) {
+                authorities.add(new GrantedAuthorityImpl(privilege.getName()));
+            }
+            
+        } catch (LeefyAppException e) {
+            
+        }
+        
+        if (userLogin.getUserRoleId() == com.jeesoft.api.enums.UserRole.ROLE_ADMIN.getUserRoleId()) {
+            userRole = com.jeesoft.api.enums.UserRole.ROLE_ADMIN.toString();
+            
+            systemUser = new AdminDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
+                            enabled, accountNonLocked, authorities);
+            
+        } else {
+            
+            userRole = userRoleObj.getRole();
+            systemUser = new UserDefinedRoleDetails(username, password, userRole, userRoleId, enabled, accountNonLocked,
+                            authorities);
+        }
+        
+        return systemUser;
+    }
 }

@@ -96,7 +96,14 @@
       <ref bean="sessionFactory" />
     </property>
   </bean>
+  
   <bean id="securityQuestionsDao" class="com.jeesoft.web.dao.SecurityQuestionsDaoImpl">
+    <property name="sessionFactory">
+      <ref bean="sessionFactory" />
+    </property>
+  </bean>
+  
+  <bean id="countryDao" class="com.jeesoft.web.dao.CountryDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>

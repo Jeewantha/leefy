@@ -22,12 +22,13 @@ package com.jeesoft.web.service;
 
 import com.jeesoft.api.dto.Guest;
 import com.jeesoft.common.exception.LeefyAppException;
+import com.jeesoft.web.services.user.UserService;
 
 
 /**
  * The Interface GuestUserServices.
  */
-public interface GuestUserServices {
+public interface GuestUserServices extends UserService{
 
     /**
      * Checks if is valid registration no.
@@ -64,4 +65,22 @@ public interface GuestUserServices {
      * @throws LeefyAppException the leefy app exception
      */
     boolean hasDepartureDate(String registrationNo) throws LeefyAppException;
+    
+    /**
+     * Checks if a user exists with the provided username.
+     * 
+     * @param username the provided username
+     * @return true if user exist
+     * @throws LeefyAppException when fails to process
+     */
+    boolean isUsernameExist(String username) throws LeefyAppException;
+    
+    /**
+     * Checks if a user exists with the provided email.
+     * 
+     * @param email the provided email 
+     * @return true if user exist
+     * @throws LeefyAppException when fails to process
+     */
+    boolean isEmailExist(String email) throws LeefyAppException;
 }

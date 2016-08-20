@@ -18,10 +18,22 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
 
+package com.jeesoft.web.dao;
 
-public class CommonServices {
+import java.util.List;
 
-	
+import com.jeesoft.api.dao.BaseDao;
+import com.jeesoft.api.dto.Country;
+import com.jeesoft.common.exception.LeefyAppException;
+
+/**
+ * This interface provides persistence layer functionality for the Module domain object.
+ * 
+ * @author Jeewantha Samaraweera
+ */
+public interface CountryDao extends BaseDao<Country> {
+    
+    List<Country> loadAllCountries() throws LeefyAppException;
+
 }

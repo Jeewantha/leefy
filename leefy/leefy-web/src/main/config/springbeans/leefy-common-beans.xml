@@ -27,26 +27,38 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-<import resource="leefy-common-beans-dao-sessionfactory.xml"/>
+	<import resource="leefy-common-beans-dao-sessionfactory.xml"/>
                            
-<bean id="userService" class="com.jeesoft.web.services.user.UserServiceImpl">
-    <property name="userDao" ref="userDao" />
-    <property name="moduleDao" ref="moduleDao" />
-    <property name="userRoleDao" ref="userRoleDao" />
-    <property name="userLoginDao" ref="userLoginDao" />
-    <property name="rolePrivilegeDao" ref="rolePrivilegeDao" />
-    <property name="privilegeDependencyDao" ref="privilegeDependencyDao" />
-    <property name="roleTabDao" ref="roleTabDao" />
-    <property name="passwordEncoder" ref="passwordEncoder" />
-    <property name="securityQuestionsDao" ref="securityQuestionsDao" />
-    <property name="userSecurityQuestionsDao" ref="userSecurityQuestionsDao" />
+	<bean id="userService" class="com.jeesoft.web.services.user.UserServiceImpl">
+	    <property name="userDao" ref="userDao" />
+	    <property name="moduleDao" ref="moduleDao" />
+	    <property name="userRoleDao" ref="userRoleDao" />
+	    <property name="userLoginDao" ref="userLoginDao" />
+	    <property name="rolePrivilegeDao" ref="rolePrivilegeDao" />
+	    <property name="privilegeDependencyDao" ref="privilegeDependencyDao" />
+	    <property name="roleTabDao" ref="roleTabDao" />
+	    <property name="passwordEncoder" ref="passwordEncoder" />
+	    <property name="securityQuestionsDao" ref="securityQuestionsDao" />
+	    <property name="userSecurityQuestionsDao" ref="userSecurityQuestionsDao" />
   </bean>
 
   <bean id="userDetailsService" class="com.jeesoft.web.services.user.UserDetailsServiceImpl">
-    <property name="userDao" ref="userDao" />
-    <property name="userService" ref="userService" />
+    	<property name="userDao" ref="userDao" />
+    	<property name="userService" ref="userService" />
   </bean>
 
-  <bean id="passwordEncoder"
-    class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />                           
+  <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+  
+  <bean id="guestUserService" class="com.jeesoft.web.service.GuestUserServicesImpl">
+	    <property name="userDao" ref="userDao" />
+	    <property name="moduleDao" ref="moduleDao" />
+	    <property name="userRoleDao" ref="userRoleDao" />
+	    <property name="userLoginDao" ref="userLoginDao" />
+	    <property name="rolePrivilegeDao" ref="rolePrivilegeDao" />
+	    <property name="privilegeDependencyDao" ref="privilegeDependencyDao" />
+	    <property name="roleTabDao" ref="roleTabDao" />
+	    <property name="passwordEncoder" ref="passwordEncoder" />
+	    <property name="securityQuestionsDao" ref="securityQuestionsDao" />
+	    <property name="userSecurityQuestionsDao" ref="userSecurityQuestionsDao" />
+  </bean>                           
 </beans>

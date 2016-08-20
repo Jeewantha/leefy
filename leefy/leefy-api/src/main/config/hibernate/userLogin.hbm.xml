@@ -109,6 +109,13 @@
   		]]>
 	</query>
 
+	<query name="getAnyUserByUsernameOrEmail">
+		<![CDATA[
+		   from com.jeesoft.api.dto.UserLogin as userLogin
+		   where (userLogin.username=? OR userLogin.email=?)
+  		]]>
+	</query>
+
 	<query name="getAnyUserByUserRoleIdAndIdIdentificationNo">
 		<![CDATA[
 		   from com.jeesoft.api.dto.UserLogin as userLogin
@@ -263,5 +270,14 @@
            	AND 		student.student_status_id != 1
   		]]>
 	</sql-query>
+
+	<query name="isUsernameOrEmailExist">
+		<![CDATA[
+		   from com.jeesoft.api.dto.UserLogin as userLogin
+		   where userLogin.username=? 
+		   and userLogin.email =?
+  		]]>
+	</query>
+	
 	
 </hibernate-mapping>

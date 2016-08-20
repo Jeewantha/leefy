@@ -35,7 +35,25 @@ public final class LeefyConstants {
 	private LeefyConstants() {
 
 	}
+
+	/** string constant for holding max login attempts. */
+    public static final int MAX_LOGIN_COUNT = 3;
 	
+	/** The length of the generated password. */
+    public static final int PASSWORDLENGTH = 10;
+	
+	/** A string use to generate a random password. */
+    public static final String RANDOMSTRING = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
+	/** Holds the error message key. */
+    public static final String ERROR_MESSAGE_UNIQUE_UNAME = "USER.CREATE.USER.UNIQUE.UNAME.ERROR";
+    
+    /** Holds the error message key. */
+    public static final String ERROR_MESSAGE_UNIQUE_EMAIL = "USER.CREATE.USER.UNIQUE.EMAIL.ERROR";
+    
+    /** Holds the error message key. */
+    public static final String USER_CREATE_USER_ROLE_NOT_AVAILABLE_ERROR = "USER.CREATE.USER.ROLE.NOT.AVAILABLE.ERROR";
+
 	/** The Constant USER_LOGIN_FAILURE_ERROR. */
     public static final String USER_LOGIN_FAILURE_ERROR = "USER.LOGIN.FAILURE.ERROR";
     

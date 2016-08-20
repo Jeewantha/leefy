@@ -36,9 +36,9 @@ import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.common.exception.InvalidIdentificationNoException;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.common.exception.NonCurrentStudentUserLoginCreationException;
+import com.jeesoft.common.exception.NonUniqueEmailException;
+import com.jeesoft.common.exception.NonUniqueUserNameException;
 import com.jeesoft.common.exception.PastStaffException;
-import com.jeesoft.common.exception.UniqueUserNameEmailException;
 import com.jeesoft.common.messages.ErrorMessageLoader;
 import com.jeesoft.web.delegate.user.GuestSystemUserDelegate;
 import com.jeesoft.web.services.user.UserService;
@@ -464,7 +464,7 @@ public class CreateSystemUserController {
             }*/ catch (IllegalArgumentException e) {
                 LOG.error("Error Sending Mail ( createOrUpdateSystemUser method )" + e);
               message = new ErrorMessageLoader().getErrorMessage(MSG_SYSTEM_USER_MAIL);
-            } catch (UniqueUserNameEmailException e) {
+            } catch (NonUniqueUserNameException e) {
                 message = e.getErrorCode();
                 dispatchUrl = showSystemUserDetailForm(model);
             } catch (InvalidIdentificationNoException e) {
@@ -473,12 +473,15 @@ public class CreateSystemUserController {
             } catch (PastStaffException e) {
                 message = e.getErrorCode();
                 dispatchUrl = showSystemUserDetailForm(model);
-            }catch (NonCurrentStudentUserLoginCreationException e) {
+            //}catch (NonCurrentStudentUserLoginCreationException e) {
                 message = e.getErrorCode();
                 dispatchUrl = showSystemUserDetailForm(model);
             } catch (LeefyAppException e) {
                 message = e.getErrorCode();
                 dispatchUrl = showSystemUserDetailForm(model);
+            } catch (NonUniqueEmailException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
         

@@ -20,10 +20,12 @@
  *******************************************************************************/
 package com.jeesoft.web.dao;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.userdetails.User;
 
 import com.jeesoft.api.dao.BaseDaoImpl;
 import com.jeesoft.api.dto.UserLogin;
@@ -70,6 +72,9 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
     
     /** String constant for holding respective query name `getAnyUserByEmail`. */
     private static final String GET_ANY_USER_BY_EMAIL = "getAnyUserByEmail";
+    
+    /** String constant for holding respective query name `getAnyUserByUsernameOrEmail`. */
+    private static final String GET_ANY_USER_BY_USERNAME_OR_EMAIL = "getAnyUserByUsernameOrEmail";
     
     /** String constant for holding respective query name. */
     private static final String GET_USER_LOGIN_LIST_BY_USER_ROLE = "getUserLoginListByUserRole";
@@ -123,30 +128,38 @@ public class UserLoginDaoImpl extends BaseDaoImpl<UserLogin> implements UserLogi
     }
     
     /**
-     * Retrieve the user login by passing the user's email. This returns any user with the email passed.
+     * Retrieve the user login by passing the user's email. This returns any user with the given email.
      * 
      * @param email - String
      * @return UserLogin object.
-     * @throws LeefyAppException SMS Exceptions.
+     * @throws LeefyAppException throws if fails.
      */
     @SuppressWarnings("unchecked")
     public UserLogin getAnyUserByEmail(String email) throws LeefyAppException {
 
-        List<UserLogin> userLoginList = null;
-        UserLogin userLogin = null;
-        
         try {
-            userLoginList = (List<UserLogin>) getHibernateTemplate().findByNamedQuery(GET_ANY_USER_BY_EMAIL, email);
+            List<UserLogin> userLoginList = (List<UserLogin>) getHibernateTemplate().findByNamedQuery(GET_ANY_USER_BY_EMAIL, email);
             if (userLoginList != null && !userLoginList.isEmpty()) {
-                userLogin = userLoginList.get(0);
+                 return userLoginList.get(0);
             }
         } catch (DataAccessException e) {
             throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
         }
         
-        return userLogin;
+        return null;
     }
     
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<UserLogin> getAnyUsersByUsernameOrEmail(String username, String email) throws LeefyAppException {
+        List<UserLogin> listOfUserLogins = Collections.emptyList();
+        listOfUserLogins = (List<UserLogin>) getHibernateTemplate().findByNamedQuery(GET_ANY_USER_BY_USERNAME_OR_EMAIL, username, email);
+        return listOfUserLogins;
+    }
+
     /**
      * Retrieve the user login by passing the user's role_id. This returns any user with the role_id passed.
      * 

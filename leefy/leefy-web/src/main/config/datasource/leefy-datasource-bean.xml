@@ -64,6 +64,7 @@
 		</property>
 		<property name="mappingResources">
 			<list>
+				<value>hibernate/country.hbm.xml</value>
 				<value>hibernate/module.hbm.xml</value>
 				<value>hibernate/page.hbm.xml</value>
 				<value>hibernate/privilege.hbm.xml</value>

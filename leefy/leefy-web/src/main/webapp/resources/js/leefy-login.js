@@ -29,6 +29,11 @@ Ext.onReady(function(){
 			cls : 'signup-form-class',
 			width:350,
 			items : [{
+				        xtype: 'displayfield',
+				        fieldLabel: '',
+				        labelSeparator:'',
+				        name: 'errorsView',
+				    },{
 						xtype : 'textfield',
 						labelSeparator: '',
 						anchor: '90%',
@@ -221,7 +226,21 @@ function fnSignupForm(theForm) {
 					form.reset();
 				},
 				failure : function(form, action) {
-					Ext.Msg.alert('Warning', 'Signup failed.');
+					var errors = [];
+					var fields = form.getFields(); // form : Ext.form.Basic
+					var errorsTpl = new Ext.XTemplate(
+					    '<ul><tpl for="."><li>{field} : {error}</li></tpl></ul>'
+					);
+					fields.each(function (field) {
+						if(field.getName() == 'errorsView'){
+							field.show();
+						}
+					    errors = errors.concat(Ext.Array.map(field.getErrors(), function (error) {
+					        return { field: field.getName(), error: error }
+					    }));
+					});
+					//errorsTpl.overwrite('myOutputDiv', errors);
+					//Ext.Msg.alert('Warning', errorMessage);
 				}
 			});
 } // end fnSignupForm
@@ -239,7 +258,7 @@ function fnGetJsonResp() {
 
 	}
 	Ext.Ajax.request({
-				url : jsonpreq,
+				url : getAllCountries,
 				method : 'GET',
 				params : {
 					ajax_req : Ext.util.JSON.encode(myObj),

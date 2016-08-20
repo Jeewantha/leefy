@@ -23,6 +23,8 @@ package com.jeesoft.web.services.user;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.User;
+
 import com.jeesoft.api.dto.Module;
 import com.jeesoft.api.dto.Privilege;
 import com.jeesoft.api.dto.RolePrivilege;
@@ -34,8 +36,9 @@ import com.jeesoft.api.dto.UserSecurityQuestions;
 import com.jeesoft.common.exception.InvalidIdentificationNoException;
 import com.jeesoft.common.exception.LeefyAppException;
 import com.jeesoft.common.exception.NonCurrentStudentUserLoginCreationException;
+import com.jeesoft.common.exception.NonUniqueEmailException;
 import com.jeesoft.common.exception.PastStaffException;
-import com.jeesoft.common.exception.UniqueUserNameEmailException;
+import com.jeesoft.common.exception.NonUniqueUserNameException;
 
 
 /**
@@ -59,15 +62,12 @@ public interface UserService {
      * create a system user.
      * 
      * @param userLogin - userLogin
-     * @throws LeefyAppException LeefyAppException
-     * @throws UniqueUserNameEmailException UniqueUserNameEmailException
-     * @throws PastStaffException -PastStaffException
-     * @throws InvalidIdentificationNoException - InvalidIdentificationNoException
-     * @throws NonCurrentStudentUserLoginCreationException - throws if student is non current.
-     * @return flag indicates whether userLogin creation is succeeded.
+     * @throws LeefyAppException - {@link LeefyAppException}
+     * @throws NonUniqueEmailException - {@link NonUniqueEmailException}
+     * @throws NonUniqueUserNameException- {@link NonUniqueUserNameException}
+     * @return returns the newly created {@link UserLogin}
      */
-    boolean createSystemUser(UserLogin userLogin) throws LeefyAppException, UniqueUserNameEmailException,
-    InvalidIdentificationNoException, PastStaffException, NonCurrentStudentUserLoginCreationException;
+    UserLogin createSystemUser(UserLogin userLogin) throws LeefyAppException, NonUniqueEmailException, NonUniqueUserNameException;
     
     /**
      * edit a system user.
@@ -82,11 +82,11 @@ public interface UserService {
      * 
      * @param userLogin - userLogin
      * @throws LeefyAppException LeefyAppException
-     * @throws UniqueUserNameEmailException - UniqueUserNameEmailException
+     * @throws NonUniqueUserNameException - UniqueUserNameEmailException
      * @throws PastStaffException - PastStaffException
      * @throws InvalidIdentificationNoException - InvalidIdentificationNoException
      */
-    void editSystemUser(UserLogin userLogin) throws LeefyAppException, UniqueUserNameEmailException,
+    void editSystemUser(UserLogin userLogin) throws LeefyAppException, NonUniqueUserNameException,
             PastStaffException, InvalidIdentificationNoException;
     
     /**
@@ -406,5 +406,22 @@ public interface UserService {
      * @throws LeefyAppException when fails.
      */
     List<Tab> getDependenciesTabIdList(List<Integer> privilegeIdList) throws LeefyAppException;
+
+    /**
+     * Validates the {@link UserLogin} before creating a user from it.
+     * 
+     * @param userLogin the {@link UserLogin} to be validated.
+     * @throws LeefyAppException when fails.
+     * @throws NonUniqueUserNameException when user name is already exist in the system.
+     * @throws NonUniqueEmailException when email is already exist in the system.
+     */
+    public void validateUserLoginBeforeCreate(UserLogin userLogin) throws LeefyAppException, NonUniqueUserNameException, NonUniqueEmailException;
     
+    /**
+     * Builds the {@link User} from the {@link UserLogin}
+     * 
+     * @param userLogin the {@link UserLogin} to be converted the {@link User} object.
+     * @return the {@link User}
+     */
+    public User buildUserFromUserEntity(UserLogin userLogin) throws LeefyAppException;
 }

@@ -38,10 +38,12 @@
 		var loadUrl = '${ctx}/load';
 		var addUrl = '${ctx}/add';
 		var jsonpreq = '${ctx}/extractJson';
+		var getAllCountries = '${ctx}/allCountries';
 		var logoutUrl='${ctx}/j_spring_security_logout';
 		var currentLocale='${pageContext.response.locale}';
 		
 		var loginError ='<spring:message code="USER.LOGIN.FAILURE.ERROR"/>';
+		var errorMessage =  '${errorMessage}';
 
 		var loginWelcomeTitle ="<spring:message code='PAGE.LOGIN.WELCOME.WINDOW.TITLE'/>";
 		var loginSigninFormTitle ="<spring:message code='PAGE.LOGIN.SIGNIN.FORM.TITLE'/>";
@@ -68,9 +70,9 @@
 </head>
 <body>
 
-	<div style="height:390;background:#F3FAB6;" align="center"">
+	<div style="height:390;background:#F3FAB6;" align="center">
 	</div>
-	<div style="height:200;background:#CBE32D;" align="center"">
+	<div style="height:200;background:#CBE32D;" align="center">
 	</div>
 
 </body>

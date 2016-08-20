@@ -243,3 +243,22 @@ CREATE TABLE `user_security_questions` (
   CONSTRAINT `fk_USER_SECURITY_QUESTIONS_USER_LOGIN` FOREIGN KEY (`USER_LOGIN_ID`) REFERENCES `user_login` (`USER_LOGIN_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `country`
+--
+
+DROP TABLE IF EXISTS `country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `country` (
+  `COUNTRY_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) NOT NULL,
+  `ISO_CODE` varchar(45) NOT NULL,
+  `CAPITAL_CITY` varchar(255) DEFAULT NULL,
+  `FLAG` longblob,
+  `MODIFIED_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`COUNTRY_ID`),
+  UNIQUE KEY `NAME_UNIQUE` (`NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;

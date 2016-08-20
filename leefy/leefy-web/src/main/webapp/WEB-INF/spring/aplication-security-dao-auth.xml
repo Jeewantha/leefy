@@ -66,6 +66,7 @@
     
      <intercept-url pattern="/resources/**" access="permitAll()" filters="none"/>
      <intercept-url pattern="/login" access="permitAll()" filters="none" />
+     <intercept-url pattern="/allCountries" access="permitAll()" filters="none" />
      <intercept-url pattern="/language" access="permitAll()" filters="none" />
      <intercept-url pattern="/add" access="permitAll()" filters="none" />
      <intercept-url pattern="/load" access="permitAll()" filters="none" />

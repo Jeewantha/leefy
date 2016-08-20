@@ -38,7 +38,7 @@ public interface UserRoleDao extends BaseDao<UserRole> {
      * 
      * @param role - String
      * @return UserRole object.
-     * @throws LeefyAppException SMS Exceptions.
+     * @throws LeefyAppException when fails
      */
     UserRole getUserRoleByRoleName(String role) throws LeefyAppException;
 }
