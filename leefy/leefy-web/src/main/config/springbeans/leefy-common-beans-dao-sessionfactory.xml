@@ -27,8 +27,8 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<!-- Data sources -->
-	<import resource="../datasource/leefy-dataSource-bean.xml" />
+  <!-- Data sources -->
+  <import resource="classpath:/datasource/leefy-datasource-bean.xml"/>
 
   <bean id="userDao" class="com.jeesoft.api.dao.UserDaoImpl">
     <property name="sessionFactory">
