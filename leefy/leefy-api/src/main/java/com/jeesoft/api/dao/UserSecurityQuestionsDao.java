@@ -18,32 +18,25 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
+package com.jeesoft.api.dao;
 
+import java.util.List;
+
+import com.jeesoft.api.dao.BaseDao;
+import com.jeesoft.api.dto.UserSecurityQuestions;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
-
 
 /**
- * The Interface GuestUserServices.
+ * @author Jeewantha Samaraweera.
  */
-public interface GuestUserServices extends UserService{
-
-    /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isUsernameExist(String username) throws LeefyAppException;
+public interface UserSecurityQuestionsDao extends BaseDao<UserSecurityQuestions> {
     
     /**
-     * Checks if a user exists with the provided email.
+     * Get the UserSecurityQuestion by user's login id.
      * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
+     * @param userLoginId to get the user's security questions.
+     * @return {@link UserSecurityQuestions} of this user.
+     * @throws AkuraAppException throws when fails.
      */
-    boolean isEmailExist(String email) throws LeefyAppException;
+    List<UserSecurityQuestions> getUserSecurityQuestionByUserLoginId(int userLoginId) throws LeefyAppException;
 }

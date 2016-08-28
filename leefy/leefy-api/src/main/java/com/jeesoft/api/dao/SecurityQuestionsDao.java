@@ -18,32 +18,13 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
 
-import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
+package com.jeesoft.api.dao;
+
+import com.jeesoft.api.dao.BaseDao;
+import com.jeesoft.api.dto.SecurityQuestions;
 
 
-/**
- * The Interface GuestUserServices.
- */
-public interface GuestUserServices extends UserService{
+public interface SecurityQuestionsDao extends BaseDao<SecurityQuestions> {
 
-    /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isUsernameExist(String username) throws LeefyAppException;
-    
-    /**
-     * Checks if a user exists with the provided email.
-     * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isEmailExist(String email) throws LeefyAppException;
 }

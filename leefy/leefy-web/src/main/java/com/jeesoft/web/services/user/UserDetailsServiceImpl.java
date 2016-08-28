@@ -28,9 +28,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jeesoft.api.dao.UserDao;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.dao.UserDao;
 
 
 /**

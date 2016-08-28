@@ -37,7 +37,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,9 +81,11 @@ public class HomeController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public final String home() {
-		logger.info("Welcome home!");
-		return "home";
+	public final String home(final HttpServletRequest request) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName();
+	    request.setAttribute("username", name);
+	    return "home";
 	}
 
 	/**
@@ -166,13 +168,6 @@ public class HomeController {
 		return person;
 	}
 
-	/**
-	 * Validation messages.
-	 *
-	 * @param failures
-	 *            the failures
-	 * @return the map
-	 */
 	private Map<String, String> validationMessages(final Set<ConstraintViolation<UserRegistrationForm>> failures) {
 		Map<String, String> failureMessages = new HashMap<String, String>();
 		for (ConstraintViolation<UserRegistrationForm> failure : failures) {
@@ -182,12 +177,9 @@ public class HomeController {
 	}
 	
 	private void authenticateUserAndSetSession(UserRegistrationForm userRegistrationForm, HttpServletRequest request) {
-        String username = userRegistrationForm.getUsername();
-        String password = userRegistrationForm.getPassword();
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-        request.getSession();
-        token.setDetails(new WebAuthenticationDetails(request));
-        Authentication authenticatedUser = authenticationManager.authenticate(token);
-        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userRegistrationForm.getUsername(), userRegistrationForm.getPassword());
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
     }
 }

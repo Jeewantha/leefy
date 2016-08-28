@@ -18,32 +18,33 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
+package com.jeesoft.api.dao;
 
-import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
+import com.jeesoft.api.dao.BaseDao;
+import com.jeesoft.api.dto.UserLogin;
 
 
 /**
- * The Interface GuestUserServices.
+ * This interface provides persistence layer functionality for the User object.
+ *
+ * @author Jeewantha Samaraweera
  */
-public interface GuestUserServices extends UserService{
+public interface UserDao  extends BaseDao<UserLogin> {
 
     /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
+     * Method is to retrieve UserLogin for given userName.
+     *
+     * @param userName - userName
+     * @return userLogin for respective userName.
      */
-    boolean isUsernameExist(String username) throws LeefyAppException;
-    
+    UserLogin getUserLoginByName(String userName);
+
     /**
-     * Checks if a user exists with the provided email.
-     * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
+     * Method is to retrieve any UserLogin for given userName.
+     *
+     * @param userName - userName
+     * @return userLogin for respective userName.
      */
-    boolean isEmailExist(String email) throws LeefyAppException;
+    UserLogin getAnyUserLoginByName(String userName);
+
 }

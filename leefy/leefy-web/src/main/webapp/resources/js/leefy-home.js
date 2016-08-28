@@ -30,7 +30,16 @@ var mainLayout = new Ext.Viewport({
 						region : 'north',
 						xtype : 'toolbar',
 						cls : 'toolbarStyles',
-						items : [{
+						items : [ {
+									xtype : 'textfield',
+									name : 'searchFriend',
+									emptyText : 'enter name to search'
+								},{
+									xtype : 'label',
+									text : 'Welcome '+username
+								},{
+									xtype : 'tbfill'
+								},{
 									xtype : 'button',
 									text : 'My Account',
 									glyph: 61,
@@ -41,13 +50,7 @@ var mainLayout = new Ext.Viewport({
 											}, {
 												text : 'My Messages'
 											}]
-								}, {
-									xtype : 'tbfill'
-								}, {
-									xtype : 'textfield',
-									name : 'searchFriend',
-									emptyText : 'enter name to search'
-								}, {
+								},{
 									xtype : 'button',
 									text : 'Logout',
 									handler : function() {
@@ -68,14 +71,17 @@ var mainLayout = new Ext.Viewport({
 						region : 'center',
 						xtype : 'tabpanel',
 						items : [{
+									title : 'My Wall',
+									html : 'My Wall'
+								},{
 									title : 'Live Feed',
-									html : ''
+									html : 'Live Feed'
 								}, {
 									title : 'Quick View',
-									html : ''
+									html : 'Quick View'
 								}, {
 									title : '+ Add',
-									html : ''
+									html : 'Add'
 								}],
 						activeTab : 0
 					}, {

@@ -63,25 +63,6 @@ public class UserDefinedRoleDetails extends UserInfo {
 	}
 
 	/**
-	 * method is to clear user defined role related dynamic attributes.
-	 */
-	@Override
-	public void clear() {
-
-	}
-
-	/**
-	 * Identification No for the UserDefined role.
-	 * 
-	 * @return "".
-	 */
-	@Override
-	public final String getUserLevelIdentifier() {
-
-		return "";
-	}
-
-	/**
 	 * Returns a string representation of the object.
 	 * 
 	 * @return - the current object details.

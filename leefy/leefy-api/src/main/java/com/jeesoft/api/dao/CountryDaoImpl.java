@@ -18,32 +18,38 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
 
+package com.jeesoft.api.dao;
+
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+
+import com.jeesoft.api.dao.BaseDaoImpl;
+import com.jeesoft.api.dto.Country;
+import com.jeesoft.common.constants.LeefyConstants;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
-
 
 /**
- * The Interface GuestUserServices.
+ * This class provides persistence layer functionality for the Country object.
+ * 
+ * @author Jeewantha Samaraweera
  */
-public interface GuestUserServices extends UserService{
-
-    /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isUsernameExist(String username) throws LeefyAppException;
+public class CountryDaoImpl extends BaseDaoImpl<Country> implements CountryDao {
     
-    /**
-     * Checks if a user exists with the provided email.
-     * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isEmailExist(String email) throws LeefyAppException;
+    @SuppressWarnings("unchecked")
+    public List<Country> loadAllCountries() throws LeefyAppException {
+        List<Country> allCountries = null;
+        try {
+            allCountries = (List<Country>) getHibernateTemplate().findByNamedQuery("getAllCountries");
+            
+        } catch (DataAccessException e) {
+            throw new LeefyAppException(LeefyConstants.HIBERNATE_INVALID_ADD_OPERATION, e);
+        }
+        return allCountries;
+    }
+    
+    
+    
+
 }

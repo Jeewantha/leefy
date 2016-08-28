@@ -53,16 +53,6 @@ public interface UserService {
      * create a system user.
      * 
      * @param userLogin - userLogin
-     * @param identificationNo - the identification number
-     * @throws LeefyAppException LeefyAppException
-     * @return flag indicates whether userLogin creation is succeded.
-     */
-    boolean createUser(UserLogin userLogin, final int identificationNo) throws LeefyAppException;
-    
-    /**
-     * create a system user.
-     * 
-     * @param userLogin - userLogin
      * @throws LeefyAppException - {@link LeefyAppException}
      * @throws NonUniqueEmailException - {@link NonUniqueEmailException}
      * @throws NonUniqueUserNameException- {@link NonUniqueUserNameException}
@@ -150,16 +140,6 @@ public interface UserService {
     UserLogin getAnyUser(String userName) throws LeefyAppException;
     
     /**
-     * Get the any users UserLogin object by passing the user's role_id and IdentificationNo.
-     * 
-     * @param roleId - int
-     * @param identificationNo - String
-     * @throws AkuraAppException AkuraAppException
-     * @return returns the UserLogin object.
-     */
-    int getAnyUserByUserRoleIdAndIdentificationNo(int roleId, String identificationNo) throws LeefyAppException;
-    
-    /**
      * Get the UserRole object by passing the userrole rolename.
      * 
      * @param role - String
@@ -211,15 +191,6 @@ public interface UserService {
      * @throws LeefyAppException - throw detailed exception.
      */
     UserLogin getUserByName(String strName) throws LeefyAppException;
-    
-    /**
-     * Retrieve userlogin by user identification no.
-     * 
-     * @param identificationNo - String
-     * @return UserLogin object
-     * @throws LeefyAppException - throw this
-     */
-    UserLogin getUserLoginByIdentificationNo(String identificationNo) throws LeefyAppException;
     
     /**
      * Get all the Security Questions available in the system.

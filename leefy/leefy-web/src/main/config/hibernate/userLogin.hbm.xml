@@ -47,10 +47,6 @@
 			<column name="LAST_NAME" length="45" />
 		</property>
 
-		<property name="userIdentificationNo" type="string">
-			<column name="USER_IDENTIFICATION_NO" length="45" />
-		</property>
-
 		<property name="email" type="string">
 			<column name="EMAIL" length="45" />
 		</property>
@@ -109,17 +105,10 @@
   		]]>
 	</query>
 
-	<query name="getAnyUserByUserRoleIdAndIdIdentificationNo">
+	<query name="getAnyUserByUsernameOrEmail">
 		<![CDATA[
 		   from com.jeesoft.api.dto.UserLogin as userLogin
-		   where (userLogin.userRoleId=? and userLogin.userIdentificationNo =?)
-  		]]>
-	</query>
-
-	<query name="getUserByIdentificationNo">
-		<![CDATA[
-		   from com.jeesoft.api.dto.UserLogin as userLogin
-		   where (userLogin.userIdentificationNo=? and userLogin.status =1)
+		   where (userLogin.username=? OR userLogin.email=?)
   		]]>
 	</query>
 	
@@ -130,138 +119,12 @@
   		]]>
 	</query>
 	
-	<query name="getUsersOfAnyStatusByRegistrationNo">
+	<query name="isUsernameOrEmailExist">
 		<![CDATA[
 		   from com.jeesoft.api.dto.UserLogin as userLogin
-		   where userLogin.userIdentificationNo=? 
+		   where userLogin.username=? 
+		   and userLogin.email =?
   		]]>
 	</query>
-
-	<query name="getUserLoginByUserRoleIdAndIdentificationNo">
-		<![CDATA[
-		   from com.jeesoft.api.dto.UserLogin as userLogin
-		   where (userLogin.userRoleId=? AND userLogin.userIdentificationNo=?)
-  		]]>
-	</query>
-		<sql-query name="getStudentByUserRoleIdAndIdIdentificationNo">
-		<![CDATA[
-		   SELECT DISTINCT(student_id) from USER_LOGIN AS userLogin
-			INNER JOIN STUDENT student
-				ON student.admission_no = userLogin.user_Identification_No
-		 	WHERE userLogin.user_Role_Id = ? 
-		 	AND 
-           		userLogin.user_Identification_No = ?
-  		]]>
-	</sql-query>
-	
-	<sql-query name="getStaffByUserRoleIdAndIdIdentificationNo">
-		<![CDATA[
-		   SELECT DISTINCT(staff_id) from USER_LOGIN AS userLogin
-			INNER JOIN STAFF staff
-				ON staff.registration_no = userLogin.user_Identification_No
-		 	WHERE userLogin.user_Role_Id = ? 
-		 	AND 
-           		userLogin.user_Identification_No = ?
-  		]]>
-	</sql-query>
-
-	<sql-query name="getParentsByUserRoleIdAndIdIdentificationNo">
-	<![CDATA[
-		   SELECT DISTINCT(parent_id) from USER_LOGIN AS userLogin
-			INNER JOIN PARENT parent
-				ON parent.national_id_no = userLogin.user_Identification_No
-		 	WHERE userLogin.user_Role_Id = ? 
-		 	AND 
-           		userLogin.user_Identification_No = ?
-  		]]>
-	</sql-query>
-
-	<sql-query name="isValidationIdentificationNoForStudent">
-	<![CDATA[
-		   SELECT student_id from USER_LOGIN AS userLogin
-	       RIGHT JOIN STUDENT student
-           ON student.student_id = userLogin.user_Identification_No
-	       WHERE
-           student.admission_no = ?
-  		]]>
-	</sql-query>
-	<sql-query name="isValidationIdentificationNoForStaff">
-	<![CDATA[
-		   SELECT staff_id from USER_LOGIN AS userLogin
-	       RIGHT JOIN STAFF staff
-           ON staff.staff_id = userLogin.user_Identification_No
-	       WHERE
-           staff.registration_no = ?
-  		]]>
-	</sql-query>
-	<sql-query name="isValidationIdentificationNoForParent">
-	<![CDATA[
-		   SELECT parent_id from USER_LOGIN AS userLogin
-	       RIGHT JOIN PARENT parent
-           ON parent.parent_id = userLogin.user_Identification_No
-	       WHERE
-           parent.national_id_no = ?
-  		]]>
-	</sql-query>
-
-	<sql-query name="isExistingIdentificationNoForStudent">
-	<![CDATA[
-		   SELECT student_id from USER_LOGIN AS userLogin
-	       LEFT JOIN STUDENT student
-           ON student.student_id = userLogin.user_Identification_No
-	       WHERE userLogin.user_role_id=? and 
-           student.admission_no = ?
-  		]]>
-	</sql-query>
-	<sql-query name="isExistingIdentificationNoForStaff">
-	<![CDATA[
-		   SELECT staff_id from USER_LOGIN AS userLogin
-	       LEFT JOIN STAFF staff
-           ON staff.staff_id = userLogin.user_Identification_No
-	       WHERE userLogin.user_role_id=? and 
-           staff.registration_no = ?
-  		]]>
-	</sql-query>
-	<sql-query name="isExistingIdentificationNoForParent" >
-	<![CDATA[
-		   SELECT parent_id from USER_LOGIN AS userLogin
-	       LEFT JOIN PARENT parent
-           ON parent.parent_id = userLogin.user_Identification_No
-	       WHERE userLogin.user_role_id=? and 
-           parent.national_id_no = ?
-  		]]>
-	</sql-query>
-	
-	<sql-query name="isPastStaff">
-	<![CDATA[
-		   SELECT date_of_departure from USER_LOGIN AS userLogin
-	       RIGHT JOIN STAFF staff
-           ON staff.staff_id = userLogin.user_Identification_No
-	       WHERE
-           staff.registration_no = ?
-  		]]>
-	</sql-query>
-	
-	<sql-query name="getClassTeacherIdList">
-		<![CDATA[
-		   SELECT class_teacher_id FROM CLASS_TEACHER AS classTeacher
-	       INNER JOIN USER_LOGIN userLogin
-           ON classTeacher.staff_id = userLogin.user_Identification_No
-	       WHERE userLogin.user_role_id= ? 
-	       AND userLogin.user_login_id = ? 
-           AND classTeacher.year = ?
-           AND classTeacher.class_grade_id = ?
-  		]]>
-	</sql-query>
-
-	<sql-query name="isNonCurrentStudent">
-	<![CDATA[
-		   SELECT admission_no FROM STUDENT AS student
-	        LEFT JOIN 	USER_LOGIN userLogin
-            ON 			student.student_id = userLogin.user_Identification_No
-	       	WHERE 		student.admission_no = ?
-           	AND 		student.student_status_id != 1
-  		]]>
-	</sql-query>
 	
 </hibernate-mapping>

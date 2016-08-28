@@ -44,7 +44,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_login` WRITE;
 /*!40000 ALTER TABLE `user_login` DISABLE KEYS */;
-INSERT INTO `user_login` VALUES (1,1,'Administrator','User','user@mail.com','admin','ceb4f32325eda6142bd65215f4c0f371',1,1,NULL,'2015-05-16 17:47:23',0,0);
+INSERT INTO `user_login` VALUES (1,1,'Administrator','User','user@mail.com','admin','ceb4f32325eda6142bd65215f4c0f371',1,1,'2015-05-16 17:47:23',0,0);
 /*!40000 ALTER TABLE `user_login` ENABLE KEYS */;
 UNLOCK TABLES;
 

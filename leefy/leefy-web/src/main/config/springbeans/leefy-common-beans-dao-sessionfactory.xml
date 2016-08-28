@@ -30,80 +30,80 @@
 	<!-- Data sources -->
 	<import resource="../datasource/leefy-dataSource-bean.xml" />
 
-  <bean id="userDao" class="com.jeesoft.web.dao.UserDaoImpl">
+  <bean id="userDao" class="com.jeesoft.api.dao.UserDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="moduleDao" class="com.jeesoft.web.dao.ModuleDaoImpl">
+  <bean id="moduleDao" class="com.jeesoft.api.dao.ModuleDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="tabDao" class="com.jeesoft.web.dao.TabDaoImpl">
+  <bean id="tabDao" class="com.jeesoft.api.dao.TabDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="pageDao" class="com.jeesoft.web.dao.PageDaoImpl">
+  <bean id="pageDao" class="com.jeesoft.api.dao.PageDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="privilegeDao" class="com.jeesoft.web.dao.PrivilegeDaoImpl">
+  <bean id="privilegeDao" class="com.jeesoft.api.dao.PrivilegeDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="roleTabDao" class="com.jeesoft.web.dao.RoleTabDaoImpl">
+  <bean id="roleTabDao" class="com.jeesoft.api.dao.RoleTabDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="rolePrivilegeDao" class="com.jeesoft.web.dao.RolePrivilegeDaoImpl">
+  <bean id="rolePrivilegeDao" class="com.jeesoft.api.dao.RolePrivilegeDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="privilegeDependencyDao" class="com.jeesoft.web.dao.PrivilegeDependencyDaoImpl">
+  <bean id="privilegeDependencyDao" class="com.jeesoft.api.dao.PrivilegeDependencyDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="userRoleDao" class="com.jeesoft.web.dao.UserRoleDaoImpl">
+  <bean id="userRoleDao" class="com.jeesoft.api.dao.UserRoleDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
-  <bean id="userLoginDao" class="com.jeesoft.web.dao.UserLoginDaoImpl">
+  <bean id="userLoginDao" class="com.jeesoft.api.dao.UserLoginDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
 
   <bean id="userSecurityQuestionsDao"
-    class="com.jeesoft.web.dao.UserSecurityQuestionsDaoImpl">
+    class="com.jeesoft.api.dao.UserSecurityQuestionsDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
   
-  <bean id="securityQuestionsDao" class="com.jeesoft.web.dao.SecurityQuestionsDaoImpl">
+  <bean id="securityQuestionsDao" class="com.jeesoft.api.dao.SecurityQuestionsDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>
   </bean>
   
-  <bean id="countryDao" class="com.jeesoft.web.dao.CountryDaoImpl">
+  <bean id="countryDao" class="com.jeesoft.api.dao.CountryDaoImpl">
     <property name="sessionFactory">
       <ref bean="sessionFactory" />
     </property>

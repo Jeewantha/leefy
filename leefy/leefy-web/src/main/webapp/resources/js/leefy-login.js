@@ -20,7 +20,11 @@
  *******************************************************************************/
 Ext.onReady(function(){
 	Ext.QuickTips.init();
-	
+
+	function fnResetForm(theForm) {
+		theForm.getForm().reset();
+	} // end fnResetForm
+
 	var signupForm = Ext.create('Ext.form.Panel',{
 			url : addUrl,
 			title : loginSignupFormLabelTitle,
@@ -160,11 +164,11 @@ Ext.onReady(function(){
                     titleAlign: 'center'
                 },
                 tools : [{
-								id : 'Language',
-								handler : function(e, toolEl, panel, tc) {
-									menu.show(toolEl, 'tr-br?');
-								}
-							}],
+							id : 'Language',
+							handler : function(e, toolEl, panel, tc) {
+								menu.show(toolEl, 'tr-br?');
+							}
+						}],
                 closable: false,
                 closeAction: 'hide',
                 maximizable: false,
@@ -222,7 +226,7 @@ function fnLoadForm(theForm) {
 function fnSignupForm(theForm) {
 	theForm.getForm().submit({
 				success : function(form, action) {
-					form.reset();
+					window.location.assign(homeUrl);
 				},
 				failure : function(form, action) {
 					var errors = [];
@@ -243,10 +247,6 @@ function fnSignupForm(theForm) {
 				}
 			});
 } // end fnSignupForm
-
-function fnResetForm(theForm) {
-	theForm.getForm().reset();
-} // end fnResetForm
 
 function fnGetJsonResp() {
 	var myObj = {

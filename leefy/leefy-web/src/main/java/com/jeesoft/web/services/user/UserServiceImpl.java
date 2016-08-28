@@ -33,6 +33,15 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jeesoft.api.dao.ModuleDao;
+import com.jeesoft.api.dao.PrivilegeDependencyDao;
+import com.jeesoft.api.dao.RolePrivilegeDao;
+import com.jeesoft.api.dao.RoleTabDao;
+import com.jeesoft.api.dao.SecurityQuestionsDao;
+import com.jeesoft.api.dao.UserDao;
+import com.jeesoft.api.dao.UserLoginDao;
+import com.jeesoft.api.dao.UserRoleDao;
+import com.jeesoft.api.dao.UserSecurityQuestionsDao;
 import com.jeesoft.api.dto.AdminDetails;
 import com.jeesoft.api.dto.Module;
 import com.jeesoft.api.dto.Privilege;
@@ -42,7 +51,6 @@ import com.jeesoft.api.dto.SecurityQuestions;
 import com.jeesoft.api.dto.Tab;
 import com.jeesoft.api.dto.UserDefinedRoleDetails;
 import com.jeesoft.api.dto.UserLogin;
-import com.jeesoft.api.dto.UserRegistrationForm;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.api.dto.UserSecurityQuestions;
 import com.jeesoft.common.constants.LeefyConstants;
@@ -51,15 +59,6 @@ import com.jeesoft.common.exception.LeefyAppException;
 import com.jeesoft.common.exception.NonUniqueEmailException;
 import com.jeesoft.common.exception.NonUniqueUserNameException;
 import com.jeesoft.common.exception.PastStaffException;
-import com.jeesoft.web.dao.ModuleDao;
-import com.jeesoft.web.dao.PrivilegeDependencyDao;
-import com.jeesoft.web.dao.RolePrivilegeDao;
-import com.jeesoft.web.dao.RoleTabDao;
-import com.jeesoft.web.dao.SecurityQuestionsDao;
-import com.jeesoft.web.dao.UserDao;
-import com.jeesoft.web.dao.UserLoginDao;
-import com.jeesoft.web.dao.UserRoleDao;
-import com.jeesoft.web.dao.UserSecurityQuestionsDao;
 import com.jeesoft.web.util.PropertyReader;
 
 
@@ -264,7 +263,6 @@ public class UserServiceImpl implements UserService {
         
         userLogin.setPassword(passwordEncoder.encodePassword(userLogin.getPassword(), userLogin.getUsername()));
         userLogin.setModifiedTime(new Date());
-        userLogin.setUserIdentificationNo(String.valueOf(identificationNo));
         UserLogin userLoginVal = userDao.save(userLogin);
         
         if (userLoginVal != null) {
@@ -332,7 +330,6 @@ public class UserServiceImpl implements UserService {
         // get the existing user
         existUser = findUserLogin(userLogin.getUserLoginId());
         userLogin.setLoginAttempts(existUser.getLoginAttempts());
-        userLogin.setUserIdentificationNo(identificationKey + "");
         userLogin.setPassword(passwordEncoder.encodePassword(userLogin.getPassword(), userLogin.getUsername()));
         userLogin.setGeneratedPassword(true);
         userLogin.setStatus(true);
@@ -395,28 +392,6 @@ public class UserServiceImpl implements UserService {
     public UserLogin getAnyUser(String userName) throws LeefyAppException {
 
         return userLoginDao.getAnyUserByName(userName);
-    }
-    
-    /**
-     * Get the any users UserLogin object by passing the user's role_id and IdentificationNo.
-     * 
-     * @param roleId - int
-     * @param identificationNo - String
-     * @throws AkuraAppException AkuraAppException
-     * @return returns the UserLogin object.
-     */
-    public int getAnyUserByUserRoleIdAndIdentificationNo(int roleId, String identificationNo) throws LeefyAppException {
-
-        int identificationId = 0;
-        List<Integer> identificationList = null;
-        
-        if (roleId == com.jeesoft.api.enums.UserRole.ROLE_GUEST.getUserRoleId()) {
-            identificationList = userLoginDao.getStaffByUserRoleIdAndIdentificationNo(roleId, identificationNo);
-        }
-        if (identificationList != null && !identificationList.isEmpty()) {
-            identificationId = identificationList.get(0);
-        }
-        return identificationId;
     }
     
     /**
@@ -505,18 +480,6 @@ public class UserServiceImpl implements UserService {
     public UserLogin getUserByName(String strName) throws LeefyAppException {
 
         return (UserLogin) userDao.getUserLoginByName(strName);
-    }
-    
-    /**
-     * Retrieve userlogin by user identification no.
-     * 
-     * @param identificationNo - string
-     * @return UserLogin object
-     * @throws LeefyAppException - throw this
-     */
-    public UserLogin getUserLoginByIdentificationNo(String identificationNo) throws LeefyAppException {
-
-        return userLoginDao.getUserLoginByIdentificationNo(identificationNo);
     }
     
     /**
@@ -840,7 +803,7 @@ public class UserServiceImpl implements UserService {
         if (userLogin.getUserRoleId() == com.jeesoft.api.enums.UserRole.ROLE_ADMIN.getUserRoleId()) {
             userRole = com.jeesoft.api.enums.UserRole.ROLE_ADMIN.toString();
             
-            systemUser = new AdminDetails(username, password, userRole, userRoleId, userLogin.getUserIdentificationNo(),
+            systemUser = new AdminDetails(username, password, userRole, userRoleId,
                             enabled, accountNonLocked, authorities);
             
         } else {

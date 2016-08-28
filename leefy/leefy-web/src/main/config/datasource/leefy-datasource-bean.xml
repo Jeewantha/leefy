@@ -41,7 +41,6 @@
 	<!-- Data sources -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<!-- bean id="dataSourceSMS" class="org.apache.commons.dbcp.BasicDataSource" -->
 		<property name="driverClassName">
 			<value>com.mysql.jdbc.Driver</value>
 		</property>
@@ -64,7 +63,6 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>hibernate/country.hbm.xml</value>
 				<value>hibernate/module.hbm.xml</value>
 				<value>hibernate/page.hbm.xml</value>
 				<value>hibernate/privilege.hbm.xml</value>
@@ -78,7 +76,6 @@
 				<value>hibernate/userSecurityQuestions.hbm.xml
 				</value>
 			</list>
-
 		</property>
 
 		<property name="hibernateProperties">

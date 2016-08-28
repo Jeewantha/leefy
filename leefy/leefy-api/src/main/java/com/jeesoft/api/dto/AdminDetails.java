@@ -32,28 +32,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class AdminDetails extends UserInfo {
 
-	/** String attribute for registration no. */
-	private static final String REGISTRATION_NO = ", registrationNo=";
+    private static final long serialVersionUID = 4096144989138566319L;
 
-	/** String attribute for staff member id. */
-	private static final String STAFF_MEMBER_ID = ", searchStaffMemberId=";
-
-	/** String attribute for student id. */
-	private static final String STUDENT_ID = "AdminDetails-->searchStudentId=";
-
-	/** long attribute for holding serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
-	/** holds studentId return from student search. */
-	private int searchStudentId;
-
-	/** holds staffMemberId return from staff search. */
-	private int searchStaffMemberId;
-
-	/** holds the registrationNo of the staff member. */
-	private String registrationNo;
-
-	/**
+    /**
 	 * Instantiates a new admin details.
 	 * 
 	 * @param userName
@@ -74,108 +55,9 @@ public class AdminDetails extends UserInfo {
 	 *            the granted authority
 	 */
 	public AdminDetails(final String userName, final String password, final String userRole, final int userRoleIdval,
-			final String registrationNoVal, final boolean isActive, final boolean accountNonLocked,
+			final boolean isActive, final boolean accountNonLocked,
 			final List<GrantedAuthority> grantedAuthority) {
 
 		super(userName, password, userRole, userRoleIdval, isActive, accountNonLocked, grantedAuthority);
-
-		registrationNo = registrationNoVal;
 	}
-
-	/**
-	 * Returns the details for the AdminDetails object.
-	 * 
-	 * @return - the AdminDetails object details.
-	 */
-	@Override
-	public final String toString() {
-
-		return STUDENT_ID + searchStudentId + STAFF_MEMBER_ID + searchStaffMemberId + REGISTRATION_NO + registrationNo;
-	}
-
-	/**
-	 * return searchStudentId of the Student.
-	 * 
-	 * @return the searchStudentId
-	 */
-	public final int getSearchStudentId() {
-
-		return searchStudentId;
-	}
-
-	/**
-	 * Setter method for searchStudentId.
-	 * 
-	 * @param searchStudentIdVal
-	 *            the searchStudentId to set
-	 */
-	public final void setSearchStudentId(final int searchStudentIdVal) {
-
-		this.searchStudentId = searchStudentIdVal;
-	}
-
-	/**
-	 * return searchStaffMemberId of the Student.
-	 * 
-	 * @return the searchStaffMemberId
-	 */
-	public final int getSearchStaffMemberId() {
-
-		return searchStaffMemberId;
-	}
-
-	/**
-	 * Setter method for searchStaffMemberId.
-	 * 
-	 * @param searchStaffMemberIdVal
-	 *            the searchStaffMemberId to set
-	 */
-	public final void setSearchStaffMemberId(final int searchStaffMemberIdVal) {
-
-		this.searchStaffMemberId = searchStaffMemberIdVal;
-	}
-
-	/**
-	 * return registrationNo of the Student.
-	 * 
-	 * @return the registrationNo
-	 */
-	public final String getRegistrationNo() {
-
-		return registrationNo;
-	}
-
-	/**
-	 * Setter method for registrationNo.
-	 * 
-	 * @param registrationNoVal
-	 *            the registrationNo to set
-	 */
-	public final void setRegistrationNo(final String registrationNoVal) {
-
-		this.registrationNo = registrationNoVal;
-	}
-
-	/**
-	 * method is to clear Student related dynamic attributes.
-	 */
-	@Override
-	public final void clear() {
-
-		searchStaffMemberId = 0;
-		searchStudentId = 0;
-
-	}
-
-	/**
-	 * registrationNo for the admin user.
-	 * 
-	 * @return registrationNo - registrationNo.
-	 */
-	@Override
-	public final String getUserLevelIdentifier() {
-
-		return registrationNo;
-	}
-
 }

@@ -36,10 +36,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jeesoft.api.dao.CountryDao;
+import com.jeesoft.api.dao.UserLoginDao;
 import com.jeesoft.api.dto.Country;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.dao.CountryDao;
-import com.jeesoft.web.dao.UserLoginDao;
 
 /**
  * The Class LoginController.

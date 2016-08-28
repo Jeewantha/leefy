@@ -159,18 +159,6 @@ public abstract class UserInfo extends User {
 	}
 
 	/**
-	 * clear method is to dynamic user details.
-	 */
-	public abstract void clear();
-
-	/**
-	 * getUserIdentificationNo to return subjective Id of the respective users.
-	 * 
-	 * @return userIdentificationNo.
-	 */
-	public abstract String getUserLevelIdentifier();
-
-	/**
 	 * overridden toString method to represent the UserInfo object.
 	 * 
 	 * @return String representation of the userName.

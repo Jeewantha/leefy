@@ -21,6 +21,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="username" value="${username}"/>
 <html>
 <head>
 	<title>Home</title>
@@ -29,6 +30,7 @@
 		if (Ext.BLANK_IMAGE_URL.substr(0, 5) != 'data:') {
 			Ext.BLANK_IMAGE_URL = '<c:url value="/resources/lib/ext-3.3.1/resources/images/default/s.gif" />';
 		}
+		var username = '${username}';
 		var loadUrl = '${ctx}/load';
 		var addUrl = '${ctx}/add';
 		var jsonpreq = '${ctx}/extractJson';

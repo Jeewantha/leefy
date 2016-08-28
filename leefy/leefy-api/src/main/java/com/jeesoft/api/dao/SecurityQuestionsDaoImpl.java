@@ -18,32 +18,15 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
+package com.jeesoft.api.dao;
 
-import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
-
+import com.jeesoft.api.dao.BaseDaoImpl;
+import com.jeesoft.api.dto.SecurityQuestions;
 
 /**
- * The Interface GuestUserServices.
+ * @author Jeewantha Samaraweera. SecurityQuestionsDaoImpl class holds the implementation of persistence related
+ *         operations between SECURITY_QUESTIONS tables and SecurityQuestions data access class.
  */
-public interface GuestUserServices extends UserService{
+public class SecurityQuestionsDaoImpl extends BaseDaoImpl<SecurityQuestions> implements SecurityQuestionsDao {
 
-    /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isUsernameExist(String username) throws LeefyAppException;
-    
-    /**
-     * Checks if a user exists with the provided email.
-     * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isEmailExist(String email) throws LeefyAppException;
 }

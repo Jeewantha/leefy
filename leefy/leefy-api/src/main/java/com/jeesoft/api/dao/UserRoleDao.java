@@ -18,32 +18,27 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
 
+package com.jeesoft.api.dao;
+
+import com.jeesoft.api.dao.BaseDao;
+import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
-
 
 /**
- * The Interface GuestUserServices.
+ * This interface provides persistence layer functionality for the UserRole object.
+ * 
+ * @author Jeewantha Samaraweera
  */
-public interface GuestUserServices extends UserService{
-
-    /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isUsernameExist(String username) throws LeefyAppException;
+public interface UserRoleDao extends BaseDao<UserRole> {
     
     /**
-     * Checks if a user exists with the provided email.
+     * Retrieve the user role by passing the user role's rolename.This returns any user role with the user
+     * role name passed.
      * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
+     * @param role - String
+     * @return UserRole object.
+     * @throws LeefyAppException when fails
      */
-    boolean isEmailExist(String email) throws LeefyAppException;
+    UserRole getUserRoleByRoleName(String role) throws LeefyAppException;
 }

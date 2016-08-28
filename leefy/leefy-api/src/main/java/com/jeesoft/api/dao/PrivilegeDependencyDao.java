@@ -18,32 +18,39 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *     
  *******************************************************************************/
-package com.jeesoft.web.service;
 
+package com.jeesoft.api.dao;
+
+import java.util.List;
+
+import com.jeesoft.api.dao.BaseDao;
+import com.jeesoft.api.dto.Privilege;
+import com.jeesoft.api.dto.PrivilegeDependency;
+import com.jeesoft.api.dto.Tab;
 import com.jeesoft.common.exception.LeefyAppException;
-import com.jeesoft.web.services.user.UserService;
-
 
 /**
- * The Interface GuestUserServices.
+ * This interface provides persistence layer functionality for the PrivilegeDependency domain object.
+ * 
+ * @author Jeewantha Samaraweera
  */
-public interface GuestUserServices extends UserService{
-
-    /**
-     * Checks if a user exists with the provided username.
-     * 
-     * @param username the provided username
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
-     */
-    boolean isUsernameExist(String username) throws LeefyAppException;
+public interface PrivilegeDependencyDao extends BaseDao<PrivilegeDependency> {
     
     /**
-     * Checks if a user exists with the provided email.
+     * get Dependencies privilege ID list.
      * 
-     * @param email the provided email 
-     * @return true if user exist
-     * @throws LeefyAppException when fails to process
+     * @param privilegeIdList - privilege IDs list.
+     * @return list of dependencies IDs.
+     * @throws LeefyAppException when fails.
      */
-    boolean isEmailExist(String email) throws LeefyAppException;
+    List<Privilege> getDependenciesList(List<Integer> privilegeIdList) throws LeefyAppException;
+    
+    /**
+     * get Dependencies tab ID list.
+     * 
+     * @param privilegeIdList - privilege IDs list.
+     * @return list of dependencies IDs.
+     * @throws LeefyAppException when fails.
+     */
+    List<Tab> getDependenciesTabIdList(List<Integer> privilegeIdList) throws LeefyAppException;
 }

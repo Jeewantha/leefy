@@ -23,7 +23,6 @@ package com.jeesoft.web.service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jeesoft.api.dto.Guest;
 import com.jeesoft.api.dto.UserLogin;
 import com.jeesoft.api.dto.UserRole;
 import com.jeesoft.common.constants.LeefyConstants;
@@ -39,42 +38,6 @@ import com.jeesoft.web.services.user.UserServiceImpl;
  */
 public class GuestUserServicesImpl extends UserServiceImpl implements GuestUserServices {
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isValidRegistrationNo(String registrationNo)
-            throws LeefyAppException {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getKeyByIdentificationNo(String identification)
-            throws LeefyAppException {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Guest findGuest(int guestId) throws LeefyAppException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean hasDepartureDate(String registrationNo)
-            throws LeefyAppException {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
     @Override
     public boolean isUsernameExist(String username) throws LeefyAppException {
         return (getUserLoginDao().getAnyUserByName(username) == null ? false : true);

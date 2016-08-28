@@ -32,6 +32,7 @@
 		if (Ext.BLANK_IMAGE_URL.substr(0, 5) != 'data:') {
 			Ext.BLANK_IMAGE_URL = '<c:url value="/resources/lib/ext-3.3.1/resources/images/default/s.gif" />';
 		}
+		var homeUrl = '${ctx}/';
 		var loginUrl = '${ctx}/login';
 		var defLoginUrl = '${ctx}/j_spring_security_check';
 		var homeUrl = '${ctx}';

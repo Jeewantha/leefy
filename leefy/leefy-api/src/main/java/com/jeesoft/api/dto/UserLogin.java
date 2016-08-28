@@ -48,11 +48,6 @@ public class UserLogin extends BaseDomain {
     private int userRoleId;
     
     /**
-     * holds the userIdentificationNo No of the user.
-     */
-    private String userIdentificationNo;
-    
-    /**
      * holds the user level of the user.
      */
     private String userLevel;
@@ -302,28 +297,6 @@ public class UserLogin extends BaseDomain {
     public final void setLastName(final String lastNameVal) {
 
         this.lastName = lastNameVal;
-    }
-    
-    /**
-     * return userIdentificationNo of the User. if the user is student this no will be the admission no if the
-     * user is a staff member it will be registration No
-     * 
-     * @return the userIdentificationNo
-     */
-    public final String getUserIdentificationNo() {
-
-        return userIdentificationNo;
-    }
-    
-    /**
-     * set userIdentificationNo for the user. if the user is student this no will be the admission no if the
-     * user is a staff member it will be registration No
-     * 
-     * @param userIdentificationNoVal the userIdentificationNo to set
-     */
-    public final void setUserIdentificationNo(final String userIdentificationNoVal) {
-
-        this.userIdentificationNo = userIdentificationNoVal;
     }
     
     /**
