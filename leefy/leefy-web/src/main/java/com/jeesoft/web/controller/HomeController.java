@@ -84,7 +84,18 @@ public class HomeController {
 	public final String home(final HttpServletRequest request) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName();
-	    request.setAttribute("username", name);
+	    try {
+            UserLogin loggedInUser = guestUserService.getAnyUser(name);
+            
+            if(loggedInUser != null) {
+                request.setAttribute("username", name);
+                request.setAttribute("email", loggedInUser.getEmail());
+                //TODO set user data to profile form
+            }
+        } catch (LeefyAppException leefyAppException) {
+            logger.error("Error loading logged in user by username.", leefyAppException);
+            return "login";
+        }
 	    return "home";
 	}
 

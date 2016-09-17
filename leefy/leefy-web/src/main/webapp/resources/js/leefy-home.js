@@ -23,6 +23,100 @@
 Ext.onReady(function(){
 	Ext.QuickTips.init();
 
+	
+	var profileForm = Ext.create('Ext.form.Panel',{
+		url : addUrl,
+		title : loginSignupFormLabelTitle,
+		frame : true,
+		bodyPadding : 5,
+		cls : 'signup-form-class',
+		width:350,
+		items : [{
+			        xtype: 'displayfield',
+			        fieldLabel: '',
+			        labelSeparator:'',
+			        name: 'errorsView',
+			    },{
+					xtype : 'displayfield',
+					fieldLabel : loginSignupFormLableUsername,
+					labelWidth: 150,
+					labelSeparator: '',
+					anchor: '90%',
+					name : 'username',
+					value : username
+				}, {
+					xtype : 'textfield',
+					labelSeparator: '',
+					anchor: '90%',
+					fieldLabel : loginSignupFormLableEmail,
+					labelWidth: 150,
+					name : 'email',
+					value : email
+				}, {
+					xtype : 'textfield',
+					labelSeparator: '',
+					anchor: '90%',
+					fieldLabel : loginSignupFormLableConfirmEmail,
+					labelWidth: 150,
+					name : 'confirmEmail'
+				}, {
+					xtype:'combo',
+					labelSeparator: '',
+					anchor: '90%',
+					fieldLabel : loginSignupFormLableCounrty,
+					labelWidth: 150,
+					name : 'country',
+				    displayField: 'name',
+				    valueField:'iso2Code',
+				    listConfig: {
+                        getInnerTpl: function(displayField) {
+                        	return "<div><span class='flag-icon flag-icon-{iso2Code}'></span> {"+displayField+"}</div>";
+                        }
+                    },
+				    store: countryStore,
+				    queryMode: 'local',
+				    typeAhead: true
+				},{
+					xtype : 'textfield',
+					labelSeparator: '',
+					anchor: '90%',
+					labelWidth: 150,
+					inputType: 'password',
+					fieldLabel : loginSignupFormLablePassword,
+					name : 'password'
+				}, {
+					xtype : 'textfield',
+					labelSeparator: '',
+					anchor: '90%',
+					labelWidth: 150,
+					inputType: 'password',
+					fieldLabel : loginSignupFormLableConfirmPassword,
+					name : 'confirmPassword'
+				}, {
+					xtype : 'datefield',
+					labelSeparator: '',
+					anchor: '90%',
+					fieldLabel : loginSignupFormLableBirthday,
+					labelWidth: 150,
+					editable : false,
+					name : 'birthday',
+					maxValue: new Date()
+				}],
+		buttons : [{
+					id : 'suf.btn.add',
+					text : loginSignupFormButtonSignup,
+					handler : function() {
+						fnSignupForm(signupForm);
+					}
+				},{
+					id : 'suf.btn.load',
+					text : loginSignupFormButtonReset,
+					handler : function() {
+						fnResetForm(signupForm);
+					}
+				}]
+	});	
+	
 var mainLayout = new Ext.Viewport({
 			layout : 'border',
 			renderTo : Ext.getBody(),
@@ -82,7 +176,7 @@ var mainLayout = new Ext.Viewport({
 								}, {
 									title : '+ Add',
 									html : 'Add'
-								}],
+								}, profileForm],
 						activeTab : 0
 					}, {
 						region : 'east',
@@ -106,3 +200,33 @@ var mainLayout = new Ext.Viewport({
 
 mainLayout.show();
 });
+
+
+function fnResetForm(theForm) {
+	theForm.getForm().reset();
+} // end fnResetForm
+
+function fnSignupForm(theForm) {
+	theForm.getForm().submit({
+				success : function(form, action) {
+					window.location.assign(homeUrl);
+				},
+				failure : function(form, action) {
+					var errors = [];
+					var fields = form.getFields(); // form : Ext.form.Basic
+					var errorsTpl = new Ext.XTemplate(
+					    '<ul><tpl for="."><li>{field} : {error}</li></tpl></ul>'
+					);
+					fields.each(function (field) {
+						if(field.getName() == 'errorsView'){
+							field.show();
+						}
+					    errors = errors.concat(Ext.Array.map(field.getErrors(), function (error) {
+					        return { field: field.getName(), error: error }
+					    }));
+					});
+					//errorsTpl.overwrite('myOutputDiv', errors);
+					//Ext.Msg.alert('Warning', errorMessage);
+				}
+			});
+} // end fnSignupForm
