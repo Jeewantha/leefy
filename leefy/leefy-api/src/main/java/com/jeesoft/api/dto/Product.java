@@ -33,7 +33,10 @@ import org.codehaus.jackson.annotate.JsonPropertyOrder;
  */
 @XmlRootElement(name = "product")
 @JsonPropertyOrder({ "id", "name", "type" })
-public class Product {
+public class Product  extends BaseDomain {
+
+	/** auto-serial no. */
+	private static final long serialVersionUID = 1L;
 
 	/** The id. */
 	private String id;

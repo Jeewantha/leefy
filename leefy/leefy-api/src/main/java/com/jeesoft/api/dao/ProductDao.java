@@ -20,10 +20,7 @@
  *******************************************************************************/
 package com.jeesoft.api.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Component;
 
 import com.jeesoft.api.dto.Product;
 
@@ -31,54 +28,12 @@ import com.jeesoft.api.dto.Product;
  * The {@link ProductDao} class will handle all product related operations.
  * 
  * @author Jeewantha Samaraweera
- * @since alpha
  */
-@Component
-public class ProductDao {
+public interface ProductDao extends BaseDao<Product> {
 
-	/**
-	 * Gets the product.
-	 *
-	 * @param id
-	 *            the id
-	 * @return the product
-	 */
-	public final Product getProduct(final String id) {
-		// Create some fake product and return
-		Product product = new Product();
-		product.setId(id);
-		product.setName("MAC Book Air");
-		product.setType("Electronics");
-		return product;
-	}
-
-	/**
-	 * Save product.
-	 *
-	 * @param product
-	 *            the product
-	 * @return the product
-	 */
-	public final Product saveProduct(final Product product) {
-		// saved product
-		product.setId("456");
-		return product;
-	}
-
-	/**
-	 * Gets the all products.
-	 *
-	 * @return the all products
-	 */
-	public final List<Product> getAllProducts() {
-
-		List<Product> products = new ArrayList<Product>();
-
-		Product product = new Product();
-		product.setName("MAC Book Air");
-		product.setType("Electronics");
-		products.add(product);
-		return products;
-	}
-
+	Product getProduct(final String id);
+	
+	Product saveProduct(final Product product);
+	
+	List<Product> getAllProducts();
 }

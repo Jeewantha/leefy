@@ -188,7 +188,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>leefy</finalName>
+    <finalName>leefy-webservices</finalName>
     <testSourceDirectory>src/test/java</testSourceDirectory>
     <plugins>
       <plugin>

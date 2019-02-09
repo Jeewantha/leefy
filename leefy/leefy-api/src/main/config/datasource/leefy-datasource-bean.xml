@@ -48,10 +48,10 @@
 			<value>jdbc:mysql://localhost:3306/leefy</value>
 		</property>
 		<property name="username">
-			<value>leefy</value>
+			<value>root</value>
 		</property>
 		<property name="password">
-			<value>leefy</value>
+			<value>root</value>
 		</property>
 	</bean>
 
@@ -69,6 +69,7 @@
 				<value>hibernate/privilegeDependency.hbm.xml</value>
 				<value>hibernate/rolePrivilege.hbm.xml</value>
 				<value>hibernate/roleTab.hbm.xml</value>
+				<value>hibernate/product.hbm.xml</value>
 				<value>hibernate/securityQuestions.hbm.xml</value>
 				<value>hibernate/tab.hbm.xml</value>
 				<value>hibernate/userLogin.hbm.xml</value>

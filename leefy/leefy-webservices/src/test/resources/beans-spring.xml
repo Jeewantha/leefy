@@ -29,6 +29,8 @@
 		http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd"
   default-lazy-init="false">
 
+	<!-- Data sources -->
+  <import resource="classpath:/datasource/leefy-datasource-bean.xml"/>
 
   <context:component-scan base-package="com.jeesoft" />
 
@@ -40,6 +42,10 @@
     <property name="username" value="${application.user.name}"/>
   </bean>
  
-  <bean id="productDao" class="com.jeesoft.dao.ProductDao" />
+  <bean id="productDao" class="com.jeesoft.api.dao.productDaoImpl">
+    <property name="sessionFactory">
+      <ref bean="sessionFactory" />
+    </property>
+  </bean>
 
 </beans>

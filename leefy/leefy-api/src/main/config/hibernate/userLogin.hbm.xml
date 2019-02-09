@@ -24,7 +24,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.jeesoft.api.dto.UserLogin" table="USER_LOGIN" lazy="false">
+	<class name="com.jeesoft.api.dto.UserLogin" table="user_login" lazy="false">
 		<id name="userLoginId" type="int" column="USER_LOGIN_ID">
 			<generator class="increment" />
 		</id>

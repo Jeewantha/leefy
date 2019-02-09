@@ -14,7 +14,7 @@
 --
 --    You should have received a copy of the GNU General Public License
 --    along with this program.  If not, see <http://www.gnu.org/licenses/>.
---	
+--
 CREATE DATABASE  IF NOT EXISTS `leefy` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `leefy`;
 
@@ -260,4 +260,17 @@ CREATE TABLE `country` (
   PRIMARY KEY (`COUNTRY_ID`),
   UNIQUE KEY `NAME_UNIQUE` (`NAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product` (
+  `PRODUCT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `TYPE` varchar(45) NOT NULL,
+  `MODIFIED_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`PRODUCT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
