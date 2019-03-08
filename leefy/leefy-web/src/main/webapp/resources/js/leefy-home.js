@@ -194,13 +194,18 @@ var mainLayout = new Ext.Viewport({
 						fieldLabel : 'footerLabel',
 						labelStyle : 'color:red',
 						cls : 'footer-class',
-						html : '&copy; 2015 Jeewantha Samaraweera.  All rights reserved.'
+						html : fnGetCopyRight()
 					}]
 		});
 
 mainLayout.show();
 });
 
+function fnGetCopyRight() {
+	var today = new Date();
+	var year = Ext.Date.format(today,'Y'); 
+	return "&copy; "+year+" Jeewantha Samaraweera.  All rights reserved.";
+}
 
 function fnResetForm(theForm) {
 	theForm.getForm().reset();

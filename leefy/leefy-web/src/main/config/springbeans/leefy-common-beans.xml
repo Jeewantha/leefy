@@ -27,7 +27,7 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<import resource="leefy-common-beans-dao-sessionfactory.xml"/>
+	<import resource="classpath*:daobeans/leefy-common-beans-dao-sessionfactory.xml"/>
                            
 	<bean id="userService" class="com.jeesoft.web.services.user.UserServiceImpl">
 	    <property name="userDao" ref="userDao" />

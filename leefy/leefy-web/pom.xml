@@ -319,8 +319,6 @@
         </directory>
         <includes>
          <include>**/*.properties</include>
-         <include>**/datasource/*.xml</include>
-         <include>**/hibernate/*.xml</include>
          <include>**/springbeans/*.xml</include>
         </includes>
       </resource>
