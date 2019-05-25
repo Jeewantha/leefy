@@ -18,6 +18,8 @@ How to install Leefy without building from the source
     * MySQL 5.7 Community Edition
     * Tomcat 9.0.14
 
+To Be Continued...
+
 Version
 =====
 alpha 1.0
@@ -69,4 +71,4 @@ How to configure
 	2.2 Once you are in the "db scripts" directory. Open a command line in that location. If you have installed the MySQL
 	commandline during your MySQL installation, you should be able to login to your mysql 
 	
-
+To Be Continued...
