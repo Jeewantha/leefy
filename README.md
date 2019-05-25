@@ -64,7 +64,7 @@ How to configure
 	
 		/home/jeewantha/Projects/GitRepositories/leefy
 
-		You will find the database scripts in,
+	You will find the database scripts in,
 		
 		/home/jeewantha/Projects/GitRepositories/leefy/leefy/leefy-api/db scripts
 
