@@ -69,6 +69,7 @@ How to configure
 		/home/jeewantha/Projects/GitRepositories/leefy/leefy/leefy-api/db scripts
 
 	2.2 Once you are in the "db scripts" directory. Open a command line in that location. If you have installed the MySQL
-	commandline during your MySQL installation, you should be able to login to your mysql 
+	commandline during your MySQL installation, you should be able to login to your mysql with username and password that
+	you provided during the installation.
 	
 To Be Continued...
