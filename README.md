@@ -41,7 +41,7 @@ How to install Leefy without building from the source
 ======================================================
 1. If you just want to check it out, it is easy to get Leefy up and running in your local machine without building it from the source.
 
-2. All the dependent softwares, requires to run Leefy is free and open source. The list of required softwares are as follows.
+2. All the dependent softwares, requires to run Leefy is free and open source. The list of required software are as follows.
     * Java 8 or above
     * MySQL 5.7 Community Edition
     * Tomcat 9.0.14
@@ -65,7 +65,7 @@ If you would like to contribute,
 * Report bugs and issues
 * Submit pull requests to fix issues
 * Create documentation(DOC will be available soon)
-* Document feature request(Preferebly with code that implements the feature)
+* Document feature request(Preferably with code that implements the feature)
 
 ** Please feel free to contribute to the project in any way you like!
 
@@ -81,6 +81,7 @@ Prereqisites
 1. Leefy is developed with Java 8, you need JDK 8 or higher.
 2. MySQL community edition 5.7 or higher is required for the database.
 3. Tomcat 9 or higher is required to deploy Leefy.
+4. Maven 3.6
 
 How to configure
 ================
@@ -92,28 +93,73 @@ How to configure
 
 	2.1 Navigate to the location where database scripts are located.
 		Eg: If you cloned it to a location as below.
-
-		/home/jeewantha/Projects/GitRepositories/leefy
+	
+		/home/Github/Projects/GitRepositories/leefy
 
 	You will find the database scripts in,
+		
+		/home/Github/Projects/GitRepositories/leefy/leefy/leefy-api/db scripts
 
-		/home/jeewantha/Projects/GitRepositories/leefy/leefy/leefy-api/db scripts
+	2.2 Once you are in the "db scripts" directory. Open a command line in that location. If you have installed the MySQL
+	commandline during your MySQL installation, you should be able to login to your mysql with username and password that
+	you have provided during the installation.
+	
+	    >mysql -u root -p
+	    Enter password:
+	    
+	    mysql>source leefy_db_execute.sql
+	
+	2.3 Above command will create the Database for leefy in MySQL, you don't have to do anything else. Verify your installtion 
+	by executing the below listed commands in MySQL.
+	    
+	    mysql>show databases;
+	    
+	Make sure that leefy is listed in the results.
+	
+	    mysql>use leefy;
+	    
+	    mysql>show tables;
+	
+	Make sure the resulting list has the below listed tables.
+	
+	+-------------------------+
+        | Tables_in_leefy         |
+        +-------------------------+
+        | country                 |
+        | module                  |
+        | page                    |
+        | privilege               |
+        | privilege_dependency    |
+        | role_privilege          |
+        | role_tab                |
+        | security_questions      |
+        | tab                     |
+        | user_login              |
+        | user_role               |
+        | user_security_questions |
+        +-------------------------+
+        
+3. Once the DB is up and running you can start setting up your development environment for leefy. To build the project you
+need Maven to be installed in your local environment.
+    
+    3.1 Once you have Maven installed in your local environment.
+    
+    3.2 In your commandline navigate to the main directory of leefy where the main(parent) POM is available.
+    
+            cd /home/Github/Projects/GitRepositories/leefy/leefy
+    
+    3.3 Execute the below command to build the project.
+            
+            >mvn clean install -DskipTests
+            
+    3.4 Once the build process is successful. You will have the binaries for leefy.
+    
+    3.5 OPTIONAL : If you use eclipse as you IDE, you can execute the following command to create eclipse workspace 
+    related changes for leefy.
+    
+            >mvn eclipse:eclipse
+            
 
-  2.2 Once you navigate to the "db scripts" directory, login to your MySQL command-line and
-  execute the SQL script as follows.
-
-      mysql> ./leefy_db_execute.sql
-
-  2.3 This will execute all necessary scripts and you will have an up and running database for Leefy
-  in no time.
-
-
-
-	If you have installed MySQL command-line during your MySQL installation, you should be able
-	to login to your MySQL server with your username and password.
-
-		  >mysql -u root -p  (Press Enter)
-
-  provide the password for the root user or to your database user with proper privileges if you are using a different user for MySQL(To simplify things I am using the root user)
-
- 2.3 After successful login into the MySQL server. Execute the following command.
+Updates are coming soon.
+    
+To Be Continued...
