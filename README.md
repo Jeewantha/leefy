@@ -39,7 +39,7 @@ Table of Contents
 
 5.  Licensing Information
 
-##[Installtion]1. Installation
+##[Installation]1. Installation
  
 How to install Leefy without building from the source
 ======================================================
