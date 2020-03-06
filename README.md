@@ -13,7 +13,8 @@ This document will provide all the information that you are required to setup Le
 Table of Contents
 
 =================
-1.#[Installation](#installation)
+#[installation](#installation) Installation
+
 	1.1 How to install Leefy without building from the source
 	
 
@@ -39,7 +40,8 @@ Table of Contents
 
 5.  Licensing Information
 
-##[Installation]1. Installation
+##[installation]
+1. Installation
  
 How to install Leefy without building from the source
 ======================================================
