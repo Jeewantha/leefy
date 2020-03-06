@@ -122,22 +122,22 @@ How to configure
 	
 	Make sure the resulting list has the below listed tables.
 	
-	+-------------------------+
-        | Tables_in_leefy         |
-        +-------------------------+
-        | country                 |
-        | module                  |
-        | page                    |
-        | privilege               |
-        | privilege_dependency    |
-        | role_privilege          |
-        | role_tab                |
-        | security_questions      |
-        | tab                     |
-        | user_login              |
-        | user_role               |
-        | user_security_questions |
-        +-------------------------+
+		+-------------------------+
+		| Tables_in_leefy         |
+		+-------------------------+
+		| country                 |
+		| module                  |
+		| page                    |
+		| privilege               |
+		| privilege_dependency    |
+		| role_privilege          |
+		| role_tab                |
+		| security_questions      |
+		| tab                     |
+		| user_login              |
+		| user_role               |
+		| user_security_questions |
+		+-------------------------+
         
 3. Once the DB is up and running you can start setting up your development environment for leefy. To build the project you
 need Maven to be installed in your local environment.
