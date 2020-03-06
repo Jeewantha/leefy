@@ -13,6 +13,9 @@ This document will provide all the information that you are required to setup Le
 Table of Contents
 
 =================
+1.#[Installation](#installation)
+	1.1 How to install Leefy without building from the source
+	
 
 1.  Setting up Environment
 
@@ -36,7 +39,8 @@ Table of Contents
 
 5.  Licensing Information
 
-
+##[Installtion]1. Installation
+ 
 How to install Leefy without building from the source
 ======================================================
 1. If you just want to check it out, it is easy to get Leefy up and running in your local machine without building it from the source.
