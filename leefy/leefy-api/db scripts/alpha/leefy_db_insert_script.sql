@@ -55,6 +55,7 @@ UNLOCK TABLES;
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 INSERT INTO `user_role` VALUES (1,'Admin','admin','2015-05-16 17:47:23',1);
+INSERT INTO `user_role` VALUES (2,'Visitor','visitor','2020-03-08 10:16:23',1);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 

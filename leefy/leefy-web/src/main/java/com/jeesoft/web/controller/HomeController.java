@@ -30,6 +30,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.jeesoft.web.util.SQLiteConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,10 @@ public class HomeController {
 	/** The authentication manager. */
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
+	@Autowired
+	private SQLiteConnection connection;
+
 	/** The person. */
 	private Map<String, String> person = new HashMap<String, String>();
 
@@ -86,7 +90,9 @@ public class HomeController {
 	    String name = auth.getName();
 	    try {
             UserLogin loggedInUser = guestUserService.getAnyUser(name);
-            
+
+			SQLiteConnection.getConnection();
+
             if(loggedInUser != null) {
                 request.setAttribute("username", name);
                 request.setAttribute("email", loggedInUser.getEmail());

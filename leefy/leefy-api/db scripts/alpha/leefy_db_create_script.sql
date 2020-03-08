@@ -30,6 +30,34 @@ USE `leefy`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Create a user for leefy
+--  u : leefy
+--  p : Leefy@localhost1
+--
+--  Important Note:
+--      Password is based on the default password policy of mysql.
+--      To view the policy values execute
+--          > SHOW VARIABLES LIKE 'validate_password%'
+
+--          +--------------------------------------+--------+
+--          | Variable_name                        | Value  |
+--          +--------------------------------------+--------+
+--          | validate_password_check_user_name    | ON     |
+--          | validate_password_dictionary_file    |        |
+--          | validate_password_length             | 8      |
+--          | validate_password_mixed_case_count   | 1      |
+--          | validate_password_number_count       | 1      |
+--          | validate_password_policy             | MEDIUM |
+--          | validate_password_special_char_count | 1      |
+--          +--------------------------------------+--------+
+--
+DROP USER 'leefy'@'localhost';
+
+CREATE USER 'leefy'@'localhost' IDENTIFIED BY 'Leefy@localhost1';
+GRANT ALL ON leefy.* TO 'leefy'@'localhost';
+FLUSH PRIVILEGES;
+
+--
 -- Table structure for table `module`
 --
 
